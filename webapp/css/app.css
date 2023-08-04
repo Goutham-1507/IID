@@ -1,0 +1,47 @@
+.HeaderClass{
+    /*font-size: 18px;*/
+    /*font-weight: bold;*/
+}
+
+.Vertical_Layout{
+    margin-top: 3.5rem !important;
+    margin-left: 3.5rem !important;
+}
+.SearchClass{
+
+  height: 2rem;
+}
+.sapMITBContent{
+    padding: 0rem
+}
+.ObjectAttributeweight{
+    font-weight: 700;
+}
+.labelFontweight{
+    font-weight: bold !important;
+}
+sapMLabel {
+    font-weight: bold !important;
+}
+
+.objectPageSubsectionHeader{
+    color: #0d0909;
+}
+.sapUiTheme-sap_belize_plus .sapUxAPObjectPageSectionTitle {
+    color: #1f1b1ba1;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.5);
+}
+.PageHeaderDelegate{
+        /*background: gainsboro*/
+        /*background: darkkhaki*/
+        /*background:lightgoldenrodyellow;*/
+        background:#FFDEAD;
+}
+.PageHeaderNonDelegate{
+        background-color: ghostwhite;
+}
+.Vertical_LayoutBtn{
+    margin-top: 2.8rem !important;
+}
+
+

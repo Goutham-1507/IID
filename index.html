@@ -1,0 +1,3973 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Travel Request</title>
+<script id="sap-ui-bootstrap" type="text/javascript" src="resources/sap-ui-core.js"
+data-sap-ui-noDuplicateIds="false"
+data-sap-ui-preload="sync"
+data-sap-ui-theme="sap_belize"
+data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.unified,sap.ui.table,sap.suite.ui.commons,sap.m,sap.me,sap.uxap,sap.tnt,sap.ui.comp,sap.ui.fl">
+</script>
+<link href="webapp/css/app.css" type="text/css" rel="stylesheet" />
+<link rel="shortcut icon" href="webapp/images/favicon.png" type="image/x-icon" />
+<script src="webapp/controller/ModelData.js"></script>
+<script src="webapp/controller/aes.js"></script>
+<script src="webapp/controller/AppSync.js"></script>
+</head>
+
+<body  class="sapUiBody" role="application" id="body"><form><div id="MobileContent"></div><input type="hidden" name="applid" value="ZND_EMP_TRAVEL_REQUEST"></form><input type="hidden" name="applid" value="ZND_EMP_TRAVEL_REQUEST"></form>
+<script>
+var JSONH,jsonh=JSONH=function(a,b){function c(a){var b=[];return $.each(a,function(a,c){for(var d in c)$.inArray(d,b)===-1&&b.push(d)}),b}function d(b){for(var j,l,d=b.length,e=c(b),f=e.length,g=a(d*f),h=0,i=0;h<d;++h)for(l=b[h],j=0;j<f;g[i++]=l[e[j++]]);return k.call([f],e,g)}function e(b){if("object"==typeof b[0])return b;for(var h,i,c=b.length,d=b[0],e=a((c-d-1)/d||0),f=1+d,g=0;f<c;)for(e[g++]=i={},h=0;h<d;i[b[++h]]=b[f++]);return e}function f(a){return a.length?d(a):a}function g(a){return a.length?e(a):a}function h(a,b,c,d){return n(f(a,d),b,c)}function i(a,b,c){return g(o(a,b),c)}var j=[],k=j.concat,n=(a.isArray||function(a,b){return b=a.call(j),function(d){return a.call(d)==b}}({}.toString),j.map||function(b,c){for(var d=this,e=d.length,f=a(e);e--;f[e]=b.call(c,d[e],e,d));return f},b.stringify),o=b.parse;return{pack:f,parse:i,stringify:h,unpack:g}}(Array,JSON);
+var localAppID = "ZND_EMP_TRAVEL_REQUEST";
+if (typeof AppCache === "undefined") { var sapUname = "SCPANUGANTI"; } else { var sapUname = AppCache.CurrentUname; } 
+ var App_ExpenseRequest = new sap.m.App("App_ExpenseRequest",{}); 
+ var Page_ExpenseRequest = new sap.m.Page("Page_ExpenseRequest",{showHeader:false,showSubHeader:false});
+App_ExpenseRequest.addPage(Page_ExpenseRequest);
+var modelPage_ExpenseRequest = new sap.ui.model.json.JSONModel();
+Page_ExpenseRequest.setModel(modelPage_ExpenseRequest); 
+ var Splitter_ExpenseRequest = new sap.ui.layout.Splitter("Splitter_ExpenseRequest",{orientation:"Vertical"});
+Page_ExpenseRequest.addContent(Splitter_ExpenseRequest); 
+ var NavContainerEmpDetails = new sap.m.NavContainer("NavContainerEmpDetails",{});
+Splitter_ExpenseRequest.addContentArea(NavContainerEmpDetails); 
+ var Page_Header = new sap.m.Page("Page_Header",{backgroundDesign:"Solid",enableScrolling:false,showSubHeader:false,title:"Travel Request",titleLevel:"H6"});
+NavContainerEmpDetails.addPage(Page_Header); 
+ var VerticalLayoutEmployeeID = new sap.ui.layout.VerticalLayout("VerticalLayoutEmployeeID",{});
+Page_Header.addContent(VerticalLayoutEmployeeID); 
+ var oObjectHeader = new sap.m.ObjectHeader("oObjectHeader",{icon:"sap-icon://travel-expense-report",title:"{/EMPLOYEEID}",titleLevel:"H2"});
+VerticalLayoutEmployeeID.addContent(oObjectHeader); 
+ var oVerticalLayoutDelegate = new sap.ui.layout.VerticalLayout("oVerticalLayoutDelegate",{visible:"{/HEADERPAGE_IND}"});
+Page_Header.addContent(oVerticalLayoutDelegate); 
+ var Btn_RevokeDelegate = new sap.m.Button("Btn_RevokeDelegate",{text:"Done With Delegate",type:"Emphasized",visible:"{= ${/CHKEMP} === true ? false:true}",press: function(oEvent) {
+//Revoke delegation mode
+App_ExpenseRequest.setBusy(true);
+App_Details.to(Page_ExpenseReport);
+getOnlineinitonLoad();
+
+}});
+oVerticalLayoutDelegate.addContent(Btn_RevokeDelegate); 
+ var Btn_Delegate = new sap.m.Button("Btn_Delegate",{visible:"{/CHKEMP}",type:"Emphasized",text:"Delegate",icon:"sap-icon://employee-pane",press: function(oEvent) {Dia_Delegate.open(); // open f4 value help for delegation
+}});
+oVerticalLayoutDelegate.addContent(Btn_Delegate); 
+ var VerticalLayoutEmployeeName = new sap.ui.layout.VerticalLayout("VerticalLayoutEmployeeName",{});
+Page_Header.addContent(VerticalLayoutEmployeeName); 
+ var ObjectAttributeEmployeeName = new sap.m.ObjectAttribute("ObjectAttributeEmployeeName",{text:"{/NAME}",title:"Name"});
+VerticalLayoutEmployeeName.addContent(ObjectAttributeEmployeeName); 
+ var VerticalLayoutJobTitle = new sap.ui.layout.VerticalLayout("VerticalLayoutJobTitle",{});
+Page_Header.addContent(VerticalLayoutJobTitle); 
+ var ObjectAttributePersonnelArea = new sap.m.ObjectAttribute("ObjectAttributePersonnelArea",{text:"{/PERSONNELAREATXT}",title:"Campus"});
+VerticalLayoutJobTitle.addContent(ObjectAttributePersonnelArea); 
+ var VerticalLayoutReportNumber = new sap.ui.layout.VerticalLayout("VerticalLayoutReportNumber",{});
+Page_Header.addContent(VerticalLayoutReportNumber); 
+ var ObjectAttributeReportNumber = new sap.m.ObjectAttribute("ObjectAttributeReportNumber",{title:"Report Number"});
+VerticalLayoutReportNumber.addContent(ObjectAttributeReportNumber); 
+ var App_Details = new sap.m.App("App_Details",{});
+Splitter_ExpenseRequest.addContentArea(App_Details); 
+ var Page_ExpenseReport = new sap.m.Page("Page_ExpenseReport",{showHeader:false,showSubHeader:false});
+App_Details.addPage(Page_ExpenseReport); 
+ var oIconTabBar = new sap.m.IconTabBar("oIconTabBar",{expandable:false,select: function(oEvent) {
+var filterValue = oEvent.getParameter('key');    //filter the requests
+var binding = Tbl_ExpenseReport.getBinding("items");
+if (filterValue === 'All') {
+    binding.filter();
+} else if (filterValue === 'Submitted') {
+    var filter = new sap.ui.model.Filter("STATUS", "EQ", "Submitted");
+    binding.filter([filter]);
+} else if (filterValue === 'open') {
+    var filter = new sap.ui.model.Filter("STATUS", "EQ", "Open");
+    binding.filter([filter]);
+} else if (filterValue === 'Approved') {
+    var filter = new sap.ui.model.Filter("STATUS", "EQ", "Approved");
+    binding.filter([filter]);
+}
+else if (filterValue === 'SentforPayment') {
+    var filter = new sap.ui.model.Filter("STATUS", "EQ", "Sent for Payment");
+    binding.filter([filter]);
+}
+}});
+Page_ExpenseReport.addContent(oIconTabBar); 
+ var Filter_All = new sap.m.IconTabFilter("Filter_All",{key:"All",text:"All"});
+oIconTabBar.addItem(Filter_All); 
+ var oIconTabSeparator = new sap.m.IconTabSeparator("oIconTabSeparator",{});
+oIconTabBar.addItem(oIconTabSeparator); 
+ var Filter_Open = new sap.m.IconTabFilter("Filter_Open",{key:"open",text:"Open"});
+oIconTabBar.addItem(Filter_Open); 
+ var Filter_ToBeSettled = new sap.m.IconTabFilter("Filter_ToBeSettled",{text:"Submitted",key:"Submitted"});
+oIconTabBar.addItem(Filter_ToBeSettled); 
+ var Filter_Settled = new sap.m.IconTabFilter("Filter_Settled",{key:"Approved",text:"Approved"});
+oIconTabBar.addItem(Filter_Settled); 
+ var Filter_payment = new sap.m.IconTabFilter("Filter_payment",{key:"SentforPayment",text:"Sent for Payment"});
+oIconTabBar.addItem(Filter_payment); 
+ var Tbl_ExpenseReport = new sap.m.Table("Tbl_ExpenseReport",{showSeparators:"All",mode:"MultiSelect",backgroundDesign:"Translucent"});
+oIconTabBar.addContent(Tbl_ExpenseReport);
+var modelTbl_ExpenseReport = new sap.ui.model.json.JSONModel();
+Tbl_ExpenseReport.setModel(modelTbl_ExpenseReport); 
+ var Toolbar_ExpenseReport = new sap.m.Toolbar("Toolbar_ExpenseReport",{design:"Auto"});
+Tbl_ExpenseReport.setHeaderToolbar(Toolbar_ExpenseReport); 
+ var oSearchField = new sap.m.SearchField("oSearchField",{width:"20%",liveChange: function(oEvent) {
+//Filter Table according to the live change
+var binding = Tbl_ExpenseReport.getBinding("items");
+var filter = new sap.ui.model.Filter({
+    filters: [
+        new sap.ui.model.Filter("TRIPNUMBER", "Contains", this.getValue()),
+        new sap.ui.model.Filter("REPORTNAME", "Contains", this.getValue()),
+        new sap.ui.model.Filter("STATUS", "Contains", this.getValue()),
+        new sap.ui.model.Filter("BUSINESSPURPOSE", "Contains", this.getValue())
+    ],
+    and: false
+})
+binding.filter([filter]);
+
+
+}});
+Toolbar_ExpenseReport.addContent(oSearchField); 
+ var ToolbarSpacer_ExpenseReport = new sap.m.ToolbarSpacer("ToolbarSpacer_ExpenseReport",{});
+Toolbar_ExpenseReport.addContent(ToolbarSpacer_ExpenseReport); 
+ var Btn_WVPrint = new sap.m.Button("Btn_WVPrint",{icon:"sap-icon://pdf-attachment",text:"Print",type:"Emphasized"});
+Toolbar_ExpenseReport.addContent(Btn_WVPrint); 
+ var Btn_Create = new sap.m.Button("Btn_Create",{type:"Emphasized",text:"Create",icon:"sap-icon://create-form",press: function(oEvent) {
+//Create Expense header
+Page_ExpenseReceipt.setBusy(true);
+modelPage_ExpenseRequest.setData(modelPage_ExpenseRequest.getData());
+getOnlineCreateExpnHeader('create');
+editMode('Open');
+App_Details.to(Page_ExpenseReceipt);
+}});
+Toolbar_ExpenseReport.addContent(Btn_Create); 
+ var Btn_Delete = new sap.m.Button("Btn_Delete",{type:"Emphasized",text:"Delete",icon:"sap-icon://delete",press: function(oEvent) {
+var selectedIndex = Tbl_ExpenseReport.getSelectedContextPaths();
+selectedIndex.sort();
+selectedIndex.reverse();
+if (selectedIndex.length === 0 || selectedIndex.length === undefined) {
+    jQuery.sap.require("sap.m.MessageToast");
+    sap.m.MessageToast.show("Please Select Atleast Request to Delete");
+    return;
+}
+App_ExpenseRequest.setBusy(true);
+for (var i = 0; i < selectedIndex.length; i++) {
+    index = parseInt(selectedIndex[i].replace("/", ''));
+    var array = {
+        'EMPLOYEEID': modelTbl_ExpenseReport.getData()[index].EMPLOYEEID,
+        'TRIPNUMBER': modelTbl_ExpenseReport.getData()[index].TRIPNUMBER,
+        'ABREC': modelTbl_ExpenseReport.getData()[index].ABREC,
+        'ANTRG': modelTbl_ExpenseReport.getData()[index].ANTRG
+    };
+    ModelData.Add(Tbl_TripDelete, array);
+}
+modelTbl_TripDelete.refresh();
+getOnlineDeleteTrips(modelPage_ExpenseRequest.getData().EMPLOYEEID);
+}});
+Toolbar_ExpenseReport.addContent(Btn_Delete); 
+ var Btn_Copy = new sap.m.Button("Btn_Copy",{type:"Emphasized",text:"Copy",icon:"sap-icon://copy",press: function(oEvent) {
+//Copy Report Header
+
+var selectedIndex = Tbl_ExpenseReport.getSelectedContextPaths();
+if (selectedIndex.length === 0 || selectedIndex.length === undefined) {
+    jQuery.sap.require("sap.m.MessageToast");
+    sap.m.MessageToast.show("Please Select One Request to Copy");
+    return;
+} else if (selectedIndex.length > 1) {
+    jQuery.sap.require("sap.m.MessageToast");
+    sap.m.MessageToast.show("Please Select Only One Request to Copy");
+    return;
+}
+Page_ExpenseReceipt.setBusy(true);
+var index = parseFloat(Tbl_ExpenseReport.getSelectedContextPaths()[0].replace('/', ''))
+data = modelTbl_ExpenseReport.getData()[index]
+modelPage_ExpenseRequest.setData(data)
+getOnlineCreateExpnHeader('copy')
+editMode('Open');
+App_Details.to(Page_ExpenseReceipt);
+}});
+Toolbar_ExpenseReport.addContent(Btn_Copy); 
+ var ReportID = new sap.m.Column("ReportID",{header: new sap.m.Label({text:"Request ID"})});
+Tbl_ExpenseReport.addColumn(ReportID); 
+ var ReportName = new sap.m.Column("ReportName",{header: new sap.m.Label({text:"Request Name"})});
+Tbl_ExpenseReport.addColumn(ReportName); 
+ var ReportDate = new sap.m.Column("ReportDate",{header: new sap.m.Label({text:"Request Date"})});
+Tbl_ExpenseReport.addColumn(ReportDate); 
+ var Status = new sap.m.Column("Status",{header: new sap.m.Label({text:"Status"})});
+Tbl_ExpenseReport.addColumn(Status); 
+ var ColumnListItem_ExpenseReport = new sap.m.ColumnListItem("ColumnListItem_ExpenseReport",{type:"Navigation",press: function(oEvent) {
+Page_ExpenseReceipt.setBusy(true);
+var index = parseFloat(oEvent.getSource().getBindingContextPath().replace('/', ''))
+// var data = {};
+// data = modelTbl_ExpenseReport.getData()[index]
+// modelPage_ExpenseRequest.setData(data)
+// ModelData.Add(Page_ExpenseRequest, data)
+// modelPage_ExpenseRequest.refresh()
+
+getOnlineGetDetail(modelTbl_ExpenseReport.getData()[index].TRIPNUMBER);
+// getOnlineGetDetail(index)
+editMode(modelTbl_ExpenseReport.getData()[index]['STATUS']);
+App_Details.to(Page_ExpenseReceipt);
+
+
+}});
+Tbl_ExpenseReport.bindAggregation("items", "/",ColumnListItem_ExpenseReport); 
+ var TReportID = new sap.m.Text("TReportID",{text:"{TRIPNUMBER}"});
+ColumnListItem_ExpenseReport.addCell(TReportID); 
+ var TReportName = new sap.m.Text("TReportName",{text:"{BUSINESSPURPOSE}"});
+ColumnListItem_ExpenseReport.addCell(TReportName); 
+ var TReportDate = new sap.m.Text("TReportDate",{text:"{TRANSACTIONDATE}"});
+ColumnListItem_ExpenseReport.addCell(TReportDate); 
+ var TStatus = new sap.m.Text("TStatus",{text:"{STATUS}"});
+ColumnListItem_ExpenseReport.addCell(TStatus); 
+ var Page_ExpenseReceipt = new sap.m.Page("Page_ExpenseReceipt",{showNavButton:true,backgroundDesign:"Solid",navButtonPress: function(oEvent) {oApp.back()
+}});
+App_Details.addPage(Page_ExpenseReceipt); 
+ var Bar_CustomHeader = new sap.m.Bar("Bar_CustomHeader",{});
+Page_ExpenseReceipt.setCustomHeader(Bar_CustomHeader); 
+ var Btn_Back = new sap.m.Button("Btn_Back",{tooltip:"Back",icon:"sap-icon://nav-back",press: function(oEvent) {
+//Go back to worklist view
+if (modelPage_ExpenseRequest.getData()['STATUS'] === "Open" || modelPage_ExpenseRequest.getData()['STATUS'] === "") {
+    Dialog_Back_Confirm.open();
+} else {
+    App_ExpenseRequest.setBusy(true);
+    getOnlineinitonLoad(modelPage_ExpenseRequest.getData().EMPLOYEEID);
+    App_Details.back();
+    ReportNoDisplay();
+}
+}});
+Bar_CustomHeader.addContentLeft(Btn_Back); 
+ var Btn_ApprovalFlow = new sap.m.Button("Btn_ApprovalFlow",{type:"Emphasized",text:"Approval Flow",icon:"sap-icon://workflow-tasks",press: function(oEvent) {Dialog_ApprovalFlow.open()
+}});
+Bar_CustomHeader.addContentRight(Btn_ApprovalFlow); 
+ var Btn_Print = new sap.m.Button("Btn_Print",{icon:"sap-icon://pdf-attachment",text:"Print",type:"Emphasized"});
+Bar_CustomHeader.addContentRight(Btn_Print); 
+ var Btn_NotifyEmployee = new sap.m.Button("Btn_NotifyEmployee",{visible:"{= ${/CHKEMP} === true ? false : true}",type:"Emphasized",text:"Notify Employee",icon:"sap-icon://email"});
+Bar_CustomHeader.addContentRight(Btn_NotifyEmployee); 
+ var Btn_save = new sap.m.Button("Btn_save",{type:"Emphasized",tooltip:"Save as Draft",text:"Save",icon:"sap-icon://save",enabled:"{/IS_EDITABLE}",press: function(oEvent) {
+//Validate and save
+var ret = savesubmitValidate(modelPage_ExpenseRequest.getData())
+if(ret === 'e'){
+    return;
+}
+Page_ExpenseReceipt.setBusy(true);
+getOnlineOnSave('save');
+}});
+Bar_CustomHeader.addContentRight(Btn_save); 
+ var Btn_Approval = new sap.m.Button("Btn_Approval",{enabled:"{/IS_EDITABLE}",icon:"sap-icon://approvals",text:"Submit for Approval",tooltip:"Submit for Approval",type:"Emphasized",visible:"{/CHKEMP}",press: function(oEvent) {
+
+//Validating ad Submitting
+var ret = savesubmitValidate(modelPage_ExpenseRequest.getData())
+if(ret === 'e'){
+    return;
+}
+Page_ExpenseReceipt.setBusy(true);
+getOnlineOnSave('submit');
+
+}});
+Bar_CustomHeader.addContentRight(Btn_Approval); 
+ var Btn_Recall = new sap.m.Button("Btn_Recall",{visible:"{/CHKEMP}",type:"Emphasized",text:"Recall",icon:"sap-icon://cause",press: function(oEvent) {
+Page_ExpenseReceipt.setBusy(true);
+getOnlineOnSave('SAVE');
+}});
+Bar_CustomHeader.addContentRight(Btn_Recall); 
+ var oObjectPageLayout = new sap.uxap.ObjectPageLayout("oObjectPageLayout",{alwaysShowContentHeader:true,upperCaseAnchorBar:false});
+Page_ExpenseReceipt.addContent(oObjectPageLayout); 
+ var OPS_ExpenseReceipt = new sap.uxap.ObjectPageSection("OPS_ExpenseReceipt",{showTitle:false,titleUppercase:false});
+oObjectPageLayout.addSection(OPS_ExpenseReceipt); 
+ var OPSS_ExpenseReceipt = new sap.uxap.ObjectPageSubSection("OPSS_ExpenseReceipt",{title:"Expense Receipt"});
+OPS_ExpenseReceipt.addSubSection(OPSS_ExpenseReceipt); 
+ var oVBox1 = new sap.m.VBox("oVBox1",{});
+OPSS_ExpenseReceipt.addBlock(oVBox1); 
+ var Frm_ExpenseReceipt = new sap.ui.layout.form.SimpleForm("Frm_ExpenseReceipt",{"layout":"ResponsiveGridLayout",labelSpanL:3,editable:true});
+oVBox1.addItem(Frm_ExpenseReceipt); 
+ var Title_ExpenseReceipt = new sap.ui.core.Title("Title_ExpenseReceipt",{});
+Frm_ExpenseReceipt.addContent(Title_ExpenseReceipt); 
+ var Lbl_ExpenseStartDate = new sap.m.Label("Lbl_ExpenseStartDate",{required:true,text:"Start Date"});
+Frm_ExpenseReceipt.addContent(Lbl_ExpenseStartDate); 
+ var HBox_ExpenseStartDate = new sap.m.HBox("HBox_ExpenseStartDate",{justifyContent:"Start"});
+Frm_ExpenseReceipt.addContent(HBox_ExpenseStartDate); 
+ var DP_ExpenseStartDate = new sap.m.DatePicker("DP_ExpenseStartDate",{displayFormat:"MM/dd/yyyy",editable:"{/IS_EDITABLE}",value:"{/TRANSACTIONDATE}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_ExpenseStartDate.addItem(DP_ExpenseStartDate); 
+ var Lbl_StartTime = new sap.m.Label("Lbl_StartTime",{required:true,text:"Start Time:"});
+HBox_ExpenseStartDate.addItem(Lbl_StartTime); 
+ var TP_StartTime = new sap.m.TimePicker("TP_StartTime",{width:"5.2rem",valueFormat:"HHmmss",value:"{/STARTTIME}",editable:"{/IS_EDITABLE}",displayFormat:"HH:mm"});
+HBox_ExpenseStartDate.addItem(TP_StartTime); 
+ var Lbl_TripType = new sap.m.Label("Lbl_TripType",{required:true,text:"Trip Type"});
+Frm_ExpenseReceipt.addContent(Lbl_TripType); 
+ var DD_TripType = new sap.m.ComboBox("DD_TripType",{title:"",width:"18.2rem",value:"{/ACTIVITYTEXT}",editable:"{/IS_EDITABLE}",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    modelPage_ExpenseRequest.getData().ACTIVITY = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseRequest.getData().ACTIVITYTEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+    Chk_TripDomestic(modelPage_ExpenseRequest.getData().ACTIVITY, modelPage_ExpenseRequest.getData().ACTIVITYTEXT, 'X');
+    DD_ExpenseType.setBusy(true);
+    getOnlineGet_ExpenseTypes(oEvent.getSource().getSelectedKey());
+}
+}});
+Frm_ExpenseReceipt.addContent(DD_TripType); 
+ var Lbl_City = new sap.m.Label("Lbl_City",{text:"City",required:true});
+Frm_ExpenseReceipt.addContent(Lbl_City); 
+ var DD_City = new sap.m.ComboBox("DD_City",{title:"",editable:"{/IS_EDITABLE}",value:"{/LOCATION}",width:"27rem"});
+Frm_ExpenseReceipt.addContent(DD_City); 
+ var Lbl_State = new sap.m.Label("Lbl_State",{required:true,text:"State"});
+Frm_ExpenseReceipt.addContent(Lbl_State); 
+ var DD_State = new sap.m.ComboBox("DD_State",{title:"",editable:"{/IS_EDITABLE}",value:"{/STATETEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    modelPage_ExpenseRequest.getData().STATE = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseRequest.getData().STATETEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_ExpenseReceipt.addContent(DD_State); 
+ var Lbl_Country = new sap.m.Label("Lbl_Country",{required:true,text:"Country"});
+Frm_ExpenseReceipt.addContent(Lbl_Country); 
+ var DD_Country = new sap.m.ComboBox("DD_Country",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRYTEXT}",width:"15.6rem",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    modelPage_ExpenseRequest.getData().COUNTRY = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseRequest.getData().COUNTRYTEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_ExpenseReceipt.addContent(DD_Country); 
+ var Title_ExpenseReceipt1 = new sap.ui.core.Title("Title_ExpenseReceipt1",{});
+Frm_ExpenseReceipt.addContent(Title_ExpenseReceipt1); 
+ var Lbl_ExpenseEndDate = new sap.m.Label("Lbl_ExpenseEndDate",{required:true,text:"End Date"});
+Frm_ExpenseReceipt.addContent(Lbl_ExpenseEndDate); 
+ var HBox_ExpenseEndDate = new sap.m.HBox("HBox_ExpenseEndDate",{justifyContent:"Start"});
+Frm_ExpenseReceipt.addContent(HBox_ExpenseEndDate); 
+ var DP_ExpenseEndDate = new sap.m.DatePicker("DP_ExpenseEndDate",{displayFormat:"MM/dd/yyyy",editable:"{/IS_EDITABLE}",value:"{/TODATE}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_ExpenseEndDate.addItem(DP_ExpenseEndDate); 
+ var Lbl_EndTime = new sap.m.Label("Lbl_EndTime",{required:true,text:"End Time:"});
+HBox_ExpenseEndDate.addItem(Lbl_EndTime); 
+ var TP_EndTime = new sap.m.TimePicker("TP_EndTime",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/ENDTIME}",valueFormat:"HHmmss",width:"5.2rem"});
+HBox_ExpenseEndDate.addItem(TP_EndTime); 
+ var Lbl_wbsElement = new sap.m.Label("Lbl_wbsElement",{text:"WBS Element",visible:"{=  ${/COSTOBJECTTYPE} === 'WBS Element' ? true : false }"});
+Frm_ExpenseReceipt.addContent(Lbl_wbsElement); 
+ var VP_WbsElement = new sap.m.Input("VP_WbsElement",{visible:false,change: function(oEvent) {
+var findRec = ModelData.Find(VP_WbsElement, "CHK",this.getValue());
+if (findRec.length === 0) {
+var newRec = {};
+newRec.SIGN = "I";
+newRec.OPTION = "EQ";
+newRec.LOW = this.getValue();
+newRec.CHK = this.getValue();
+VP_WbsElement.getModel().setData();
+ModelData.Add(VP_WbsElement,newRec);
+}
+
+a = this.getValue().split(":")
+VP_WbsElement.setValue(a[1])
+modelPage_ExpenseRequest.getData().COSTOBJECT = a[1]
+},showValueHelp:true,valueHelpRequest: function(oEvent) {
+modelF4tabSelection.setData(modelVP_WbsElement.oData);
+if (modelF4tabSelection.oData.length){F4ButSelection.setText(txtF4PageCondition + " (" + modelF4tabSelection.oData.length + ")");} else {F4ButSelection.setText(txtF4PageCondition + " (0)");}
+modelF4tabResult.setData();
+F4toolResultLabel.setText("Items (0)");F4ButSelection.setEnabled(true);F4tabResult.setMode("SingleSelect");F4ButSelection.setVisible(false);F4ButSelAll.setVisible(false);
+var screenFieldName = oEvent.getSource().sId;
+var shName = "PRP:VP_WbsElement:" + screenFieldName;
+F4Dialog.open();
+F4App.to("F4PageSelection","show");
+getOnlineF4SearchHelps(shName);
+}});
+Frm_ExpenseReceipt.addContent(VP_WbsElement);
+var modelVP_WbsElement = new sap.ui.model.json.JSONModel();
+VP_WbsElement.setModel(modelVP_WbsElement); var txtF4ButSelAll = "All";
+ var txtF4ButSelNone = "None";
+ var txtF4PageCondition = "Conditions";
+ var txtF4ButSelect = "OK";
+ var txtF4SelectedItems = "Selected Items";
+ var txtF4ButClose = "Cancel";
+ var txtF4Items = "Items";
+ var txtF4ButSearch = "Search";
+ var txtF4AddCondition = "Add Condition";
+ var txtF4ButDelCond = "Delete";
+ var txtF4colSelectionOperator = "Operator";
+ var txtF4colSelectionSign = "Sign";
+ var txtF4colSelectionFrom = "From";
+ var txtF4colSelectionTo = "To";
+ var txtF4txtSelectionSignI = "Include";
+ var txtF4txtSelectionSignE = "Exclude";
+ var txtF4txtSelectionOperEQ = "Equal to";
+ var txtF4txtSelectionOperBT = "Between";
+ var txtF4txtSelectionOperGE = "Greater or equal";
+ var txtF4txtSelectionOperGT = "Greater than";
+ var txtF4txtSelectionOperLE = "Less or equal";
+ var txtF4txtSelectionOperLT = "Less than";
+ var txtF4txtSelectionOperCP = "Contains pattern";
+ var txtF4txtSelectionOperNP = "Not contains pattern";
+ var txtF4popSHList = "Select Search View";
+ var txtF4txtSelectionOperNE = "Not equal";
+ var txtF4MaxRows = "Max hits";
+ var txtF4ButAddFav = "Add to Personal List";
+ var txtF4ButDelFav = "Remove from Personal List";
+ var txtF4ToastAddFav = "Added to Personal List";
+ var txtF4ToastDelFav = "Removed from Personal List";
+ var txtF4ToastNoRec = "No records selected";
+
+//F4 SEARCH HELP
+if (typeof F4Dialog === 'undefined') {
+
+    var F4Dialog = new sap.m.Dialog("F4Dialog", {
+        contentHeight: "90%",
+        contentWidth: "1240px",
+        showHeader: false,
+        draggable: true,
+        resizable: true,
+        stretchOnPhone: true
+    });
+
+    F4Dialog.addStyleClass("sapUiNoContentPadding");
+    F4Dialog.removeStyleClass("sapUiPopupWithPadding")
+    F4Dialog.setBusyIndicatorDelay(0);
+
+    var modelF4Dialog = new sap.ui.model.json.JSONModel();
+    F4Dialog.setModel(modelF4Dialog);
+
+    var F4App = new sap.m.NavContainer("F4App", {
+        width: "100%",
+        visible: true,
+        height: "100%",
+        defaultTransitionName: "slide"
+    });
+    F4Dialog.addContent(F4App);
+
+    // Page Search
+    var F4PageSelection = new sap.m.Page("F4PageSelection", {
+        showHeader: true
+    });
+    F4App.addPage(F4PageSelection);
+
+    // Page Condition
+    var F4PageCondition = new sap.m.Page("F4PageCondition", {
+        title: txtF4PageCondition,
+        showNavButton: true,
+        navButtonPress: function(oEvent) {
+            F4SetCondText();
+            F4tabResult.removeSelections();
+            F4ApplySelected();
+            F4App.back();
+        }
+    });
+    F4App.addPage(F4PageCondition);
+
+    var F4Header = new sap.m.Bar("F4Header", {
+        visible: true
+    });
+    F4PageSelection.setCustomHeader(F4Header);
+
+    var F4HeaderLabel = new sap.m.Label("F4HeaderLabel", {
+        required: false,
+        text: "{/NAME}",
+        visible: true
+    });
+    F4Header.addContentMiddle(F4HeaderLabel);
+
+    var F4butSelectionSH = new sap.m.Button("F4butSelectionSH", {
+        icon: "sap-icon://navigation-down-arrow",
+        press: function(oEvent) {
+            F4popSHList.openBy(this);
+        }
+    });
+    F4Header.addContentMiddle(F4butSelectionSH);
+
+    var F4FormSelection = new sap.ui.layout.form.SimpleForm("F4FormSelection", {
+        editable: true,
+        maxContainerCols: 2,
+        layout: "ResponsiveGridLayout",
+        labelSpanS: 12,
+        labelSpanM: 5,
+        labelSpanL: 5,
+        labelMinWidth: 192,
+        emptySpanS: 0,
+        emptySpanM: 0,
+        emptySpanL: 0,
+        columnsM: 2,
+        columnsL: 2,
+        breakpointM: 600,
+        breakpointL: 1024
+    });
+    F4PageSelection.addContent(F4FormSelection);
+
+    // Footer
+    var F4PageSelectionFooter = new sap.m.Bar("F4PageSelectionFooter", {
+        visible: true
+    });
+    F4PageSelection.setFooter(F4PageSelectionFooter);
+
+    var F4PageConditionFooter = new sap.m.Bar("F4PageConditionFooter", {
+        visible: true
+    });
+    F4PageCondition.setFooter(F4PageConditionFooter);
+
+    var F4ButSelect = new sap.m.Button("F4ButSelect", {
+        text: txtF4ButSelect,
+        type: "Accept",
+        icon: "sap-icon://accept",
+        press: function(oEvent) {
+
+            var newArr = new Array();
+
+            $.each(F4tabResult.getSelectedItems(), function(i, data) {
+                var context = data.getBindingContext();
+                var value = context.getProperty("F4KEY");
+                var stringText = value.toString();
+
+                var newRec = {};
+                newRec.SIGN = 'I';
+                newRec.OPTION = 'EQ';
+                newRec.LOW = value;
+                newRec.CHK = stringText.replace(/^0+/, '');
+                newRec.DATA = JSON.stringify(context.getObject());
+                newArr.push(newRec);
+
+            });
+
+            ModelData.UpdateArray(F4tabSelection, "LOW", newArr);
+
+            var object = sap.ui.getCore().byId(modelF4Dialog.oData.SCREEN_FIELD_NAME)
+            var fieldModel = object.getModel();
+
+            fieldModel.setData(modelF4tabSelection.oData);
+            if (modelF4tabSelection.oData.length) {
+                if (F4tabResult.getMode() === "SingleSelect") {
+                    var stringText = fieldModel.oData[0].LOW.toString();
+                    object.setValue(stringText.replace(/^0+/, ''));
+                } else {
+                    object.setValue(txtF4SelectedItems + ": " + fieldModel.oData.length);
+                }
+            } else {
+                object.setValue();
+            }
+
+            var saveFunc = 'setCache' + modelF4Dialog.oData.FIELD_NAME;
+            if (typeof window[saveFunc] !== "undefined") {
+                window[saveFunc]();
+            }
+
+            var fireChange = 'fireChange';
+            if (typeof object.fireChange !== "undefined") {
+                object.fireChange();
+            }
+
+            F4Dialog.close();
+        }
+    });
+    F4PageSelectionFooter.addContentRight(F4ButSelect);
+
+    var F4ButSelection = new sap.m.Button("F4ButSelection", {
+        text: txtF4PageCondition + " (0)",
+        type: "Emphasized",
+        press: function(oEvent) {
+            F4App.to(F4PageCondition);
+        }
+    });
+    F4PageSelectionFooter.addContentLeft(F4ButSelection);
+
+    var F4ButClose = new sap.m.Button("F4ButClose", {
+        text: txtF4ButClose,
+        type: "Reject",
+        press: function(oEvent) {
+            F4Dialog.close();
+        }
+    });
+    F4PageSelectionFooter.addContentRight(F4ButClose);
+
+    var F4ButSelectCondition = new sap.m.Button("F4ButSelectionCondition", {
+        text: txtF4ButSelect,
+        type: "Accept",
+        icon: "sap-icon://accept",
+        press: function(oEvent) {
+
+            var object = sap.ui.getCore().byId(modelF4Dialog.oData.SCREEN_FIELD_NAME);
+            var fieldModel = object.getModel();
+            fieldModel.setData(modelF4tabSelection.oData);
+            if (modelF4tabSelection.oData.length) {
+                if (F4tabResult.getMode() === "SingleSelect") {
+                    var stringText = fieldModel.oData[0].LOW.toString();
+                    object.setValue(stringText.replace(/^0+/, ''));
+                } else {
+                    object.setValue(txtF4SelectedItems + ": " + fieldModel.oData.length);
+                }
+            } else {
+                object.setValue();
+            }
+
+            var fireChange = 'fireChange';
+            if (typeof object.fireChange !== "undefined") {
+                object.fireChange();
+            }
+
+            F4Dialog.close();
+        }
+    });
+    F4PageConditionFooter.addContentRight(F4ButSelectCondition);
+
+    var F4ButCloseCondition = new sap.m.Button("F4ButCloseCondition", {
+        text: txtF4ButClose,
+        type: "Reject",
+        press: function(oEvent) {
+            F4Dialog.close();
+        }
+    });
+    F4PageConditionFooter.addContentRight(F4ButCloseCondition);
+
+    // Result Table
+    var F4tabResult = new sap.m.Table("F4tabResult", {
+        fixedLayout: false,
+        growing: true,
+        growingScrollToLoad: true,
+        growingThreshold: 50,
+        includeItemInSelection: true,
+        mode: "MultiSelect",
+        rememberSelections: false,
+        showNoData: false,
+        width: "100%",
+        selectionChange: function(oEvent) {
+
+            var item = oEvent.getParameter("listItem");
+            var context = item.getBindingContext();
+            var data = context.getObject();
+
+            if (F4tabResult.getMode() === "SingleSelect") {
+                modelF4tabSelection.setData();
+
+                if (!data.F4KEY) {
+                    F4Dialog.close();
+                    return;
+                }
+            } else {
+
+
+                // All items were ticked via top left checkbox
+                if (this._selectAllCheckBox.getSelected() && this.isAllSelectableSelected()) {
+                    F4ResultSelectAll();
+                    return;
+                }
+
+                // All unchecked
+                if (this.getSelectedItems().length == 0) {
+                    F4ResultSelectNone();
+                    return;
+                }
+
+            }
+
+            if (item.getSelected()) {
+                var stringText = data.F4KEY.toString();
+                var newRec = {};
+                newRec.SIGN = 'I';
+                newRec.OPTION = 'EQ';
+                newRec.LOW = data.F4KEY;
+                newRec.CHK = stringText.replace(/^0+/, '');
+                newRec.DATA = JSON.stringify(context.getObject());
+                ModelData.Update(F4tabSelection, "LOW", newRec.LOW, newRec);
+
+            } else {
+                ModelData.Delete(F4tabSelection, "LOW", data.F4KEY);
+            }
+
+            F4SetCondText();
+
+            // Removed auto buttonpress for easier adding personal favorites
+            // if (F4tabResult.getMode() === "SingleSelect") {
+            //     F4ButSelect.firePress();
+            // }
+        }
+    });
+    F4PageSelection.addContent(F4tabResult);
+
+    var modelF4tabResult = new sap.ui.model.json.JSONModel();
+    F4tabResult.setModel(modelF4tabResult);
+
+    // Toolbar Result
+    var F4toolResult = new sap.m.Toolbar("F4toolResult", {
+        active: false,
+        enabled: true,
+        visible: true
+    });
+    F4tabResult.setHeaderToolbar(F4toolResult);
+
+    var F4toolResultLabel = new sap.m.Label("F4toolResultLabel", {
+        required: false,
+        text: txtF4Items + " (0)",
+        visible: true
+    });
+    F4toolResult.addContent(F4toolResultLabel);
+
+    F4toolResult.addContent(new sap.m.ToolbarSpacer());
+
+    var F4ButAddFav = new sap.m.Button({
+        icon: "sap-icon://add-favorite",
+        type: "Emphasized",
+        press: function(oEvent) {
+            if (F4tabResult.getSelectedItems().length === 0) {
+                jQuery.sap.require("sap.m.MessageToast");
+                sap.m.MessageToast.show(txtF4ToastNoRec);
+            } else {
+                getOnlineF4Favorites();
+            }
+        }
+    });
+    F4ButAddFav.setTooltip(txtF4ButAddFav);
+    F4toolResult.addContent(F4ButAddFav);
+
+    var F4ButDelFav = new sap.m.Button({
+        icon: "sap-icon://unfavorite",
+        type: "Emphasized",
+        press: function(oEvent) {
+            if (F4tabResult.getSelectedItems().length === 0) {
+                jQuery.sap.require("sap.m.MessageToast");
+                sap.m.MessageToast.show(txtF4ToastNoRec);
+            } else {
+                getOnlineF4Favorites("X");
+            }
+        }
+    });
+    F4ButDelFav.setTooltip(txtF4ButDelFav);
+    F4toolResult.addContent(F4ButDelFav);
+
+    F4toolResult.addContent(new sap.m.ToolbarSeparator());
+
+    var F4ButSelAll = new sap.m.Button("F4ButSelAll", {
+        text: txtF4ButSelAll,
+        type: "Emphasized",
+        press: function(oEvent) {
+            F4ResultSelectAll();
+        }
+    });
+    F4toolResult.addContent(F4ButSelAll);
+
+    var F4ButSelNone = new sap.m.Button("F4ButSelNone", {
+        text: txtF4ButSelNone,
+        type: "Emphasized",
+        press: function(oEvent) {
+            F4ResultSelectNone();
+        }
+    });
+    F4toolResult.addContent(F4ButSelNone);
+
+    F4toolResult.addContent(new sap.m.ToolbarSeparator());
+
+    var F4ButSearch = new sap.m.Button("F4ButSearch", {
+        icon: "sap-icon://search",
+        text: txtF4ButSearch,
+        type: "Emphasized",
+        press: function(oEvent) {
+            getOnlineF4tabResult();
+        }
+    });
+    F4toolResult.addContent(F4ButSearch);
+
+    // Selection Table
+    var F4tabSelection = new sap.m.Table("F4tabSelection", {
+        fixedLayout: true,
+        growing: true,
+        growingScrollToLoad: true,
+        growingThreshold: 50,
+        mode: "Delete",
+        showNoData: false,
+        width: "100%",
+        delete: function(oEvent) {
+            var deleteItem = oEvent.getParameter("listItem");
+            var context = deleteItem.getBindingContext();
+            var value = context.getProperty("LOW");
+            ModelData.Delete(F4tabSelection, "LOW", value);
+            F4SetCondText();
+        }
+    });
+
+    F4PageCondition.addContent(F4tabSelection);
+
+    var modelF4tabSelection = new sap.ui.model.json.JSONModel();
+    F4tabSelection.setModel(modelF4tabSelection);
+
+    // Toolbar Selection
+    var F4toolSelection = new sap.m.Toolbar("F4toolSelection", {
+        active: false,
+        enabled: true,
+        visible: true
+    });
+    F4tabSelection.setHeaderToolbar(F4toolSelection);
+
+    F4toolSelection.addContent(new sap.m.ToolbarSpacer());
+
+    var F4ButAddCond = new sap.m.Button("F4ButAddCond", {
+        icon: "sap-icon://add",
+        type: "Emphasized",
+        text: txtF4AddCondition,
+        press: function(oEvent) {
+            var newRec = {};
+            newRec.SIGN = 'I';
+            newRec.OPTION = 'EQ';
+            ModelData.Add(F4tabSelection, newRec)
+        }
+    });
+    F4toolSelection.addContent(F4ButAddCond);
+
+    var F4ButDelCond = new sap.m.Button("F4ButDelCond", {
+        icon: "sap-icon://delete",
+        type: "Reject",
+        text: txtF4ButDelCond,
+        press: function(oEvent) {
+            modelF4tabSelection.setData([]);
+        }
+    });
+    F4toolSelection.addContent(F4ButDelCond);
+
+    var F4colSelectionSign = new sap.m.Column("F4colSelectionSign", {
+        width: "100px",
+        header: new sap.m.Label({
+            text: txtF4colSelectionSign
+        }),
+        visible: true
+    });
+    F4tabSelection.addColumn(F4colSelectionSign);
+
+    var F4colSelectionOperator = new sap.m.Column("F4colSelectionOperator", {
+        demandPopin: true,
+        minScreenWidth: "Medium",
+        width: "200px",
+        header: new sap.m.Label({
+            text: txtF4colSelectionOperator
+        }),
+        visible: true
+    });
+    F4tabSelection.addColumn(F4colSelectionOperator);
+
+    var F4colSelectionFrom = new sap.m.Column("F4colSelectionFrom", {
+        demandPopin: true,
+        minScreenWidth: "Medium",
+        header: new sap.m.Label({
+            text: txtF4colSelectionFrom
+        }),
+        visible: true
+    });
+    F4tabSelection.addColumn(F4colSelectionFrom);
+
+    var F4colSelectionTo = new sap.m.Column("F4colSelectionTo", {
+        demandPopin: true,
+        minScreenWidth: "Medium",
+        header: new sap.m.Label({
+            text: txtF4colSelectionTo
+        }),
+        visible: true
+    });
+    F4tabSelection.addColumn(F4colSelectionTo);
+
+    var F4itemSelection = new sap.m.ColumnListItem("F4itemSelection", {
+        visible: true
+    });
+    F4tabSelection.addItem(F4itemSelection);
+    F4tabSelection.bindAggregation("items", "/", F4itemSelection);
+
+    var F4txtSelectionSign = new sap.m.Select("F4txtSelectionSign", {
+        selectedKey: "{SIGN}",
+        visible: true
+    });
+    F4itemSelection.addCell(F4txtSelectionSign);
+
+    var F4txtSelectionSignI = new sap.ui.core.Item("F4txtSelectionSignI", {
+        key: "I",
+        text: txtF4txtSelectionSignI
+    });
+    F4txtSelectionSign.addItem(F4txtSelectionSignI);
+
+    var F4txtSelectionSignE = new sap.ui.core.Item("F4txtSelectionSignE", {
+        key: "E",
+        text: txtF4txtSelectionSignE
+    });
+    F4txtSelectionSign.addItem(F4txtSelectionSignE);
+
+    var F4txtSelectionOperator = new sap.m.Select("F4txtSelectionOperator", {
+        selectedKey: "{OPTION}",
+        visible: true
+    });
+    F4itemSelection.addCell(F4txtSelectionOperator);
+
+    var F4txtSelectionOperEQ = new sap.ui.core.Item("F4txtSelectionOperEQ", {
+        key: "EQ",
+        text: txtF4txtSelectionOperEQ
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperEQ);
+
+    var F4txtSelectionOperNE = new sap.ui.core.Item("F4txtSelectionOperNE", {
+        key: "NE",
+        text: txtF4txtSelectionOperNE
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperNE);
+
+    var F4txtSelectionOperBT = new sap.ui.core.Item("F4txtSelectionOperBT", {
+        key: "BT",
+        text: txtF4txtSelectionOperBT
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperBT);
+
+    var F4txtSelectionOperGE = new sap.ui.core.Item("F4txtSelectionOperGE", {
+        key: "GE",
+        text: txtF4txtSelectionOperGE
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperGE);
+
+    var F4txtSelectionOperGT = new sap.ui.core.Item("F4txtSelectionOperGT", {
+        key: "GT",
+        text: txtF4txtSelectionOperGT
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperGT);
+
+    var F4txtSelectionOperLE = new sap.ui.core.Item("F4txtSelectionOperLE", {
+        key: "LE",
+        text: txtF4txtSelectionOperLE
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperLE);
+
+    var F4txtSelectionOperLT = new sap.ui.core.Item("F4txtSelectionOperLT", {
+        key: "LT",
+        text: txtF4txtSelectionOperLT
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperLT);
+
+    var F4txtSelectionOperCP = new sap.ui.core.Item("F4txtSelectionOperCP", {
+        key: "CP",
+        text: txtF4txtSelectionOperCP
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperCP);
+
+    var F4txtSelectionOperNP = new sap.ui.core.Item("F4txtSelectionOperNP", {
+        key: "NP",
+        text: txtF4txtSelectionOperNP
+    });
+    F4txtSelectionOperator.addItem(F4txtSelectionOperNP);
+
+    var F4txtSelectionFrom = new sap.m.Input("F4txtSelectionFrom", {
+        value: "{LOW}"
+    });
+    F4itemSelection.addCell(F4txtSelectionFrom);
+
+    var F4txtSelectionTo = new sap.m.Input("F4txtSelectionTo", {
+        value: "{HIGH}"
+    });
+
+    F4itemSelection.addCell(F4txtSelectionTo);
+
+    // PopOver
+    var F4popSHList = new sap.m.Popover("F4popSHList", {
+        placement: "Bottom",
+        title: txtF4popSHList,
+        showHeader: true
+    });
+
+    var F4ListSH = new sap.m.List("F4ListSH", {
+        showNoData: false,
+        width: "100%"
+    });
+
+    F4popSHList.addContent(F4ListSH);
+    F4ListSH.addStyleClass("sapUiSizeCompact");
+
+    var modelF4ListSH = new sap.ui.model.json.JSONModel();
+    F4ListSH.setModel(modelF4ListSH);
+
+    var F4ItemSH = new sap.m.StandardListItem("F4ItemSH", {
+        title: "{TEXT}",
+        type: "Active",
+        press: function(oEvent) {
+            var context = oEvent.oSource.getBindingContext();
+            var value = context.getProperty("ID");
+            getOnlineF4tabFields(value);
+            F4popSHList.close();
+        }
+    });
+
+    F4ListSH.bindAggregation("items", "/", F4ItemSH);
+
+    var F4tabFields = new sap.m.Table("F4tabFields", {
+        visible: false
+    });
+
+    var modelF4tabFields = new sap.ui.model.json.JSONModel();
+    F4tabFields.setModel(modelF4tabFields);
+
+    var F4formInput0 = new sap.m.Select();
+    var F4formInput1 = new sap.m.Select();
+    var F4formInput2 = new sap.m.Select();
+    var F4formInput3 = new sap.m.Select();
+    var F4formInput4 = new sap.m.Select();
+    var F4formInput5 = new sap.m.Select();
+    var F4formInput6 = new sap.m.Select();
+    var F4formInput7 = new sap.m.Select();
+    var F4formInput8 = new sap.m.Select();
+    var F4formInput9 = new sap.m.Select();
+    var F4formInput10 = new sap.m.Select();
+    var F4formInput11 = new sap.m.Select();
+    var F4formInput12 = new sap.m.Select();
+    var F4formInput13 = new sap.m.Select();
+    var F4formInput14 = new sap.m.Select();
+    var F4formInput15 = new sap.m.Select();
+
+}
+
+function F4ApplySelected() {
+
+    setTimeout(function() {
+        $.each(modelF4tabSelection.oData, function(i, data) {
+            if (data.DATA) {
+                ModelData.Update(F4tabResult, "F4KEY", data.LOW, JSON.parse(data.DATA));
+            }
+        });
+        F4Dialog.setBusy(false);
+
+        if (typeof modelF4tabResult.oData !== "undefined") {
+            if (typeof modelF4tabResult.oData.length !== "undefined") {
+                F4toolResultLabel.setText(txtF4Items + " (" + modelF4tabResult.oData.length + ")");
+            } else {
+                F4toolResultLabel.setText(txtF4Items + " (0)");
+            }
+        } else {
+            F4toolResultLabel.setText(txtF4Items + " (0)");
+        }
+
+    }, 50);
+}
+
+function F4buildDialog() {
+
+    F4FormSelection.removeAllContent();
+    F4tabResult.removeAllColumns();
+    F4tabResult.removeAllItems();
+
+    var fieldCounter = 0;
+    var F4itemResult = new sap.m.ColumnListItem({
+        visible: true,
+        selected: "{SELECTED}",
+        type: "Active"
+    });
+    F4tabResult.bindAggregation("items", "/", F4itemResult);
+
+    F4FormSelection.addContent(new sap.ui.core.Title());
+
+    // LIST FIELDS
+    var columnArray = []; // POSITION = LISPOS
+    columnArray = modelF4tabFields.oData;
+    columnArray.sort(comparePOSITION);
+
+
+    $.each(columnArray, function(i, data) {
+
+        if (parseInt(data.POSITION) === 0) {
+            return;
+        }
+
+        var F4ColFieldName = new sap.m.Column({
+            header: new sap.m.Button({
+                iconFirst: false,
+                text: data.SCRTEXT_S,
+                type: "Transparent",
+                press: function(oEvent) {
+
+                    var butIcon = this.getIcon();
+
+                    // Remove all iconFirst
+                    $.each(F4tabResult.getColumns(), function(i, data) {
+                        var button = data.getHeader();
+                        button.setIcon();
+
+                    });
+
+                    var sortAsc = false;
+                    if (butIcon === "sap-icon://sort-ascending") {
+                        this.setIcon("sap-icon://sort-descending");
+                        sortAsc = true;
+                    } else {
+                        this.setIcon("sap-icon://sort-ascending");
+                        sortAsc = false;
+                    }
+
+                    var oSorter = new sap.ui.model.Sorter(data.FIELDNAME, sortAsc, false);
+                    var binding = F4tabResult.getBinding("items");
+                    binding.sort(oSorter);
+                }
+            })
+        });
+
+        // Tab Result Columns
+        F4tabResult.addColumn(F4ColFieldName);
+        var F4TxtFieldName = new sap.m.Text();
+        F4TxtFieldName.bindText(data.FIELDNAME);
+        F4itemResult.addCell(F4TxtFieldName);
+
+        // Formatter
+        if (data.CONVEXIT !== "") {
+            F4TxtFieldName.bindProperty("text", {
+                parts: [data.FIELDNAME],
+                formatter: function(TEXT) {
+                    if (typeof TEXT === 'undefined') {
+                        return;
+                    }
+                    var stringText = TEXT.toString();
+                    var formattedText = stringText.replace(/^0+/, '');
+                    return formattedText;
+                }
+            });
+        }
+
+
+    });
+
+    // SELECTION SCREEN
+    var selArray = [];
+    selArray = modelF4tabFields.oData;
+    selArray.sort(compareHEADLEN);
+
+    $.each(selArray, function(i, data) {
+
+        if (parseInt(data.HEADLEN) === 0) {
+            return;
+        }
+
+        // Selection Form
+        var F4formLabel = new sap.m.Label({
+            text: data.SCRTEXT_L
+        });
+
+        if (fieldCounter === 3) {
+            fieldCounter = 1;
+            F4FormSelection.addContent(new sap.ui.core.Title());
+        } else {
+            fieldCounter = fieldCounter + 1;
+        }
+
+        F4FormSelection.addContent(F4formLabel);
+        if (data.CHECKTABLE) {
+            switch (parseInt(data.HEADLEN) - 1) {
+                case 0:
+                    F4FormSelection.addContent(F4formInput0);
+                    F4formInput0.bindProperty("selectedKey", "/VALUE0");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput0.setEnabled(false);
+                    }
+                    break;
+                case 1:
+                    F4FormSelection.addContent(F4formInput1);
+                    F4formInput1.bindProperty("selectedKey", "/VALUE1");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput1.setEnabled(false);
+                    }
+                    break;
+                case 2:
+                    F4FormSelection.addContent(F4formInput2);
+                    F4formInput2.bindProperty("selectedKey", "/VALUE2");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput2.setEnabled(false);
+                    }
+                    break;
+                case 3:
+                    F4FormSelection.addContent(F4formInput3);
+                    F4formInput3.bindProperty("selectedKey", "/VALUE3");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput3.setEnabled(false);
+                    }
+                    break;
+                case 4:
+                    F4FormSelection.addContent(F4formInput4);
+                    F4formInput4.bindProperty("selectedKey", "/VALUE4");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput4.setEnabled(false);
+                    }
+                    break;
+                case 5:
+                    F4FormSelection.addContent(F4formInput5);
+                    F4formInput5.bindProperty("selectedKey", "/VALUE5");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput5.setEnabled(false);
+                    }
+                    break;
+                case 6:
+                    F4FormSelection.addContent(F4formInput6);
+                    F4formInput6.bindProperty("selectedKey", "/VALUE6");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput6.setEnabled(false);
+                    }
+                    break;
+                case 7:
+                    F4FormSelection.addContent(F4formInput7);
+                    F4formInput7.bindProperty("selectedKey", "/VALUE7");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput7.setEnabled(false);
+                    }
+                    break;
+                case 8:
+                    F4FormSelection.addContent(F4formInput8);
+                    F4formInput8.bindProperty("selectedKey", "/VALUE8");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput8.setEnabled(false);
+                    }
+                    break;
+                case 9:
+                    F4FormSelection.addContent(F4formInput9);
+                    F4formInput9.bindProperty("selectedKey", "/VALUE9");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput9.setEnabled(false);
+                    }
+                    break;
+                case 10:
+                    F4FormSelection.addContent(F4formInput10);
+                    F4formInput10.bindProperty("selectedKey", "/VALUE10");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput10.setEnabled(false);
+                    }
+                    break;
+                case 11:
+                    F4FormSelection.addContent(F4formInput11);
+                    F4formInput11.bindProperty("selectedKey", "/VALUE11");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput11.setEnabled(false);
+                    }
+                    break;
+                case 12:
+                    F4FormSelection.addContent(F4formInput12);
+                    F4formInput12.bindProperty("selectedKey", "/VALUE12");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput12.setEnabled(false);
+                    }
+                    break;
+                case 13:
+                    F4FormSelection.addContent(F4formInput13);
+                    F4formInput13.bindProperty("selectedKey", "/VALUE13");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput13.setEnabled(false);
+                    }
+                    break;
+                case 14:
+                    F4FormSelection.addContent(F4formInput14);
+                    F4formInput14.bindProperty("selectedKey", "/VALUE14");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput14.setEnabled(false);
+                    }
+                    break;
+                case 15:
+                    F4FormSelection.addContent(F4formInput15);
+                    F4formInput15.bindProperty("selectedKey", "/VALUE15");
+                    if (data.LOGFLAG === 'X') {
+                        F4formInput15.setEnabled(false);
+                    }
+                    break;
+
+            }
+        } else {
+            var F4formInput = new sap.m.Input();
+            F4FormSelection.addContent(F4formInput);
+            F4formInput.onkeydown = function(e) {
+                if (e.keyCode == 13) {
+                    F4ButSearch.firePress();
+                }
+            }
+            switch (parseInt(data.HEADLEN) - 1) {
+                case 0:
+                    F4formInput.bindProperty("value", "/VALUE0");
+                    break;
+                case 1:
+                    F4formInput.bindProperty("value", "/VALUE1");
+                    break;
+                case 2:
+                    F4formInput.bindProperty("value", "/VALUE2");
+                    break;
+                case 3:
+                    F4formInput.bindProperty("value", "/VALUE3");
+                    break;
+                case 4:
+                    F4formInput.bindProperty("value", "/VALUE4");
+                    break;
+                case 5:
+                    F4formInput.bindProperty("value", "/VALUE5");
+                    break;
+                case 6:
+                    F4formInput.bindProperty("value", "/VALUE6");
+                    break;
+                case 7:
+                    F4formInput.bindProperty("value", "/VALUE7");
+                    break;
+                case 8:
+                    F4formInput.bindProperty("value", "/VALUE8");
+                    break;
+                case 9:
+                    F4formInput.bindProperty("value", "/VALUE9");
+                    break;
+                case 10:
+                    F4formInput.bindProperty("value", "/VALUE10");
+                    break;
+                case 11:
+                    F4formInput.bindProperty("value", "/VALUE11");
+                    break;
+                case 12:
+                    F4formInput.bindProperty("value", "/VALUE12");
+                    break;
+                case 13:
+                    F4formInput.bindProperty("value", "/VALUE13");
+                    break;
+                case 14:
+                    F4formInput.bindProperty("value", "/VALUE14");
+                    break;
+                case 15:
+                    F4formInput.bindProperty("value", "/VALUE15");
+                    break;
+            }
+            if (data.LOGFLAG === 'X') {
+                F4formInput.setEnabled(false);
+            }
+        }
+
+    });
+
+    F4FormSelection.addContent(new sap.m.Label({
+        text: txtF4MaxRows
+    }));
+
+    F4FormSelection.addContent(new sap.m.Input({
+        value: "{/MAXROWS}",
+        width: "100px",
+        maxLength: 4,
+        liveChange: function(oEvent) {
+            var value = oEvent.getSource().getValue();
+            var bNotnumber = isNaN(value);
+            if (bNotnumber == false) sNumber = value;
+            else oEvent.getSource().setValue(sNumber);
+        },
+        submit: function(oEvent) {
+            F4ButSearch.firePress();
+        }
+    }));
+
+    if (modelF4ListSH.oData.length === 1) {
+        F4butSelectionSH.setVisible(false);
+    }
+
+    F4ApplySelected();
+
+}
+
+function F4updateDropbox(data) {
+
+    var selArray = []; // HEADLEN = SELPOS
+    selArray = data.modelF4tabFieldsData;
+    selArray.sort(compareHEADLEN);
+
+
+    $.each(selArray, function(i, field) {
+
+        if (parseInt(field.HEADLEN) === 0) {
+            return;
+        }
+
+        if (!field.CHECKTABLE) {
+            return
+        }
+        var F4modelID = "modelF4sel";
+        var F4modelVar = F4modelID.concat(field.CHECKTABLE, field.FIELDNAME, "Data");
+        var F4dropData = data[F4modelVar];
+        if (!F4dropData) {
+            return
+        }
+        switch (parseInt(field.HEADLEN) - 1) {
+            case 0:
+                var key = data.modelF4DialogData.VALUE0;
+                F4formInput0.removeAllItems();
+                F4formInput0.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput0.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 1:
+                var key = data.modelF4DialogData.VALUE1;
+                F4formInput1.removeAllItems();
+                F4formInput1.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput1.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 2:
+                var key = data.modelF4DialogData.VALUE2;
+                F4formInput2.removeAllItems();
+                F4formInput2.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput2.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 3:
+                var key = data.modelF4DialogData.VALUE3;
+                F4formInput3.removeAllItems();
+                F4formInput3.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput3.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 4:
+                var key = data.modelF4DialogData.VALUE4;
+                F4formInput4.removeAllItems();
+                F4formInput4.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput4.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 5:
+                var key = data.modelF4DialogData.VALUE5;
+                F4formInput5.removeAllItems();
+                F4formInput5.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput5.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 6:
+                var key = data.modelF4DialogData.VALUE6;
+                F4formInput6.removeAllItems();
+                F4formInput6.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput6.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 7:
+                var key = data.modelF4DialogData.VALUE7;
+                F4formInput7.removeAllItems();
+                F4formInput7.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput7.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 8:
+                var key = data.modelF4DialogData.VALUE8;
+                F4formInput8.removeAllItems();
+                F4formInput8.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput8.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 9:
+                var key = data.modelF4DialogData.VALUE9;
+                F4formInput9.removeAllItems();
+                F4formInput9.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput9.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 10:
+                var key = data.modelF4DialogData.VALUE10;
+                F4formInput10.removeAllItems();
+                F4formInput10.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput10.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 11:
+                var key = data.modelF4DialogData.VALUE11;
+                F4formInput11.removeAllItems();
+                F4formInput11.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput11.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 12:
+                var key = data.modelF4DialogData.VALUE12;
+                F4formInput12.removeAllItems();
+                F4formInput12.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput12.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 13:
+                var key = data.modelF4DialogData.VALUE13;
+                F4formInput13.removeAllItems();
+                F4formInput13.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput13.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 14:
+                var key = data.modelF4DialogData.VALUE14;
+                F4formInput14.removeAllItems();
+                F4formInput14.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput14.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+            case 15:
+                var key = data.modelF4DialogData.VALUE15;
+                F4formInput15.removeAllItems();
+                F4formInput15.setSelectedKey(key);
+                $.each(F4dropData, function(i, elem) {
+                    F4formInput15.addItem(new sap.ui.core.ListItem({
+                        key: elem.VALUE_DATA,
+                        text: elem.VALUE_LABEL
+                    }));
+                });
+                break;
+        }
+    });
+
+    // Style
+    F4Dialog.addStyleClass("sapUiSizeCompact");
+
+}
+
+function F4ResultSelectNone() {
+    modelF4tabSelection.setData([]);
+    $.each(modelF4tabResult.oData, function(i, data) {
+        data.SELECTED = false;
+    });
+    modelF4tabResult.refresh();
+    F4SetCondText();
+}
+
+function F4ResultSelectAll() {
+    var newArr = new Array();
+    $.each(modelF4tabResult.oData, function(i, data) {
+        data.SELECTED = true;
+        var newRec = {};
+        newRec.SIGN = 'I';
+        newRec.OPTION = 'EQ';
+        newRec.LOW = data.F4KEY;
+        newRec.DATA = JSON.stringify(data);
+        newArr.push(newRec);
+    });
+    ModelData.UpdateArray(F4tabSelection, "LOW", newArr);
+    modelF4tabResult.refresh();
+    F4SetCondText();
+}
+
+function F4SetCondText() {
+    if (typeof modelF4tabSelection.oData.length !== "undefined") {
+        F4ButSelection.setText(txtF4PageCondition + " (" + modelF4tabSelection.oData.length + ")");
+    } else {
+        F4ButSelection.setText(txtF4PageCondition + " (0)");
+    }
+}
+
+function compareHEADLEN(a, b) {
+    if (a.HEADLEN < b.HEADLEN)
+        return -1;
+    if (a.HEADLEN > b.HEADLEN)
+        return 1;
+    return 0;
+}
+
+function comparePOSITION(a, b) {
+    if (a.POSITION < b.POSITION)
+        return -1;
+    if (a.POSITION > b.POSITION)
+        return 1;
+    return 0;
+}
+ 
+ var Lbl_Approver = new sap.m.Label("Lbl_Approver",{text:"Approver",wrapping:true});
+Frm_ExpenseReceipt.addContent(Lbl_Approver); 
+ var Ip_Approver = new sap.m.Input("Ip_Approver",{editable:false,value:"{/APPRENAME}"});
+Frm_ExpenseReceipt.addContent(Ip_Approver); 
+ var Lbl_BusinessPurpose = new sap.m.Label("Lbl_BusinessPurpose",{required:true,text:"Business Purpose"});
+Frm_ExpenseReceipt.addContent(Lbl_BusinessPurpose); 
+ var DD_BusinessPurpose1 = new sap.m.ComboBox("DD_BusinessPurpose1",{title:"",editable:"{/IS_EDITABLE}",value:"{/BUSINESSPURPOSE}",width:"32rem"});
+Frm_ExpenseReceipt.addContent(DD_BusinessPurpose1); 
+ var Lbl_hdAmount = new sap.m.Label("Lbl_hdAmount",{text:"Amount"});
+Frm_ExpenseReceipt.addContent(Lbl_hdAmount); 
+ var HBox_Amount1 = new sap.m.HBox("HBox_Amount1",{width:"13rem",renderType:"Div",justifyContent:"SpaceBetween",fitContainer:true,alignContent:"SpaceBetween"});
+Frm_ExpenseReceipt.addContent(HBox_Amount1); 
+ var Ip_HdAmount = new sap.m.Input("Ip_HdAmount",{editable:false,value:"{/AMOUNT}",width:"7rem"});
+HBox_Amount1.addItem(Ip_HdAmount); 
+ var DD_Currency = new sap.m.ComboBox("DD_Currency",{title:"",editable:false,value:"USD"});
+HBox_Amount1.addItem(DD_Currency); 
+ var Frm_PersonnelTravel = new sap.ui.layout.form.SimpleForm("Frm_PersonnelTravel",{"layout":"ResponsiveGridLayout",labelSpanM:4,editable:true});
+oVBox1.addItem(Frm_PersonnelTravel); 
+ var oLabel = new sap.m.Label("oLabel",{required:true,text:"Are any costs funded by an external entity?",wrapping:true});
+Frm_PersonnelTravel.addContent(oLabel); 
+ var DD_ExternalEntity = new sap.m.ComboBox("DD_ExternalEntity",{title:"",value:"{/IS_EXTFUNDING}",width:"4.6rem",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    if (oEvent.getSource().getSelectedKey() === 'true') {
+        modelPage_ExpenseRequest.getData().IS_EXTFUNDING = true;
+    } else if (oEvent.getSource().getSelectedKey() === 'false') {
+        modelPage_ExpenseRequest.getData().IS_EXTFUNDING = false;
+        modelPage_ExpenseRequest.getData().EXTERNAL_ENTITY = '';
+
+    }
+    modelPage_ExpenseRequest.refresh();
+}
+}});
+Frm_PersonnelTravel.addContent(DD_ExternalEntity); 
+ var Item_ExternalEntityYes = new sap.ui.core.Item("Item_ExternalEntityYes",{key:true,text:"Yes"});
+DD_ExternalEntity.addItem(Item_ExternalEntityYes); 
+ var Item_ExternalEntityNo = new sap.ui.core.Item("Item_ExternalEntityNo",{key:false,text:"No"});
+DD_ExternalEntity.addItem(Item_ExternalEntityNo); 
+ var oLabel2 = new sap.m.Label("oLabel2",{text:"Identity external entity & describe covered costs",visible:"{/IS_EXTFUNDING}",wrapping:true});
+Frm_PersonnelTravel.addContent(oLabel2); 
+ var oInput = new sap.m.Input("oInput",{width:"21rem",visible:"{/IS_EXTFUNDING}",value:"{/EXTERNAL_ENTITY}"});
+Frm_PersonnelTravel.addContent(oInput); 
+ var oLabel1 = new sap.m.Label("oLabel1",{required:true,text:"Does this trip contain personal travel?",wrapping:true});
+Frm_PersonnelTravel.addContent(oLabel1); 
+ var DD_PersonnelTravel = new sap.m.ComboBox("DD_PersonnelTravel",{title:"",width:"4.6rem",value:"{/IS_PERSTRAVEL}",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    if (oEvent.getSource().getSelectedKey() === 'true') {
+        modelPage_ExpenseRequest.getData().IS_PERSTRAVEL = true;
+    } else if (oEvent.getSource().getSelectedKey() === 'false') {
+        modelPage_ExpenseRequest.getData().IS_PERSTRAVEL = false;
+        modelPage_ExpenseRequest.getData().PERSSTARTDATE = "";
+        modelPage_ExpenseRequest.getData().PERSENDDATE = "";
+    }
+    modelPage_ExpenseRequest.refresh();
+}
+}});
+Frm_PersonnelTravel.addContent(DD_PersonnelTravel); 
+ var Item_PersonnelTravelYes = new sap.ui.core.Item("Item_PersonnelTravelYes",{key:true,text:"Yes"});
+DD_PersonnelTravel.addItem(Item_PersonnelTravelYes); 
+ var Item_PersonnelTravelNo = new sap.ui.core.Item("Item_PersonnelTravelNo",{key:false,text:"No"});
+DD_PersonnelTravel.addItem(Item_PersonnelTravelNo); 
+ var Lbl_rsonnelravelDates = new sap.m.Label("Lbl_rsonnelravelDates",{text:"Start Date",visible:"{/IS_PERSTRAVEL}"});
+Frm_PersonnelTravel.addContent(Lbl_rsonnelravelDates); 
+ var HBox_PersonnelTravelDates = new sap.m.HBox("HBox_PersonnelTravelDates",{justifyContent:"Start"});
+Frm_PersonnelTravel.addContent(HBox_PersonnelTravelDates); 
+ var DP_PersonnelStartDate = new sap.m.DatePicker("DP_PersonnelStartDate",{width:"8.9rem",visible:"{/IS_PERSTRAVEL}",valueFormat:"yyyyMMdd",value:"{/PERSSTARTDATE}",editable:"{/IS_EDITABLE}",displayFormat:"MM/dd/yyyy"});
+HBox_PersonnelTravelDates.addItem(DP_PersonnelStartDate); 
+ var Lbl_EndDate = new sap.m.Label("Lbl_EndDate",{text:"End Date",visible:"{/IS_PERSTRAVEL}"});
+HBox_PersonnelTravelDates.addItem(Lbl_EndDate); 
+ var DP_PersonnelEnde = new sap.m.DatePicker("DP_PersonnelEnde",{displayFormat:"MM/dd/yyyy",editable:"{/IS_EDITABLE}",value:"{/PERSENDDATE}",valueFormat:"yyyyMMdd",visible:"{/IS_PERSTRAVEL}",width:"8.9rem"});
+HBox_PersonnelTravelDates.addItem(DP_PersonnelEnde); 
+ var OPS_CostDistribution = new sap.uxap.ObjectPageSection("OPS_CostDistribution",{titleUppercase:false,title:"Cost Distribution"});
+oObjectPageLayout.addSection(OPS_CostDistribution); 
+ var OPSS_CostDistribution = new sap.uxap.ObjectPageSubSection("OPSS_CostDistribution",{});
+OPS_CostDistribution.addSubSection(OPSS_CostDistribution); 
+ var Frm_CostDistribution = new sap.ui.layout.form.SimpleForm("Frm_CostDistribution",{editable:true,"layout":"ResponsiveGridLayout"});
+OPSS_CostDistribution.addBlock(Frm_CostDistribution); 
+ var Tbl_Cost_Distribution = new sap.m.Table("Tbl_Cost_Distribution",{showSeparators:"All",mode:"Delete",headerDesign:"Plain",backgroundDesign:"Transparent",delete: function(oEvent) {
+modelTbl_Cost_Distribution.getData().splice(parseInt(oEvent.getParameter('listItem').getBindingContextPath().replace("/", '')), 1)
+modelTbl_Cost_Distribution.refresh();
+}});
+Frm_CostDistribution.addContent(Tbl_Cost_Distribution);
+var modelTbl_Cost_Distribution = new sap.ui.model.json.JSONModel();
+Tbl_Cost_Distribution.setModel(modelTbl_Cost_Distribution); 
+ var Toolbar_CostDistribution = new sap.m.Toolbar("Toolbar_CostDistribution",{});
+Tbl_Cost_Distribution.setHeaderToolbar(Toolbar_CostDistribution); 
+ var oToolbarSpacer2 = new sap.m.ToolbarSpacer("oToolbarSpacer2",{});
+Toolbar_CostDistribution.addContent(oToolbarSpacer2); 
+ var Btn_AddCostDistribution = new sap.m.Button("Btn_AddCostDistribution",{icon:"sap-icon://add",tooltip:"Add New Cost Distribution",press: function(oEvent) {
+// var recpno = modelFrm_ExpenseTypeReceipt.getData()['RECPNO']
+var recpno = "000"
+var array = {
+    // "COSTCENTER":  modelPage_ExpenseRequest.getProperty('/costcenter'),
+    "COSTCENTER": modelPage_ExpenseRequest.getData().COSTOBJECT,
+    "COSTOBJECTTYPE": modelPage_ExpenseRequest.getData().COSTOBJECTTYPE,
+    "COSTCENTERDESC": modelPage_ExpenseRequest.getData().COSTCENTERDESC,
+    "DISTPERCENTAGE": 0,
+    "IS_EDITABLE": true,
+    "RECPNO": recpno,
+    "CHKSAVE": "X"
+};
+var dist = modelTbl_Cost_Distribution.getData();
+var sum = 0;
+for (var i = 0; i < dist.length; i++) {
+    sum += parseInt(dist[i].DISTPERCENTAGE);
+}
+array["DISTPERCENTAGE"] = 100 - sum;
+ModelData.Add(Tbl_Cost_Distribution, array);
+}});
+Toolbar_CostDistribution.addContent(Btn_AddCostDistribution); 
+ var Colmn_distribution = new sap.m.Column("Colmn_distribution",{header: new sap.m.Label({text:"Distribution"}),width:"5%"});
+Tbl_Cost_Distribution.addColumn(Colmn_distribution); 
+ var Colmn_CostObjectType = new sap.m.Column("Colmn_CostObjectType",{header: new sap.m.Label({text:"Cost Object Type"}),width:"20%"});
+Tbl_Cost_Distribution.addColumn(Colmn_CostObjectType); 
+ var Colmn_CostObject = new sap.m.Column("Colmn_CostObject",{header: new sap.m.Label({text:"Cost Object"}),width:"20%"});
+Tbl_Cost_Distribution.addColumn(Colmn_CostObject); 
+ var Colmn_costcenterDescription = new sap.m.Column("Colmn_costcenterDescription",{header: new sap.m.Label({text:"Description"})});
+Tbl_Cost_Distribution.addColumn(Colmn_costcenterDescription); 
+ var oColumn8 = new sap.m.Column("oColumn8",{});
+Tbl_Cost_Distribution.addColumn(oColumn8); 
+ var oColumnListItem1 = new sap.m.ColumnListItem("oColumnListItem1",{});
+Tbl_Cost_Distribution.bindAggregation("items", "/",oColumnListItem1); 
+ var IP_Distribution = new sap.m.Input("IP_Distribution",{value:"{DISTPERCENTAGE}",editable:"{IS_EDITABLE}",change: function(oEvent) {
+// var array = modelTbl_Cost_Distribution.getData()
+// var length = modelTbl_Cost_Distribution.getData().length;
+// var sum = 0;
+// for(var i = 0 ; i < length; i++){
+//     sum += parseInt(array[i]['DISTPERCENTAGE'])
+// }
+// if (sum < 100){
+//     oText6.setText('Cost Distribution Percentage should not be less than 100%')
+//     DialogTblDist.open()
+// }
+// else if(sum > 100){
+//     oText6.setText('Cost Distribution Percentage should not be greater than 100%')
+//     DialogTblDist.open()
+// }
+}});
+oColumnListItem1.addCell(IP_Distribution); 
+ var DD_ColmnCostObjectType = new sap.m.ComboBox("DD_ColmnCostObjectType",{title:"",editable:"{IS_EDITABLE}",value:"{COSTOBJECTTYPE}",selectionChange: function(oEvent) {
+// if( this.getValue() === 'Cost Center'){
+//     // Lbl_CostObjectType.setVisible(true)
+//     VP_CostObject1.setVisible(true)
+//     VP_WbsElement1.setVisible(false)
+// }
+// else if(this.getValue() === 'WBS Element'){
+//     //   Lbl_CostObjectType.setVisible(false)
+//       VP_CostObject1.setVisible(false)
+//       VP_WbsElement1.setVisible(true)
+
+// }
+}});
+oColumnListItem1.addCell(DD_ColmnCostObjectType); 
+ var IP_CostObject1 = new sap.m.Input("IP_CostObject1",{editable:"{IS_EDITABLE}",showSuggestion:true,showValueHelp:true,value:"{COSTCENTER}",suggest: function(oEvent) {
+// var index = parseFloat(oEvent.getSource().getParent().getBindingContext().sPath.replace('/', ''));
+// if (modelTbl_Cost_Distribution.getData()[index]["COSTOBJECTTYPE"] === 'Cost Center') {
+//     var a = getOnlineGetCostObject('COS,' + oEvent.getParameter('suggestValue'));
+
+// } else {
+//     var a = getOnlineGetCostObject('WBS,' + oEvent.getParameter('suggestValue'));
+// }
+},valueHelpRequest: function(oEvent) {
+// Tbl_CostCenterValueHelp.setBusy(true)
+// getOnlineTbl_CostCenterValueHelp()
+var index = parseFloat(oEvent.getSource().getParent().getBindingContext().sPath.replace('/', ''));
+modelTbl_Cost_Distribution.setProperty('/tabindex', index);
+if (modelTbl_Cost_Distribution.getData()[index]["COSTOBJECTTYPE"] === 'Cost Center') {
+    VP_CostObject1.fireValueHelpRequest();
+    // F4ButSelection.setEnabled(true);
+    // F4tabResult.setMode("SingleSelect");
+    // F4ButSelection.setVisible(false);
+    // F4ButSelAll.setVisible(false);
+    // F4Dialog.open();
+    // // value = 'ZKOSTN:VP_CostObject1:VP_CostObject1';
+    //   value = 'ZSH_ND_COSTCENTER:VP_CostObject1:VP_CostObject1';
+    // $.ajax({
+    //     type: "POST",
+    //     contentType: "application/json",
+    //     url: "znd_emp_travel_request?ajax_id=F4_GET_DATA&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=005&uxp=400&field_id=00674&ajax_value=" + value + "",
+    //     dataType: "json",
+    //     success: function(data) {
+    //         modelF4ListSH.setData(data.modelF4SearchHelpsData);
+    //         modelF4Dialog.setData(data.modelF4DialogData);
+    //         modelF4tabFields.setData(data.modelF4tabFieldsData);
+    //         F4updateDropbox(data);
+    //         F4buildDialog();
+    //         F4Dialog.setBusy(false);
+    //         modelF4tabResult.setData(data.modelF4tabResultData);
+    //         // modelF4Dialog.oData.VALUE2 = modelPage_ExpenseRequest.getData().COMPANYCODE;
+    //         // modelF4Dialog.oData.VALUE1 = modelPage_ExpenseRequest.getData().CONTROLLINGAREA;
+    //         modelF4Dialog.oData.VALUE1 = modelPage_ExpenseRequest.getData().COMPANYCODE;
+    //         modelF4Dialog.refresh();
+    //     },
+    //     error: function(result, status) {
+    //         F4Dialog.setBusy(false);
+    //     }
+    // });
+} else {
+    // getOnlinenVP_WbsElement1()
+    VP_WbsElement1.fireValueHelpRequest();
+}
+}});
+oColumnListItem1.addCell(IP_CostObject1); 
+ var Txt_CCDescription = new sap.m.Text("Txt_CCDescription",{text:"{COSTCENTERDESC}"});
+oColumnListItem1.addCell(Txt_CCDescription); 
+ var oText9 = new sap.m.Text("oText9",{});
+oColumnListItem1.addCell(oText9); 
+ var OPS_ExpenseItems = new sap.uxap.ObjectPageSection("OPS_ExpenseItems",{title:"Expense Types",titleUppercase:false});
+oObjectPageLayout.addSection(OPS_ExpenseItems); 
+ var OPSS_ExpenseItems = new sap.uxap.ObjectPageSubSection("OPSS_ExpenseItems",{});
+OPS_ExpenseItems.addSubSection(OPSS_ExpenseItems); 
+ var oVBox2 = new sap.m.VBox("oVBox2",{});
+OPSS_ExpenseItems.addBlock(oVBox2); 
+ var Tbl_ExpenseTypes = new sap.m.Table("Tbl_ExpenseTypes",{headerDesign:"Plain",mode:"MultiSelect"});
+oVBox2.addItem(Tbl_ExpenseTypes);
+var modelTbl_ExpenseTypes = new sap.ui.model.json.JSONModel();
+Tbl_ExpenseTypes.setModel(modelTbl_ExpenseTypes); 
+ var Toolbar_ExpenseTypes = new sap.m.Toolbar("Toolbar_ExpenseTypes",{});
+Tbl_ExpenseTypes.setHeaderToolbar(Toolbar_ExpenseTypes); 
+ var ToolbarSpacer_ExpenseTypes = new sap.m.ToolbarSpacer("ToolbarSpacer_ExpenseTypes",{});
+Toolbar_ExpenseTypes.addContent(ToolbarSpacer_ExpenseTypes); 
+ var Btn_AddExpenseReceipt = new sap.m.Button("Btn_AddExpenseReceipt",{icon:"sap-icon://add",tooltip:"Add Expense Receipt",type:"Accept",press: function(oEvent) {
+if (validateHeaderData(modelPage_ExpenseRequest.getData()) === 'e') {
+    return;
+}
+modelTbl_ExpenseTypes.setProperty('/tabIndex', " ");
+var recpno;
+if (modelTbl_ExpenseTypes.getData().length !== 0) {
+    var recpnos = [];
+    for (var i = 0; i < modelTbl_ExpenseTypes.getData().length; i++) {
+        recp = modelTbl_ExpenseTypes.getData()[i]['RECPNO'];
+        if (recp !== '') {
+            recpnos.push(recp);
+        }
+    }
+    recpnos.sort();
+    recpno = parseInt(recpnos[recpnos.length - 1]) + 1;
+    recpno = String(recpno).padStart(3, "0");
+} else {
+    recpno = "001"
+}
+var json = {
+    "AMOUNT_BEG": "0.00",
+    "ARR_AMOUNT_END": "0.00",
+    "TOTALAMOUNT": "0.00",
+    "ARR_CITY_BEG": "",
+    "ARR_CITY_END": "",
+    "ARR_COUNTRY_BEG": "",
+    "ARR_COUNTRY_END": "",
+    "ARR_LOCATION_BEG": "",
+    "ARR_LOCATION_END": "",
+    "BUSINESSREASON": "",
+    "CITY_BEG": "",
+    "CITY_END": "",
+    "COMMENTS": "",
+    "COUNTRY_BEG": "",
+    "COUNTRY_END": "",
+    "CURRENCY": "USD",
+    "IS_EDITABLE": true,
+    "DATE_BEG": "",
+    "DATE_END": "",
+    "DESCRIPTION": "",
+    "EXPENSETYPE": "",
+    "EXPNTYPETEXT": "",
+    "ONEWAYROUNDTRIP": 1,
+    "LOCATION_BEG": "",
+    "LOCATION_END": "",
+    "RECPNO": recpno,
+    "VENDORNAME": "",
+    "TIME_BEG": '000000',
+    "TIME_END": '000000',
+    "COUNTRY_BEG_TEXT": "",
+    "COUNTRY_END_TEXT": "",
+    "LOCATION_BEG_TEXT": "",
+    "LOCATION_END_TEXT": "",
+    "ARR_COUNTRY_BEG_TEXT": "",
+    "ARR_COUNTRY_END_TEXT": "",
+    "ARR_LOCATION_BEG_TEXT": "",
+    "ARR_LOCATION_END_TEXT": "",
+    "IS_COUNTRY_EDIT": true,
+    "DATE_END_IND": false,
+    "COUNTRY_BEG_IND": false,
+    "COUNTRY_END_IND": false,
+    "CITY_BEG_IND": false,
+    "CITY_END_IND": false,
+    "ARR_COUNTRY_BEG_IND": false,
+    "ARR_COUNTRY_END_IND": false,
+    "ARR_CITY_BEG_IND": false,
+    "ARR_CITY_END_IND": false,
+    "ONEWAYROUNDTRIP_IND": false,
+    "TIME_BEG_IND": false,
+    "TIME_END_IND": false,
+    "END_DATE_LABEL": "",
+    "START_DATE_LABEL": "",
+    "BEGIN_CITY_LABEL": "",
+    "END_CITY_LABEL": "",
+    "AMOUNT_EDITABLE": true,
+    "BUTTON_CALCULATE": false
+
+};
+// DD_ExpenseType.setValue(" ");
+DD_ExpenseType.setSelectedItem(" ");
+DD_ExpenseType.setSelectedKey(" ");
+modelPage_ExpenseItems.setData(json);
+modelPage_ExpenseItems.refresh();
+Panel_ExpenseItem.setVisible(false);
+App_Details.to(Page_ExpenseItems);
+Page_ExpenseItems.setBusy(false)
+}});
+Toolbar_ExpenseTypes.addContent(Btn_AddExpenseReceipt); 
+ var Btn_DeleteExpenseReceipt = new sap.m.Button("Btn_DeleteExpenseReceipt",{icon:"sap-icon://delete",tooltip:"Delete Expense Receipt",type:"Reject",press: function(oEvent) {
+var selectedIndex = Tbl_ExpenseTypes.getSelectedContextPaths();
+selectedIndex.sort();
+selectedIndex.reverse();
+modelTbl_ExpenseTypes.setProperty('/lstDeleted', modelTbl_ExpenseTypes.getData()[parseInt(selectedIndex[0].replace("/", ''))]['RECPNO'])
+for (var i = 0; i < selectedIndex.length; i++) {
+    var index = parseInt(selectedIndex[i].replace("/", ''));
+    var recpno = modelTbl_ExpenseTypes.getData()[index]['RECPNO'];
+    var chksave = modelTbl_ExpenseTypes.getData()[index]['CHKSAVE'];
+    // var delCostDist = ModelData.Find(Tbl_CostDistRecpts, 'RECPNO', recpno, "EQ");
+    // ModelData.Delete(Tbl_RecpnoAttachments, 'RECPNO', recpno, "EQ");
+    // ModelData.Delete(Tbl_CostDistRecpts, 'RECPNO', recpno, "EQ");
+    // ModelData.Delete(Tbl_RecpnoAttachments, 'RECPNO', recpno, "EQ");
+    modelTbl_ExpenseTypes.getData().splice(index, 1);
+    // for (var j = 0; j < delCostDist.length; j++) {
+    //     ModelData.Add(Tbl_CostDistDeleted, delCostDist[j]);
+    // }
+}
+Tbl_ExpenseTypes.removeSelections();
+Recieptscalc();
+modelTbl_ExpenseTypes.refresh();
+}});
+Toolbar_ExpenseTypes.addContent(Btn_DeleteExpenseReceipt); 
+ var Colmn_TransactionDate = new sap.m.Column("Colmn_TransactionDate",{header: new sap.m.Label({text:"Transaction Date"})});
+Tbl_ExpenseTypes.addColumn(Colmn_TransactionDate); 
+ var Colmn_ExpenseType = new sap.m.Column("Colmn_ExpenseType",{header: new sap.m.Label({text:"Expense Type"})});
+Tbl_ExpenseTypes.addColumn(Colmn_ExpenseType); 
+ var Colmn_City = new sap.m.Column("Colmn_City",{header: new sap.m.Label({text:"City"})});
+Tbl_ExpenseTypes.addColumn(Colmn_City); 
+ var Colmn_PurchaseLocation = new sap.m.Column("Colmn_PurchaseLocation",{header: new sap.m.Label({text:"Purchase Location"}),visible:false});
+Tbl_ExpenseTypes.addColumn(Colmn_PurchaseLocation); 
+ var Colmn_Amount = new sap.m.Column("Colmn_Amount",{header: new sap.m.Label({text:"Amount"})});
+Tbl_ExpenseTypes.addColumn(Colmn_Amount); 
+ var ColumnListItem_ExpenseTypes = new sap.m.ColumnListItem("ColumnListItem_ExpenseTypes",{type:"Navigation",press: function(oEvent) {
+// //Get Table Index
+var ExpenseTypeindex = parseFloat(oEvent.getSource().getBindingContextPath().replace(/[^\w\s]/gi, ''));
+modelTbl_ExpenseTypes.setProperty('/tabIndex', ExpenseTypeindex)
+modelPage_ExpenseItems.setData();
+//Set Expense Reciepts data from Expense Receipts table
+var json = {
+    "AMOUNT_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].AMOUNT_BEG,
+    "ARR_AMOUNT_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_AMOUNT_END,
+    "TOTALAMOUNT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].TOTALAMOUNT,
+    "ARR_CITY_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_CITY_BEG,
+    "ARR_CITY_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_CITY_END,
+    "ARR_COUNTRY_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_BEG,
+    "ARR_COUNTRY_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_END,
+    "ARR_LOCATION_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_LOCATION_BEG,
+    "ARR_LOCATION_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_LOCATION_END,
+    "BUSINESSREASON": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].BUSINESSREASON,
+    "CITY_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].CITY_BEG,
+    "CITY_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].CITY_END,
+    "COMMENTS": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COMMENTS,
+    "COUNTRY_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_BEG,
+    "COUNTRY_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_END,
+    "CURRENCY": "USD",
+    "IS_EDITABLE": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].IS_EDITABLE,
+    "DATE_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].DATE_BEG,
+    "DATE_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].DATE_END,
+    "DESCRIPTION": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].DESCRIPTION,
+    "EXPENSETYPE": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].EXPENSETYPE,
+    "EXPNTYPETEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].EXPNTYPETEXT,
+    "ONEWAYROUNDTRIP": parseInt(modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ONEWAYROUNDTRIP),
+    "LOCATION_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].LOCATION_BEG,
+    "LOCATION_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].LOCATION_END,
+    "RECPNO": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].RECPNO,
+    "VENDORNAME": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].VENDORNAME,
+    "TIME_BEG": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].TIME_BEG,
+    "TIME_END": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].TIME_END,
+    "COUNTRY_BEG_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_BEG_TEXT,
+    "COUNTRY_END_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_END_TEXT,
+    "LOCATION_BEG_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].LOCATION_BEG_TEXT,
+    "LOCATION_END_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].LOCATION_END_TEXT,
+    "ARR_COUNTRY_BEG_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_BEG_TEXT,
+    "ARR_COUNTRY_END_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_END_TEXT,
+    "ARR_LOCATION_BEG_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_LOCATION_BEG_TEXT,
+    "ARR_LOCATION_END_TEXT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_LOCATION_END_TEXT,
+    "IS_COUNTRY_EDIT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].IS_COUNTRY_EDIT,
+    "DATE_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].DATE_END_IND,
+    "COUNTRY_BEG_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_BEG_IND,
+    "COUNTRY_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].COUNTRY_END_IND,
+    "CITY_BEG_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].CITY_BEG_IND,
+    "CITY_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].CITY_END_IND,
+    "ARR_COUNTRY_BEG_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_BEG_IND,
+    "ARR_COUNTRY_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_COUNTRY_END_IND,
+    "ARR_CITY_BEG_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_CITY_BEG_IND,
+    "ARR_CITY_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ARR_CITY_END_IND,
+    "ONEWAYROUNDTRIP_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].ONEWAYROUNDTRIP_IND,
+    "TIME_BEG_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].TIME_BEG_IND,
+    "TIME_END_IND": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].TIME_END_IND,
+    "AMOUNT": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].AMOUNT_EDITABLE,
+    "END_DATE_LABEL": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].END_DATE_LABEL,
+    "START_DATE_LABEL": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].START_DATE_LABEL,
+    "BEGIN_CITY_LABEL": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].BEGIN_CITY_LABEL,
+    "END_CITY_LABEL": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].END_CITY_LABEL,
+    "AMOUNT_EDITABLE": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].AMOUNT_EDITABLE,
+    "BUTTON_CALCULATE": modelTbl_ExpenseTypes.getData()[ExpenseTypeindex].BUTTON_CALCULATE
+};
+modelPage_ExpenseItems.setData(json);
+Page_ExpenseItems.setBusy(false);
+if (json.ARR_COUNTRY_BEG_IND) {
+    Frm_Expense.setTitle('Outbound');
+    Frm_Expense1.setTitle('Return');
+} else {
+    Frm_Expense.setTitle('');
+    Frm_Expense1.setTitle('');
+}
+Chk_TripDomestic(modelPage_ExpenseRequest.getData().ACTIVITY, modelPage_ExpenseRequest.getData().ACTIVITYTEXT, 'Y');
+App_Details.to(Page_ExpenseItems); // Go to Expense Reciepts Page
+Page_ExpenseItems.setBusy(false);
+}});
+Tbl_ExpenseTypes.bindAggregation("items", "/",ColumnListItem_ExpenseTypes); 
+ var Txt_TransactionDate = new sap.m.Text("Txt_TransactionDate",{text:"{DATE_BEG}"});
+ColumnListItem_ExpenseTypes.addCell(Txt_TransactionDate); 
+ var Txt_ExpenseType = new sap.m.Text("Txt_ExpenseType",{text:"{EXPNTYPETEXT}"});
+ColumnListItem_ExpenseTypes.addCell(Txt_ExpenseType); 
+ var Txt_City = new sap.m.Text("Txt_City",{text:"{CITY_END}"});
+ColumnListItem_ExpenseTypes.addCell(Txt_City); 
+ var Txt_PurchaseLocation = new sap.m.Text("Txt_PurchaseLocation",{text:"{COMMENTS}",visible:false});
+ColumnListItem_ExpenseTypes.addCell(Txt_PurchaseLocation); 
+ var Txt_Amount = new sap.m.Text("Txt_Amount",{text:"{AMOUNT_BEG}"});
+ColumnListItem_ExpenseTypes.addCell(Txt_Amount); 
+ var Page_ExpenseItems = new sap.m.Page("Page_ExpenseItems",{backgroundDesign:"Solid"});
+App_Details.addPage(Page_ExpenseItems);
+var modelPage_ExpenseItems = new sap.ui.model.json.JSONModel();
+Page_ExpenseItems.setModel(modelPage_ExpenseItems); 
+ var Panel_ExpenseType = new sap.m.Panel("Panel_ExpenseType",{});
+Page_ExpenseItems.addContent(Panel_ExpenseType); 
+ var Frm_Expense_Type = new sap.ui.layout.form.SimpleForm("Frm_Expense_Type",{columnsL:4,columnsM:2,editable:true,labelSpanL:2,"layout":"ResponsiveGridLayout",title:"Expense Receipts"});
+Panel_ExpenseType.addContent(Frm_Expense_Type); 
+ var Label_ExpenseType = new sap.m.Label("Label_ExpenseType",{required:true,text:"Expense Type"});
+Frm_Expense_Type.addContent(Label_ExpenseType); 
+ var DD_ExpenseType = new sap.m.ComboBox("DD_ExpenseType",{title:"",editable:"{/IS_EDITABLE}",value:"{/EXPNTYPETEXT}",width:"20rem",selectionChange: function(oEvent) {
+if (oEvent.getSource().getSelectedKey() !== undefined) {
+    var json = {
+        "AMOUNT_BEG": 0.00,
+        "ARR_AMOUNT_END": 0.00,
+        "TOTALAMOUNT": "0.00",
+        "ARR_CITY_BEG": modelPage_ExpenseRequest.getData().LOCATION,
+        "ARR_CITY_END": "",
+        "ARR_COUNTRY_BEG": modelPage_ExpenseRequest.getData().COUNTRY,
+        "ARR_COUNTRY_END": "",
+        "ARR_LOCATION_BEG": "",
+        "ARR_LOCATION_END": "",
+        "BUSINESSREASON": "",
+        "CITY_BEG": "",
+        "CITY_END": modelPage_ExpenseRequest.getData().LOCATION,
+        "COMMENTS": "",
+        "COUNTRY_BEG": "",
+        "COUNTRY_END": modelPage_ExpenseRequest.getData().COUNTRY,
+        "CURRENCY": "USD",
+        "IS_EDITABLE": true,
+        "DATE_BEG": modelPage_ExpenseRequest.getData().TRANSACTIONDATE,
+        "DATE_END": modelPage_ExpenseRequest.getData().TODATE,
+        "DESCRIPTION": "",
+        "EXPENSETYPE": oEvent.getSource().getSelectedKey(),
+        "EXPNTYPETEXT": oEvent.getSource().getSelectedItem().getProperty('text'),
+        "ONEWAYROUNDTRIP": 1,
+        "LOCATION_BEG": "",
+        "LOCATION_END": "",
+        "RECPNO": modelPage_ExpenseItems.getData().RECPNO,
+        "VENDORNAME": "",
+        "TIME_BEG": modelPage_ExpenseRequest.getData().STARTTIME,
+        "TIME_END": modelPage_ExpenseRequest.getData().ENDTIME,
+        "COUNTRY_BEG_TEXT": "",
+        "COUNTRY_END_TEXT": modelPage_ExpenseRequest.getData().COUNTRYTEXT,
+        "LOCATION_BEG_TEXT": "",
+        "LOCATION_END_TEXT": "",
+        "ARR_COUNTRY_BEG_TEXT": modelPage_ExpenseRequest.getData().COUNTRYTEXT,
+        "ARR_COUNTRY_END_TEXT": "",
+        "ARR_LOCATION_BEG_TEXT": "",
+        "ARR_LOCATION_END_TEXT": "",
+        "IS_COUNTRY_EDIT": true,
+        "DATE_END_IND": false,
+        "COUNTRY_BEG_IND": false,
+        "COUNTRY_END_IND": false,
+        "CITY_BEG_IND": false,
+        "CITY_END_IND": false,
+        "ARR_COUNTRY_BEG_IND": false,
+        "ARR_COUNTRY_END_IND": false,
+        "ARR_CITY_BEG_IND": false,
+        "ARR_CITY_END_IND": false,
+        "ONEWAYROUNDTRIP_IND": false,
+        "TIME_BEG_IND": false,
+        "TIME_END_IND": false,
+        "END_DATE_LABEL": "",
+        "START_DATE_LABEL": "",
+        "BEGIN_CITY_LABEL": "",
+        "END_CITY_LABEL": "",
+        "AMOUNT_EDITABLE": true,
+        "BUTTON_CALCULATE": false
+    };
+    modelPage_ExpenseItems.setData(json);
+    Chk_TripDomestic(modelPage_ExpenseRequest.getData().ACTIVITY, modelPage_ExpenseRequest.getData().ACTIVITYTEXT, 'Y');
+    if (modelPage_ExpenseRequest.getData().ACTIVITY === '02') {
+        modelPage_ExpenseItems.getData().COUNTRY_BEG = 'US';
+        modelPage_ExpenseItems.getData().COUNTRY_BEG_TEXT = 'United States';
+    }
+    modelPage_ExpenseItems.refresh();
+    getOnlineGet_ExpenseTypeFields();
+    Page_ExpenseItems.setBusy(true);
+}
+}});
+Frm_Expense_Type.addContent(DD_ExpenseType); 
+ var Panel_AirFare = new sap.m.Panel("Panel_AirFare",{headerText:"{/EXPNTYPETEXT}",visible:false});
+Page_ExpenseItems.addContent(Panel_AirFare); 
+ var RBG_AirFare = new sap.m.RadioButtonGroup("RBG_AirFare",{columns:2,editable:"{/IS_EDITABLE}",selectedIndex:"{/ONEWAYROUNDTRIP}",width:"50%"});
+Panel_AirFare.addContent(RBG_AirFare); 
+ var RB_OneWay = new sap.m.RadioButton("RB_OneWay",{selected:true,text:"One Way"});
+RBG_AirFare.addButton(RB_OneWay); 
+ var RB_TwoWay = new sap.m.RadioButton("RB_TwoWay",{text:"Round Trip",selected:true});
+RBG_AirFare.addButton(RB_TwoWay); 
+ var oVBox = new sap.m.VBox("oVBox",{});
+Panel_AirFare.addContent(oVBox); 
+ var oVerticalLayout = new sap.ui.layout.VerticalLayout("oVerticalLayout",{width:"50%"});
+Panel_AirFare.addContent(oVerticalLayout); 
+ var Frm_AirFareOneWay = new sap.ui.layout.form.SimpleForm("Frm_AirFareOneWay",{title:"Departure","layout":"ResponsiveGridLayout",labelSpanL:3,editable:true});
+oVerticalLayout.addContent(Frm_AirFareOneWay); 
+ var lbl_AirFareDeptDate = new sap.m.Label("lbl_AirFareDeptDate",{text:"Date"});
+Frm_AirFareOneWay.addContent(lbl_AirFareDeptDate); 
+ var HBox_ExpenseDate = new sap.m.HBox("HBox_ExpenseDate",{justifyContent:"Start"});
+Frm_AirFareOneWay.addContent(HBox_ExpenseDate); 
+ var DP_AirfareDeptDate = new sap.m.DatePicker("DP_AirfareDeptDate",{displayFormat:"MM/dd/yyy",editable:"{/IS_EDITABLE}",value:"{/DATE_BEG}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_ExpenseDate.addItem(DP_AirfareDeptDate); 
+ var Lbl_AirfareDeptTime = new sap.m.Label("Lbl_AirfareDeptTime",{text:"Time"});
+HBox_ExpenseDate.addItem(Lbl_AirfareDeptTime); 
+ var TP_AirfareDeptTime = new sap.m.TimePicker("TP_AirfareDeptTime",{width:"6rem",valueFormat:"HHmmss",value:"{/TIME_BEG}",editable:"{/IS_EDITABLE}",displayFormat:"HH:mm"});
+HBox_ExpenseDate.addItem(TP_AirfareDeptTime); 
+ var Lbl_AirFareDeptCity = new sap.m.Label("Lbl_AirFareDeptCity",{text:"From City"});
+Frm_AirFareOneWay.addContent(Lbl_AirFareDeptCity); 
+ var DD_AirFareDeptCity = new sap.m.ComboBox("DD_AirFareDeptCity",{title:"",width:"27rem",value:"{/CITY_BEG}",editable:"{/IS_EDITABLE}"});
+Frm_AirFareOneWay.addContent(DD_AirFareDeptCity); 
+ var Lbl_AirFareDeptCountry = new sap.m.Label("Lbl_AirFareDeptCountry",{text:"Country"});
+Frm_AirFareOneWay.addContent(Lbl_AirFareDeptCountry); 
+ var DD_AirFareDeptCountry = new sap.m.ComboBox("DD_AirFareDeptCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRY_BEG_TEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().COUNTRY_BEG = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().COUNTRY_BEG_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_AirFareOneWay.addContent(DD_AirFareDeptCountry); 
+ var Lbl_AirFareDeptDestination = new sap.m.Label("Lbl_AirFareDeptDestination",{text:"Destination"});
+Frm_AirFareOneWay.addContent(Lbl_AirFareDeptDestination); 
+ var DD_AirFareDeptDestination = new sap.m.ComboBox("DD_AirFareDeptDestination",{title:"",editable:"{/IS_EDITABLE}",value:"{/CITY_END}",width:"27rem"});
+Frm_AirFareOneWay.addContent(DD_AirFareDeptDestination); 
+ var Lbl_AFDepartDesCountry = new sap.m.Label("Lbl_AFDepartDesCountry",{text:"Country"});
+Frm_AirFareOneWay.addContent(Lbl_AFDepartDesCountry); 
+ var DD_AFDepartDesCountry = new sap.m.ComboBox("DD_AFDepartDesCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRY_END_TEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().COUNTRY_END = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().COUNTRY_END_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_AirFareOneWay.addContent(DD_AFDepartDesCountry); 
+ var Lbl_AirFareoneAmount = new sap.m.Label("Lbl_AirFareoneAmount",{text:"Amount"});
+Frm_AirFareOneWay.addContent(Lbl_AirFareoneAmount); 
+ var HBox_AirFareAmount = new sap.m.HBox("HBox_AirFareAmount",{alignContent:"SpaceBetween",fitContainer:true,justifyContent:"SpaceBetween",renderType:"Div",width:"13rem"});
+Frm_AirFareOneWay.addContent(HBox_AirFareAmount); 
+ var Ip_AirFareAmount = new sap.m.Input("Ip_AirFareAmount",{width:"7rem",value:"{/AMOUNT_BEG}",editable:"{/IS_EDITABLE}"});
+HBox_AirFareAmount.addItem(Ip_AirFareAmount); 
+ var DD_AirFareCurrency = new sap.m.ComboBox("DD_AirFareCurrency",{title:"",editable:false,value:"USD"});
+HBox_AirFareAmount.addItem(DD_AirFareCurrency); 
+ var oVerticalLayout1 = new sap.ui.layout.VerticalLayout("oVerticalLayout1",{width:"50%"});
+Panel_AirFare.addContent(oVerticalLayout1); 
+ var Frm_AirFareTwoWay = new sap.ui.layout.form.SimpleForm("Frm_AirFareTwoWay",{editable:true,labelSpanL:3,"layout":"ResponsiveGridLayout",title:"Arrival",visible:"{= ${/ONEWAYROUNDTRIP} === 1 ? true :false}"});
+oVerticalLayout1.addContent(Frm_AirFareTwoWay); 
+ var Lbl_AirFareArrDate = new sap.m.Label("Lbl_AirFareArrDate",{text:"Date"});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareArrDate); 
+ var HBox_AirfareArrDate = new sap.m.HBox("HBox_AirfareArrDate",{justifyContent:"Start"});
+Frm_AirFareTwoWay.addContent(HBox_AirfareArrDate); 
+ var Dp_AirFareArrDate = new sap.m.DatePicker("Dp_AirFareArrDate",{width:"8.9rem",valueFormat:"yyyyMMdd",value:"{/DATE_END}",editable:"{/IS_EDITABLE}",displayFormat:"MM/dd/yyyy"});
+HBox_AirfareArrDate.addItem(Dp_AirFareArrDate); 
+ var Lbl_AirfareArrTime = new sap.m.Label("Lbl_AirfareArrTime",{text:"Time"});
+HBox_AirfareArrDate.addItem(Lbl_AirfareArrTime); 
+ var TP_AirfareArrTie = new sap.m.TimePicker("TP_AirfareArrTie",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/TIME_END}",valueFormat:"HHmmss",width:"6rem"});
+HBox_AirfareArrDate.addItem(TP_AirfareArrTie); 
+ var Lbl_AirFareArrFromCity = new sap.m.Label("Lbl_AirFareArrFromCity",{text:"From City"});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareArrFromCity); 
+ var DD_AirFareArrFromCity = new sap.m.ComboBox("DD_AirFareArrFromCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/ARR_CITY_BEG}",width:"27rem"});
+Frm_AirFareTwoWay.addContent(DD_AirFareArrFromCity); 
+ var Lbl_AirFareArrFromCountry = new sap.m.Label("Lbl_AirFareArrFromCountry",{text:"Country"});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareArrFromCountry); 
+ var DD_AirFareArrFromCountry = new sap.m.ComboBox("DD_AirFareArrFromCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/ARR_COUNTRY_BEG_TEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_AirFareTwoWay.addContent(DD_AirFareArrFromCountry); 
+ var Lbl_AirFareArrDestCity = new sap.m.Label("Lbl_AirFareArrDestCity",{text:"Destination"});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareArrDestCity); 
+ var DD_AirFareArrDestCity = new sap.m.ComboBox("DD_AirFareArrDestCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/ARR_CITY_END}",width:"27rem"});
+Frm_AirFareTwoWay.addContent(DD_AirFareArrDestCity); 
+ var Lbl_AirFareArrDesCountry = new sap.m.Label("Lbl_AirFareArrDesCountry",{text:"Country"});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareArrDesCountry); 
+ var DD_AirFareArrDesCountry = new sap.m.ComboBox("DD_AirFareArrDesCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/ARR_COUNTRY_END_TEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_END = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_END_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_AirFareTwoWay.addContent(DD_AirFareArrDesCountry); 
+ var Lbl_AirFareAmount = new sap.m.Label("Lbl_AirFareAmount",{text:"Amount",visible:false});
+Frm_AirFareTwoWay.addContent(Lbl_AirFareAmount); 
+ var HBox_AirFare2Amount1 = new sap.m.HBox("HBox_AirFare2Amount1",{width:"13rem",visible:false,renderType:"Div",justifyContent:"SpaceBetween",fitContainer:true,alignContent:"SpaceBetween"});
+Frm_AirFareTwoWay.addContent(HBox_AirFare2Amount1); 
+ var Ip_AirFareRetAmount = new sap.m.Input("Ip_AirFareRetAmount",{editable:"{/IS_EDITABLE}",value:"{/ARR_AMOUNT_END}",width:"7rem"});
+HBox_AirFare2Amount1.addItem(Ip_AirFareRetAmount); 
+ var DD_AirFareRetCurrency = new sap.m.ComboBox("DD_AirFareRetCurrency",{title:"",editable:false,value:"USD"});
+HBox_AirFare2Amount1.addItem(DD_AirFareRetCurrency); 
+ var Label_AirFareComment = new sap.m.Label("Label_AirFareComment",{text:"Comment"});
+Frm_AirFareTwoWay.addContent(Label_AirFareComment); 
+ var TextArea_AirFareComment = new sap.m.TextArea("TextArea_AirFareComment",{editable:"{/IS_EDITABLE}",value:"{/COMMENTS}"});
+Frm_AirFareTwoWay.addContent(TextArea_AirFareComment); 
+ var Panel_NonAirFare = new sap.m.Panel("Panel_NonAirFare",{headerText:"{/EXPNTYPETEXT}",visible:false});
+Page_ExpenseItems.addContent(Panel_NonAirFare); 
+ var oVerticalLayout3 = new sap.ui.layout.VerticalLayout("oVerticalLayout3",{width:"50%"});
+Panel_NonAirFare.addContent(oVerticalLayout3); 
+ var Frm_NonAirFare = new sap.ui.layout.form.SimpleForm("Frm_NonAirFare",{editable:true,labelSpanL:3,"layout":"ResponsiveGridLayout"});
+oVerticalLayout3.addContent(Frm_NonAirFare); 
+ var Lbl_NonAirFareFromDate = new sap.m.Label("Lbl_NonAirFareFromDate",{text:"Start Date"});
+Frm_NonAirFare.addContent(Lbl_NonAirFareFromDate); 
+ var HBox_NonAirFareDateTime = new sap.m.HBox("HBox_NonAirFareDateTime",{justifyContent:"Start"});
+Frm_NonAirFare.addContent(HBox_NonAirFareDateTime); 
+ var DP_NonAirFareFromDate = new sap.m.DatePicker("DP_NonAirFareFromDate",{value:"{/DATE_BEG}",valueFormat:"yyyyMMdd",width:"8.9rem",editable:"{/IS_EDITABLE}",displayFormat:"MM/dd/yyyy"});
+HBox_NonAirFareDateTime.addItem(DP_NonAirFareFromDate); 
+ var Lbl_NonAirfareStartTime = new sap.m.Label("Lbl_NonAirfareStartTime",{text:"Time"});
+HBox_NonAirFareDateTime.addItem(Lbl_NonAirfareStartTime); 
+ var TP_NonAirfareStartTime = new sap.m.TimePicker("TP_NonAirfareStartTime",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/TIME_BEG}",valueFormat:"HHmmss",width:"6rem"});
+HBox_NonAirFareDateTime.addItem(TP_NonAirfareStartTime); 
+ var Lbl_NonAirFareCity = new sap.m.Label("Lbl_NonAirFareCity",{text:"City"});
+Frm_NonAirFare.addContent(Lbl_NonAirFareCity); 
+ var DD_NonAirFareCity = new sap.m.ComboBox("DD_NonAirFareCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/CITY_BEG}",width:"27rem"});
+Frm_NonAirFare.addContent(DD_NonAirFareCity); 
+ var Lbl_NonAirFareBeginCountry = new sap.m.Label("Lbl_NonAirFareBeginCountry",{text:"Country"});
+Frm_NonAirFare.addContent(Lbl_NonAirFareBeginCountry); 
+ var DD_NonAirFareBeginCountry = new sap.m.ComboBox("DD_NonAirFareBeginCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRY_BEG_TEXT}",width:"15.6rem",selectionChange: function(oEvent) {
+modelPage_ExpenseItems.getData()['COUNTRY_BEG'] = oEvent.getSource().getSelectedKey();
+modelPage_ExpenseItems.getData()['COUNTRY_BEG_TEXT'] = oEvent.getSource().getSelectedItem().getProperty('text')
+}});
+Frm_NonAirFare.addContent(DD_NonAirFareBeginCountry); 
+ var oVerticalLayout2 = new sap.ui.layout.VerticalLayout("oVerticalLayout2",{width:"50%"});
+Panel_NonAirFare.addContent(oVerticalLayout2); 
+ var Frm_NonAirFareTo = new sap.ui.layout.form.SimpleForm("Frm_NonAirFareTo",{editable:true,"layout":"ResponsiveGridLayout"});
+oVerticalLayout2.addContent(Frm_NonAirFareTo); 
+ var Lbl_NonAirFareEndDate = new sap.m.Label("Lbl_NonAirFareEndDate",{text:"End Date"});
+Frm_NonAirFareTo.addContent(Lbl_NonAirFareEndDate); 
+ var HBox_NonAirfareEndDate = new sap.m.HBox("HBox_NonAirfareEndDate",{justifyContent:"Start"});
+Frm_NonAirFareTo.addContent(HBox_NonAirfareEndDate); 
+ var DP_NonAirFareEndDate = new sap.m.DatePicker("DP_NonAirFareEndDate",{displayFormat:"MM/dd/yyyy",editable:"{/IS_EDITABLE}",value:"{/DATE_END}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_NonAirfareEndDate.addItem(DP_NonAirFareEndDate); 
+ var Lbl_NonAirFareEndTime = new sap.m.Label("Lbl_NonAirFareEndTime",{text:"Time"});
+HBox_NonAirfareEndDate.addItem(Lbl_NonAirFareEndTime); 
+ var TP_NonAirFareEndTime = new sap.m.TimePicker("TP_NonAirFareEndTime",{width:"6rem",valueFormat:"HHmmss",value:"{/TIME_END}",editable:"{/IS_EDITABLE}",displayFormat:"HH:mm"});
+HBox_NonAirfareEndDate.addItem(TP_NonAirFareEndTime); 
+ var Lbl_NonAirFareAmount = new sap.m.Label("Lbl_NonAirFareAmount",{text:"Amount"});
+Frm_NonAirFareTo.addContent(Lbl_NonAirFareAmount); 
+ var HBox_NonAirFareAmount = new sap.m.HBox("HBox_NonAirFareAmount",{width:"13rem",renderType:"Div",justifyContent:"SpaceBetween",fitContainer:true,alignContent:"SpaceBetween"});
+Frm_NonAirFareTo.addContent(HBox_NonAirFareAmount); 
+ var Ip_NonAirFareAmount = new sap.m.Input("Ip_NonAirFareAmount",{editable:"{/IS_EDITABLE}",value:"{/AMOUNT_BEG}",width:"7rem"});
+HBox_NonAirFareAmount.addItem(Ip_NonAirFareAmount); 
+ var DD_NonAirFareCurrency = new sap.m.ComboBox("DD_NonAirFareCurrency",{title:"",editable:false,value:"USD"});
+HBox_NonAirFareAmount.addItem(DD_NonAirFareCurrency); 
+ var Label_NonAirFareComment = new sap.m.Label("Label_NonAirFareComment",{text:"Comment"});
+Frm_NonAirFareTo.addContent(Label_NonAirFareComment); 
+ var TextArea_NonAirFareComment = new sap.m.TextArea("TextArea_NonAirFareComment",{editable:"{/IS_EDITABLE}",value:"{/COMMENTS}"});
+Frm_NonAirFareTo.addContent(TextArea_NonAirFareComment); 
+ var Panel_CarRental = new sap.m.Panel("Panel_CarRental",{visible:false,headerText:"{/EXPNTYPETEXT}"});
+Page_ExpenseItems.addContent(Panel_CarRental); 
+ var VL_CarRenntal1 = new sap.ui.layout.VerticalLayout("VL_CarRenntal1",{width:"50%"});
+Panel_CarRental.addContent(VL_CarRenntal1); 
+ var Frm_CarRental = new sap.ui.layout.form.SimpleForm("Frm_CarRental",{"layout":"ResponsiveGridLayout",labelSpanL:3,editable:true});
+VL_CarRenntal1.addContent(Frm_CarRental); 
+ var Lbl_CarRentalFromDate = new sap.m.Label("Lbl_CarRentalFromDate",{text:"Start Date"});
+Frm_CarRental.addContent(Lbl_CarRentalFromDate); 
+ var HBox_CarRentalStartDate = new sap.m.HBox("HBox_CarRentalStartDate",{justifyContent:"Start"});
+Frm_CarRental.addContent(HBox_CarRentalStartDate); 
+ var DP_CarRentalFromDate = new sap.m.DatePicker("DP_CarRentalFromDate",{displayFormat:"MM/dd/yyyy",editable:"{/IS_EDITABLE}",value:"{/DATE_BEG}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_CarRentalStartDate.addItem(DP_CarRentalFromDate); 
+ var Lbl_CarRentalStartTime = new sap.m.Label("Lbl_CarRentalStartTime",{text:"Time"});
+HBox_CarRentalStartDate.addItem(Lbl_CarRentalStartTime); 
+ var TP_CarRentalStartTime = new sap.m.TimePicker("TP_CarRentalStartTime",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/TIME_BEG}",valueFormat:"HHmmss",width:"6rem"});
+HBox_CarRentalStartDate.addItem(TP_CarRentalStartTime); 
+ var Lbl_CarRentaPickuplCity = new sap.m.Label("Lbl_CarRentaPickuplCity",{text:"Pickup City"});
+Frm_CarRental.addContent(Lbl_CarRentaPickuplCity); 
+ var DD_CarRentalPickupCity = new sap.m.ComboBox("DD_CarRentalPickupCity",{title:"",width:"27rem",value:"{/CITY_BEG}",editable:"{/IS_EDITABLE}"});
+Frm_CarRental.addContent(DD_CarRentalPickupCity); 
+ var Lbl_CarRentalPickupCountry = new sap.m.Label("Lbl_CarRentalPickupCountry",{text:"Country"});
+Frm_CarRental.addContent(Lbl_CarRentalPickupCountry); 
+ var DD_CarRentalPickupCountry = new sap.m.ComboBox("DD_CarRentalPickupCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRY_BEG_TEXT}",width:"15.6rem",selectionChange: function(oEvent) {
+modelPage_ExpenseItems.getData()['COUNTRY_BEG'] = oEvent.getSource().getSelectedKey();
+modelPage_ExpenseItems.getData()['COUNTRY_BEG_TEXT'] = oEvent.getSource().getSelectedItem().getProperty('text')
+}});
+Frm_CarRental.addContent(DD_CarRentalPickupCountry); 
+ var Lbl_CarRentalAmount = new sap.m.Label("Lbl_CarRentalAmount",{text:"Amount"});
+Frm_CarRental.addContent(Lbl_CarRentalAmount); 
+ var HBox_CarRentalAmount = new sap.m.HBox("HBox_CarRentalAmount",{alignContent:"SpaceBetween",fitContainer:true,justifyContent:"SpaceBetween",renderType:"Div",width:"13rem"});
+Frm_CarRental.addContent(HBox_CarRentalAmount); 
+ var Ip_CarRentalAmount = new sap.m.Input("Ip_CarRentalAmount",{editable:"{/IS_EDITABLE}",value:"{/AMOUNT_BEG}",width:"7rem"});
+HBox_CarRentalAmount.addItem(Ip_CarRentalAmount); 
+ var DD_CarRentalCurrency = new sap.m.ComboBox("DD_CarRentalCurrency",{title:"",editable:false,value:"USD"});
+HBox_CarRentalAmount.addItem(DD_CarRentalCurrency); 
+ var VL_CarRenntal2 = new sap.ui.layout.VerticalLayout("VL_CarRenntal2",{width:"50%"});
+Panel_CarRental.addContent(VL_CarRenntal2); 
+ var Frm_CarRental2 = new sap.ui.layout.form.SimpleForm("Frm_CarRental2",{editable:true,"layout":"ResponsiveGridLayout"});
+VL_CarRenntal2.addContent(Frm_CarRental2); 
+ var Lbl_CarRentalEndDate = new sap.m.Label("Lbl_CarRentalEndDate",{text:"End Date"});
+Frm_CarRental2.addContent(Lbl_CarRentalEndDate); 
+ var HBox_CarRentalEndDate = new sap.m.HBox("HBox_CarRentalEndDate",{justifyContent:"Start"});
+Frm_CarRental2.addContent(HBox_CarRentalEndDate); 
+ var DP_CarRentalEndDate = new sap.m.DatePicker("DP_CarRentalEndDate",{width:"8.9rem",valueFormat:"yyyyMMdd",value:"{/DATE_END}",editable:"{/IS_EDITABLE}",displayFormat:"MM/dd/yyyy"});
+HBox_CarRentalEndDate.addItem(DP_CarRentalEndDate); 
+ var Lbl_CarRentalEndTime = new sap.m.Label("Lbl_CarRentalEndTime",{text:"Time"});
+HBox_CarRentalEndDate.addItem(Lbl_CarRentalEndTime); 
+ var TP_CarRentalEndTime = new sap.m.TimePicker("TP_CarRentalEndTime",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/TIME_END}",valueFormat:"HHmmss",width:"6rem"});
+HBox_CarRentalEndDate.addItem(TP_CarRentalEndTime); 
+ var Lbl_CarRentalDropoffCity = new sap.m.Label("Lbl_CarRentalDropoffCity",{text:"Dropoff City"});
+Frm_CarRental2.addContent(Lbl_CarRentalDropoffCity); 
+ var DD_CarRentalDropoffCity = new sap.m.ComboBox("DD_CarRentalDropoffCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/CITY_END}",width:"27rem"});
+Frm_CarRental2.addContent(DD_CarRentalDropoffCity); 
+ var Lbl_CarRentalDropoffCountry = new sap.m.Label("Lbl_CarRentalDropoffCountry",{text:"Dropoff Country",wrapping:true});
+Frm_CarRental2.addContent(Lbl_CarRentalDropoffCountry); 
+ var DD_CarRentalDropoffCountry = new sap.m.ComboBox("DD_CarRentalDropoffCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/COUNTRY_END_TEXT}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().COUNTRY_END = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().COUNTRY_END_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_CarRental2.addContent(DD_CarRentalDropoffCountry); 
+ var Label_CarRentalComment = new sap.m.Label("Label_CarRentalComment",{text:"Comment"});
+Frm_CarRental2.addContent(Label_CarRentalComment); 
+ var TextArea_CarRentalComment = new sap.m.TextArea("TextArea_CarRentalComment",{value:"{/COMMENTS}",editable:"{/IS_EDITABLE}"});
+Frm_CarRental2.addContent(TextArea_CarRentalComment); 
+ var Panel_ExpenseItem = new sap.m.Panel("Panel_ExpenseItem",{headerText:"{/EXPNTYPETEXT}"});
+Page_ExpenseItems.addContent(Panel_ExpenseItem); 
+ var RBG_ExpenseAirfare = new sap.m.RadioButtonGroup("RBG_ExpenseAirfare",{columns:2,editable:"{/IS_EDITABLE}",selectedIndex:"{/ONEWAYROUNDTRIP}",visible:"{/ONEWAYROUNDTRIP_IND}",width:"50%"});
+Panel_ExpenseItem.addContent(RBG_ExpenseAirfare); 
+ var RB_ExpenseAFOneWay = new sap.m.RadioButton("RB_ExpenseAFOneWay",{visible:"{/ONEWAYROUNDTRIP_IND}",text:"One Way",selected:true});
+RBG_ExpenseAirfare.addButton(RB_ExpenseAFOneWay); 
+ var RB_ExpeseAFTwoWay = new sap.m.RadioButton("RB_ExpeseAFTwoWay",{selected:true,text:"Round Trip"});
+RBG_ExpenseAirfare.addButton(RB_ExpeseAFTwoWay); 
+ var VBox_Separator = new sap.m.VBox("VBox_Separator",{});
+Panel_ExpenseItem.addContent(VBox_Separator); 
+ var VL_ExpenseItem = new sap.ui.layout.VerticalLayout("VL_ExpenseItem",{width:"50%"});
+Panel_ExpenseItem.addContent(VL_ExpenseItem); 
+ var Frm_Expense = new sap.ui.layout.form.SimpleForm("Frm_Expense",{editable:true,labelSpanM:3,"layout":"ResponsiveGridLayout"});
+VL_ExpenseItem.addContent(Frm_Expense); 
+ var lbl_ExpenseStartDate = new sap.m.Label("lbl_ExpenseStartDate",{text:"{/START_DATE_LABEL}"});
+Frm_Expense.addContent(lbl_ExpenseStartDate); 
+ var HBox_ExpenseStart = new sap.m.HBox("HBox_ExpenseStart",{justifyContent:"Start"});
+Frm_Expense.addContent(HBox_ExpenseStart); 
+ var DP_ExpenseDeptDate = new sap.m.DatePicker("DP_ExpenseDeptDate",{displayFormat:"MM/dd/yyy",editable:"{/IS_EDITABLE}",value:"{/DATE_BEG}",valueFormat:"yyyyMMdd",width:"8.9rem"});
+HBox_ExpenseStart.addItem(DP_ExpenseDeptDate); 
+ var Lbl_ExpenseDeptTime = new sap.m.Label("Lbl_ExpenseDeptTime",{text:"Time",visible:"{/TIME_BEG_IND}"});
+HBox_ExpenseStart.addItem(Lbl_ExpenseDeptTime); 
+ var TP_ExpenseDeptTime = new sap.m.TimePicker("TP_ExpenseDeptTime",{width:"6rem",visible:"{/TIME_BEG_IND}",valueFormat:"HHmmss",value:"{/TIME_BEG}",editable:"{/IS_EDITABLE}",displayFormat:"HH:mm"});
+HBox_ExpenseStart.addItem(TP_ExpenseDeptTime); 
+ var Lbl_ExpenseDeptCity = new sap.m.Label("Lbl_ExpenseDeptCity",{text:"{/BEGIN_CITY_LABEL}",visible:"{/CITY_BEG_IND}"});
+Frm_Expense.addContent(Lbl_ExpenseDeptCity); 
+ var DD_ExpenseDeptCity = new sap.m.ComboBox("DD_ExpenseDeptCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/CITY_BEG}",visible:"{/CITY_BEG_IND}",width:"27rem"});
+Frm_Expense.addContent(DD_ExpenseDeptCity); 
+ var Lbl_ExpenseDeptCountry = new sap.m.Label("Lbl_ExpenseDeptCountry",{text:"Country",visible:"{/COUNTRY_BEG_IND}"});
+Frm_Expense.addContent(Lbl_ExpenseDeptCountry); 
+ var DD_ExpenseDeptCountry = new sap.m.ComboBox("DD_ExpenseDeptCountry",{title:"",width:"9.9rem",visible:"{/COUNTRY_BEG_IND}",value:"{/COUNTRY_BEG_TEXT}",editable:"{/IS_COUNTRY_EDIT}",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().COUNTRY_BEG = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().COUNTRY_BEG_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_Expense.addContent(DD_ExpenseDeptCountry); 
+ var Lbl_ExpenseDeptDestination = new sap.m.Label("Lbl_ExpenseDeptDestination",{text:"{/END_CITY_LABEL}",visible:"{/CITY_END_IND}"});
+Frm_Expense.addContent(Lbl_ExpenseDeptDestination); 
+ var DD_ExpenseDeptDestination = new sap.m.ComboBox("DD_ExpenseDeptDestination",{title:"",editable:"{/IS_EDITABLE}",value:"{/CITY_END}",visible:"{/CITY_END_IND}",width:"27rem"});
+Frm_Expense.addContent(DD_ExpenseDeptDestination); 
+ var Lbl_ExpenseAFDepartDesCountry = new sap.m.Label("Lbl_ExpenseAFDepartDesCountry",{text:"Country",visible:"{/COUNTRY_END_IND}"});
+Frm_Expense.addContent(Lbl_ExpenseAFDepartDesCountry); 
+ var DD_ExpenseAFDepartDesCountry = new sap.m.ComboBox("DD_ExpenseAFDepartDesCountry",{title:"",width:"9.9rem",visible:"{/COUNTRY_END_IND}",value:"{/COUNTRY_END_TEXT}",editable:"{/IS_COUNTRY_EDIT}",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().COUNTRY_END = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().COUNTRY_END_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_Expense.addContent(DD_ExpenseAFDepartDesCountry); 
+ var Lbl_ExpenseAirFareoneAmount = new sap.m.Label("Lbl_ExpenseAirFareoneAmount",{text:"Amount"});
+Frm_Expense.addContent(Lbl_ExpenseAirFareoneAmount); 
+ var HBox_ExpenseAmount = new sap.m.HBox("HBox_ExpenseAmount",{fitContainer:true,renderType:"Div"});
+Frm_Expense.addContent(HBox_ExpenseAmount); 
+ var Ip_ExpenseAmount = new sap.m.Input("Ip_ExpenseAmount",{editable:"{/AMOUNT_EDITABLE}",value:"{/AMOUNT_BEG}",width:"7rem"});
+HBox_ExpenseAmount.addItem(Ip_ExpenseAmount); 
+ var DD_ExpenseCurrency = new sap.m.ComboBox("DD_ExpenseCurrency",{title:"",editable:false,value:"USD",width:"3rem"});
+HBox_ExpenseAmount.addItem(DD_ExpenseCurrency); 
+ var Btn_CalculateAmount = new sap.m.Button("Btn_CalculateAmount",{text:"Calculate Amount",visible:"{/BUTTON_CALCULATE}",press: function(oEvent) {
+Btn_CalculateAmount.setBusy(true);
+Ip_ExpenseAmount.setBusy(true);
+getOnlineCalculateMealsAmount();
+}});
+HBox_ExpenseAmount.addItem(Btn_CalculateAmount); 
+ var VL_ExpenseItem1 = new sap.ui.layout.VerticalLayout("VL_ExpenseItem1",{width:"50%"});
+Panel_ExpenseItem.addContent(VL_ExpenseItem1); 
+ var Frm_Expense1 = new sap.ui.layout.form.SimpleForm("Frm_Expense1",{editable:true,labelSpanM:3,"layout":"ResponsiveGridLayout",visible:"{= ${/ONEWAYROUNDTRIP} === 1 ? true :false}"});
+VL_ExpenseItem1.addContent(Frm_Expense1); 
+ var Lbl_ExpenseEndDate1 = new sap.m.Label("Lbl_ExpenseEndDate1",{text:"{/END_DATE_LABEL}",visible:"{/DATE_END_IND}"});
+Frm_Expense1.addContent(Lbl_ExpenseEndDate1); 
+ var HBox_ExpenseEnd = new sap.m.HBox("HBox_ExpenseEnd",{justifyContent:"Start",visible:"{/DATE_END_IND}"});
+Frm_Expense1.addContent(HBox_ExpenseEnd); 
+ var Dp_ExpenseArrDate = new sap.m.DatePicker("Dp_ExpenseArrDate",{width:"8.9rem",valueFormat:"yyyyMMdd",value:"{/DATE_END}",editable:"{/IS_EDITABLE}",displayFormat:"MM/dd/yyyy"});
+HBox_ExpenseEnd.addItem(Dp_ExpenseArrDate); 
+ var Lbl_ExpenseArrTime = new sap.m.Label("Lbl_ExpenseArrTime",{text:"Time",visible:"{/TIME_END_IND}"});
+HBox_ExpenseEnd.addItem(Lbl_ExpenseArrTime); 
+ var TP_ExpenseArrTime = new sap.m.TimePicker("TP_ExpenseArrTime",{displayFormat:"HH:mm",editable:"{/IS_EDITABLE}",value:"{/TIME_END}",valueFormat:"HHmmss",visible:"{/TIME_END_IND}",width:"6rem"});
+HBox_ExpenseEnd.addItem(TP_ExpenseArrTime); 
+ var Lbl_ExpenseArrFromCity = new sap.m.Label("Lbl_ExpenseArrFromCity",{wrapping:"{/ARR_CITY_BEG_IND}",text:"{/BEGIN_CITY_LABEL}"});
+Frm_Expense1.addContent(Lbl_ExpenseArrFromCity); 
+ var DD_ExpenseArrFromCity = new sap.m.ComboBox("DD_ExpenseArrFromCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/ARR_CITY_BEG}",visible:"{/ARR_COUNTRY_BEG_IND}",width:"27rem"});
+Frm_Expense1.addContent(DD_ExpenseArrFromCity); 
+ var Lbl_ExpenseArrFromCountry = new sap.m.Label("Lbl_ExpenseArrFromCountry",{text:"Country",visible:"{/ARR_COUNTRY_BEG_IND}"});
+Frm_Expense1.addContent(Lbl_ExpenseArrFromCountry); 
+ var DD_ExpeseArrFromCountry = new sap.m.ComboBox("DD_ExpeseArrFromCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/ARR_COUNTRY_BEG_TEXT}",visible:"{/ARR_COUNTRY_BEG_IND}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_Expense1.addContent(DD_ExpeseArrFromCountry); 
+ var Lbl_ExpenseArrDestCity = new sap.m.Label("Lbl_ExpenseArrDestCity",{visible:"{/ARR_CITY_END_IND}",text:"{/END_CITY_LABEL}"});
+Frm_Expense1.addContent(Lbl_ExpenseArrDestCity); 
+ var DD_ExpenseArrDestCity = new sap.m.ComboBox("DD_ExpenseArrDestCity",{title:"",editable:"{/IS_EDITABLE}",value:"{/ARR_CITY_END}",visible:"{/ARR_CITY_END_IND}",width:"27rem"});
+Frm_Expense1.addContent(DD_ExpenseArrDestCity); 
+ var Lbl_ExpeseArrDesCountry = new sap.m.Label("Lbl_ExpeseArrDesCountry",{text:"Country",visible:"{/ARR_COUNTRY_END_IND}"});
+Frm_Expense1.addContent(Lbl_ExpeseArrDesCountry); 
+ var DD_ExpenseArrDesCountry = new sap.m.ComboBox("DD_ExpenseArrDesCountry",{title:"",editable:"{/IS_COUNTRY_EDIT}",value:"{/ARR_COUNTRY_END_TEXT}",visible:"{/ARR_COUNTRY_END_IND}",width:"9.9rem",selectionChange: function(oEvent) {
+if(oEvent.getSource().getSelectedKey() !== undefined){
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_END = oEvent.getSource().getSelectedKey();
+    modelPage_ExpenseItems.getData().ARR_COUNTRY_END_TEXT = oEvent.getSource().getSelectedItem().getProperty('text');
+}
+}});
+Frm_Expense1.addContent(DD_ExpenseArrDesCountry); 
+ var Label_ExpenseComment = new sap.m.Label("Label_ExpenseComment",{text:"Comment"});
+Frm_Expense1.addContent(Label_ExpenseComment); 
+ var TextArea_ExpenseComment = new sap.m.TextArea("TextArea_ExpenseComment",{editable:"{/IS_EDITABLE}",value:"{/COMMENTS}"});
+Frm_Expense1.addContent(TextArea_ExpenseComment); 
+ var Frm_Expense2 = new sap.ui.layout.form.SimpleForm("Frm_Expense2",{editable:true,labelSpanM:3,"layout":"ResponsiveGridLayout",title:" ",visible:"{= ${/ARR_CITY_BEG_IND} === true ? ${/ONEWAYROUNDTRIP} === 0 ? true : false : false}"});
+VL_ExpenseItem1.addContent(Frm_Expense2); 
+ var Label_ExpenseComment1 = new sap.m.Label("Label_ExpenseComment1",{text:"Comment"});
+Frm_Expense2.addContent(Label_ExpenseComment1); 
+ var TextArea_ExpenseComment1 = new sap.m.TextArea("TextArea_ExpenseComment1",{editable:"{/IS_EDITABLE}",value:"{/COMMENTS}"});
+Frm_Expense2.addContent(TextArea_ExpenseComment1); 
+ var Bar_Footer = new sap.m.Bar("Bar_Footer",{design:"Footer"});
+Page_ExpenseItems.setFooter(Bar_Footer); 
+ var Btn_Save = new sap.m.Button("Btn_Save",{enabled:"{/IS_EDITABLE}",text:"Save",type:"Emphasized",press: function(oEvent) {
+var Amt_Beg = 0,
+    Amt_End = 0,
+    Amt_Tot = 0;
+
+    Amt_Beg = Ip_ExpenseAmount.getValue();
+    Amt_Beg = Amt_Beg.replaceAll(',', '');
+    Amt_Beg = parseFloat(Amt_Beg).toFixed(2);
+    Amt_Tot = Amt_Beg;
+modelPage_ExpenseItems.getData().AMOUNT_BEG = Amt_Beg;
+modelPage_ExpenseItems.getData().ARR_AMOUNT_END = 0;
+modelPage_ExpenseItems.getData().TOTALAMOUNT = Amt_Tot;
+modelPage_ExpenseItems.getData().CURRENCY = "USD";
+var ret = ValidateExpenseTypes(modelPage_ExpenseItems.getData());
+if(ret === 'e' ){
+    return;
+}
+
+if (modelTbl_ExpenseTypes.getProperty('/tabIndex') !== " ") {
+    var index = parseInt(modelTbl_ExpenseTypes.getProperty('/tabIndex'));
+    modelTbl_ExpenseTypes.getData()[index] = modelPage_ExpenseItems.getData();
+
+} else {
+    modelTbl_ExpenseTypes.getData()[modelTbl_ExpenseTypes.getData().length] = modelPage_ExpenseItems.getData();
+}
+modelTbl_ExpenseTypes.refresh();
+Recieptscalc();
+App_Details.back();
+}});
+Bar_Footer.addContentRight(Btn_Save); 
+ var Btn_Cancel = new sap.m.Button("Btn_Cancel",{text:"Cancel",press: function(oEvent) {
+//Get cached cost distribution table.
+// var data = modelTbl_CostDistRecptsCache.getData();
+// //Add the cached cost distribution table to main table
+// for (var i = 0; i < data.length; i++) {
+//     ModelData.Add(Tbl_CostDistRecpts, data[i]);
+// }
+// //Clear Cost distribution cache table
+// ModelData.Delete(Tbl_CostDistRecptsCache, 'RECPNO', 1000, "LT");
+// //Get Cached attachments table
+// var attachments = modelTbl_RecpnoAttachmentsCache.getData()
+// //Add the cached attachments table to main table
+// for (var i = 0; i < attachments.length; i++) {
+//     ModelData.Add(Tbl_RecpnoAttachments, attachments[i]);
+// }
+// //Clear Cached attachments table
+// ModelData.Delete(Tbl_RecpnoAttachmentsCache, 'RECPNO', 1000, "LT");
+App_Details.back()
+}});
+Bar_Footer.addContentRight(Btn_Cancel); 
+ var PageHdden = new sap.m.Page("PageHdden",{});
+App_Details.addPage(PageHdden); 
+ var Page_TripDeleteReturn = new sap.m.Page("Page_TripDeleteReturn",{});
+PageHdden.addContent(Page_TripDeleteReturn); 
+ var Btn_TripDelOk = new sap.m.Button("Btn_TripDelOk",{text:"Ok",press: function(oEvent) {
+Dia_TripDeleteRet.close();
+getOnlineinitonLoad();
+Tbl_ExpenseReport.removeSelections();
+}});
+Page_TripDeleteReturn.addContent(Btn_TripDelOk); 
+ var Dia_TripDeleteRet = new sap.m.Dialog("Dia_TripDeleteRet",{title:"Message",state:"{= ${/TYPE} ==='E' ? 'Error' : 'Success'}",endButton:Btn_TripDelOk});
+var modelDia_TripDeleteRet = new sap.ui.model.json.JSONModel();
+Dia_TripDeleteRet.setModel(modelDia_TripDeleteRet); 
+ var oText = new sap.m.Text("oText",{text:"{/MESSAGE}"});
+Dia_TripDeleteRet.addContent(oText); 
+ var Page_Delegate = new sap.m.Page("Page_Delegate",{});
+PageHdden.addContent(Page_Delegate); 
+ var Btn_DelegateOk = new sap.m.Button("Btn_DelegateOk",{text:"Ok",press: function(oEvent) {
+Dia_Delegate.close();
+App_ExpenseRequest.setBusy(true);
+App_Details.to(Page_ExpenseReport);
+getOnlineinitonLoad(modelFrm_Delegate.getData()['EMPLOYEEID'])
+}});
+Page_Delegate.addContent(Btn_DelegateOk); 
+ var Btn_DelegateCancel = new sap.m.Button("Btn_DelegateCancel",{text:"Cancel",press: function(oEvent) {Dia_Delegate.close();
+}});
+Page_Delegate.addContent(Btn_DelegateCancel); 
+ var Dia_Delegate = new sap.m.Dialog("Dia_Delegate",{title:"Delegate ID",beginButton:Btn_DelegateCancel,endButton:Btn_DelegateOk}); 
+ var Frm_Delegate = new sap.ui.layout.form.SimpleForm("Frm_Delegate",{editable:true});
+Dia_Delegate.addContent(Frm_Delegate);
+var modelFrm_Delegate = new sap.ui.model.json.JSONModel();
+Frm_Delegate.setModel(modelFrm_Delegate); 
+ var Lbl_perner = new sap.m.Label("Lbl_perner",{text:"Employee ID"});
+Frm_Delegate.addContent(Lbl_perner); 
+ var Ip_EmployeeId = new sap.m.Input("Ip_EmployeeId",{maxLength:8,showValueHelp:true,value:"{/EMPLOYEEID}",submit: function(oEvent) {
+Dia_Delegate.close();
+App_ExpenseRequest.setBusy(true);
+App_Details.to(Page_ExpenseReport);
+getOnlineinitonLoad(modelFrm_Delegate.getData()['EMPLOYEEID'])
+},valueHelpRequest: function(oEvent) {
+VP_pernr.fireValueHelpRequest();
+// F4ButSelection.setEnabled(true);
+// F4tabResult.setMode("SingleSelect");
+// F4ButSelection.setVisible(false);
+// F4ButSelAll.setVisible(false);
+// F4Dialog.open();
+// value = 'ZSH_ND_PERNR:VP_pernr:VP_pernr';
+// $.ajax({
+//     type: "POST",
+//     contentType: "application/json",
+//     url: "znd_emp_travel_request?ajax_id=F4_GET_DATA&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=005&uxp=400&field_id=00674&ajax_value=" + value + "",
+//     dataType: "json",
+//     success: function(data) {
+//         modelF4ListSH.setData(data.modelF4SearchHelpsData);
+//         modelF4Dialog.setData(data.modelF4DialogData);
+//         modelF4tabFields.setData(data.modelF4tabFieldsData);
+//         F4updateDropbox(data);
+//         F4buildDialog();
+//         // modelF4Dialog.oData.VALUE5 = modelPage_ExpenseRequest.getData().COSTOBJECT;
+//         modelF4Dialog.refresh();
+//         F4Dialog.setBusy(false);
+//         modelF4tabResult.setData(data.modelF4tabResultData);
+//         // modelF4Dialog.oData.VALUE4 = modelPage_ExpenseRequest.getData().COMPANYCODE;
+//          modelF4Dialog.oData.VALUE4 = "";
+//         modelF4Dialog.oData.VALUE3 = "";
+//         modelF4Dialog.refresh();
+//     },
+//     error: function(result, status) {
+//         F4Dialog.setBusy(false);
+//     }
+// });
+}});
+Frm_Delegate.addContent(Ip_EmployeeId); 
+ var Page_AttachmentViewer = new sap.m.Page("Page_AttachmentViewer",{});
+PageHdden.addContent(Page_AttachmentViewer); 
+ var Btn_attachDiaClose = new sap.m.Button("Btn_attachDiaClose",{text:"Close",press: function(oEvent) {Dia_PdfViewer.close()
+}});
+Page_AttachmentViewer.addContent(Btn_attachDiaClose); 
+ var Dia_PdfViewer = new sap.m.Dialog("Dia_PdfViewer",{title:"Preview",stretch:true,contentHeight:"100%",endButton:Btn_attachDiaClose}); 
+ var Frm_Image = new sap.ui.layout.form.SimpleForm("Frm_Image",{visible:false});
+Dia_PdfViewer.addContent(Frm_Image); 
+ var Image_attachment = new sap.m.Image("Image_attachment",{});
+Frm_Image.addContent(Image_attachment); 
+ var Frm_PDF = new sap.ui.layout.form.SimpleForm("Frm_PDF",{visible:false});
+Dia_PdfViewer.addContent(Frm_PDF); 
+ var oPDFViewer = new sap.m.PDFViewer("oPDFViewer",{height:"600px",showDownloadButton:false});
+Frm_PDF.addContent(oPDFViewer); 
+ var Page_Return = new sap.m.Page("Page_Return",{});
+PageHdden.addContent(Page_Return); 
+ var Btn_dialogReturn = new sap.m.Button("Btn_dialogReturn",{text:"ok",press: function(oEvent) {
+var TYPE = modelDialog_Return.getData()['TYPE'];
+
+if (TYPE === 'S') {
+    Dialog_Return.close();
+    var pernr = modelPage_ExpenseRequest.getData()['EMPLOYEEID'];
+
+    App_Details.back();
+    getOnlineinitonLoad(pernr);
+
+} else {
+    Dialog_Return.close();
+}
+}});
+Page_Return.addContent(Btn_dialogReturn); 
+ var Dialog_Return = new sap.m.Dialog("Dialog_Return",{state:"{= ${/TYPE} ==='E' ? 'Error' : 'Success'}",title:"Message",endButton:Btn_dialogReturn});
+var modelDialog_Return = new sap.ui.model.json.JSONModel();
+Dialog_Return.setModel(modelDialog_Return); 
+ var oText8 = new sap.m.Text("oText8",{text:"{/MESSAGE}"});
+Dialog_Return.addContent(oText8); 
+ var Page_BackConfirm = new sap.m.Page("Page_BackConfirm",{});
+PageHdden.addContent(Page_BackConfirm); 
+ var Btn_confirm = new sap.m.Button("Btn_confirm",{text:"Ok",press: function(oEvent) {
+App_ExpenseRequest.setBusy(true);
+getOnlineinitonLoad(modelPage_ExpenseRequest.getData().EMPLOYEEID);
+App_Details.back();
+Dialog_Back_Confirm.close();
+ReportNoDisplay();
+}});
+Page_BackConfirm.addContent(Btn_confirm); 
+ var Btn_Back_Cancel = new sap.m.Button("Btn_Back_Cancel",{text:"Cancel",press: function(oEvent) {Dialog_Back_Confirm.close()
+}});
+Page_BackConfirm.addContent(Btn_Back_Cancel); 
+ var Dialog_Back_Confirm = new sap.m.Dialog("Dialog_Back_Confirm",{title:"Confirm",state:"Warning",beginButton:Btn_Back_Cancel,endButton:Btn_confirm}); 
+ var oText7 = new sap.m.Text("oText7",{text:"Do you want to cancel the editing, data will not be saved"});
+Dialog_Back_Confirm.addContent(oText7); 
+ var Page_CostDistChk = new sap.m.Page("Page_CostDistChk",{});
+PageHdden.addContent(Page_CostDistChk); 
+ var Btn_SaveCostDisCheck = new sap.m.Button("Btn_SaveCostDisCheck",{text:"ok",press: function(oEvent) {DialogTblDist.close()
+}});
+Page_CostDistChk.addContent(Btn_SaveCostDisCheck); 
+ var DialogTblDist = new sap.m.Dialog("DialogTblDist",{icon:"sap-icon://error",state:"Error",title:"Error",endButton:Btn_SaveCostDisCheck}); 
+ var oText6 = new sap.m.Text("oText6",{});
+DialogTblDist.addContent(oText6); 
+ var Page_ValueHelps = new sap.m.Page("Page_ValueHelps",{});
+PageHdden.addContent(Page_ValueHelps); 
+ var VP_WbsElement1 = new sap.m.Input("VP_WbsElement1",{change: function(oEvent) {
+var findRec = ModelData.Find(VP_WbsElement1, "CHK",this.getValue());
+if (findRec.length === 0) {
+var newRec = {};
+newRec.SIGN = "I";
+newRec.OPTION = "EQ";
+newRec.LOW = this.getValue();
+newRec.CHK = this.getValue();
+VP_WbsElement1.getModel().setData();
+ModelData.Add(VP_WbsElement1,newRec);
+}
+
+var value = this.getValue().split(":")
+// VP_WbsElement1.setValue(a[1])
+// // modelPage_ExpenseRequest.getData().COSTOBJECT = a[1]
+var index = modelTbl_Cost_Distribution.getProperty('/tabindex');
+// modelTbl_Cost_Distribution.getData()[index]["COSTCENTER"] = value[0];
+var desc = modelF4tabSelection.oData[0].DATA
+modelTbl_Cost_Distribution.getData()[index]["COSTCENTER"] = JSONH.parse(desc).POSID;
+modelTbl_Cost_Distribution.getData()[index]["COSTCENTERDESC"] = JSONH.parse(desc).POST1;
+modelTbl_Cost_Distribution.refresh();
+},showValueHelp:true,valueHelpRequest: function(oEvent) {
+modelF4tabSelection.setData(modelVP_WbsElement1.oData);
+if (modelF4tabSelection.oData.length){F4ButSelection.setText(txtF4PageCondition + " (" + modelF4tabSelection.oData.length + ")");} else {F4ButSelection.setText(txtF4PageCondition + " (0)");}
+modelF4tabResult.setData();
+F4toolResultLabel.setText("Items (0)");F4ButSelection.setEnabled(false);F4tabResult.setMode("SingleSelect");F4ButSelection.setVisible(false);F4ButSelAll.setVisible(false);
+var screenFieldName = oEvent.getSource().sId;
+var shName = "PRP:VP_WbsElement1:" + screenFieldName;
+F4Dialog.open();
+F4App.to("F4PageSelection","show");
+getOnlineF4SearchHelps(shName);
+}});
+Page_ValueHelps.addContent(VP_WbsElement1);
+var modelVP_WbsElement1 = new sap.ui.model.json.JSONModel();
+VP_WbsElement1.setModel(modelVP_WbsElement1); 
+ var VP_pernr = new sap.m.Input("VP_pernr",{change: function(oEvent) {
+var findRec = ModelData.Find(VP_pernr, "CHK",this.getValue());
+if (findRec.length === 0) {
+var newRec = {};
+newRec.SIGN = "I";
+newRec.OPTION = "EQ";
+newRec.LOW = this.getValue();
+newRec.CHK = this.getValue();
+VP_pernr.getModel().setData();
+ModelData.Add(VP_pernr,newRec);
+}
+
+pernr = modelF4tabSelection.oData[0].DATA;
+modelFrm_Delegate.getData().EMPLOYEEID = JSONH.parse(pernr).PERNR;
+modelFrm_Delegate.refresh();
+},showValueHelp:true,valueHelpRequest: function(oEvent) {
+modelF4tabSelection.setData(modelVP_pernr.oData);
+if (modelF4tabSelection.oData.length){F4ButSelection.setText(txtF4PageCondition + " (" + modelF4tabSelection.oData.length + ")");} else {F4ButSelection.setText(txtF4PageCondition + " (0)");}
+modelF4tabResult.setData();
+F4toolResultLabel.setText("Items (0)");F4ButSelection.setEnabled(false);F4tabResult.setMode("SingleSelect");F4ButSelection.setVisible(false);F4ButSelAll.setVisible(false);
+var screenFieldName = oEvent.getSource().sId;
+var shName = "ZSH_ND_PERNR:VP_pernr:" + screenFieldName;
+F4Dialog.open();
+F4App.to("F4PageSelection","show");
+getOnlineF4SearchHelps(shName);
+}});
+Page_ValueHelps.addContent(VP_pernr);
+var modelVP_pernr = new sap.ui.model.json.JSONModel();
+VP_pernr.setModel(modelVP_pernr); 
+ var VP_CostObject1 = new sap.m.Input("VP_CostObject1",{change: function(oEvent) {
+var findRec = ModelData.Find(VP_CostObject1, "CHK",this.getValue());
+if (findRec.length === 0) {
+var newRec = {};
+newRec.SIGN = "I";
+newRec.OPTION = "EQ";
+newRec.LOW = this.getValue();
+newRec.CHK = this.getValue();
+VP_CostObject1.getModel().setData();
+ModelData.Add(VP_CostObject1,newRec);
+}
+
+// a = this.getValue().split(":")
+// VP_CostObject1.setValue(a[1])
+// // modelPage_ExpenseRequest.getData().COSTOBJECT = a[1]
+var value = this.getValue().split(":")
+var index = modelTbl_Cost_Distribution.getProperty('/tabindex');
+
+var desc = modelF4tabSelection.oData[0].DATA
+modelTbl_Cost_Distribution.getData()[index]["COSTCENTER"] = JSON.parse(desc).KOSTL;
+modelTbl_Cost_Distribution.getData()[index]["COSTCENTERDESC"] = JSONH.parse(desc).MCTXT
+modelTbl_Cost_Distribution.refresh();
+},showValueHelp:true,valueHelpRequest: function(oEvent) {
+modelF4tabSelection.setData(modelVP_CostObject1.oData);
+if (modelF4tabSelection.oData.length){F4ButSelection.setText(txtF4PageCondition + " (" + modelF4tabSelection.oData.length + ")");} else {F4ButSelection.setText(txtF4PageCondition + " (0)");}
+modelF4tabResult.setData();
+F4toolResultLabel.setText("Items (0)");F4ButSelection.setEnabled(false);F4tabResult.setMode("SingleSelect");F4ButSelection.setVisible(false);F4ButSelAll.setVisible(false);
+var screenFieldName = oEvent.getSource().sId;
+var shName = "ZSH_ND_COSTCENTER:VP_CostObject1:" + screenFieldName;
+F4Dialog.open();
+F4App.to("F4PageSelection","show");
+getOnlineF4SearchHelps(shName);
+}});
+Page_ValueHelps.addContent(VP_CostObject1);
+var modelVP_CostObject1 = new sap.ui.model.json.JSONModel();
+VP_CostObject1.setModel(modelVP_CostObject1); 
+ var Page_ApprovalFlow = new sap.m.Page("Page_ApprovalFlow",{});
+PageHdden.addContent(Page_ApprovalFlow); 
+ var Dialog_ApprovalFlow = new sap.m.Dialog("Dialog_ApprovalFlow",{stretch:true,title:"Approval Flow"}); 
+ var oSplitterLayoutData = new sap.ui.layout.SplitterLayoutData("oSplitterLayoutData",{resizable:false,size:"150px"}); 
+ var Tbl_TripDelete = new sap.m.Table("Tbl_TripDelete",{});
+var modelTbl_TripDelete = new sap.ui.model.json.JSONModel();
+Tbl_TripDelete.setModel(modelTbl_TripDelete); 
+ var Tbl_ExpenseActivityType = new sap.m.Table("Tbl_ExpenseActivityType",{});
+var modelTbl_ExpenseActivityType = new sap.ui.model.json.JSONModel();
+Tbl_ExpenseActivityType.setModel(modelTbl_ExpenseActivityType); 
+ var Tbl_suggestionItems = new sap.m.Table("Tbl_suggestionItems",{});
+var modelTbl_suggestionItems = new sap.ui.model.json.JSONModel();
+Tbl_suggestionItems.setModel(modelTbl_suggestionItems);
+function Chk_TripDomestic(TripType, TripTypeText, Model) { //
+    if (TripType === '01' && TripTypeText === 'Domestic') {
+        if (Model === 'X') {
+            modelPage_ExpenseRequest.getData().COUNTRY = 'US';
+            modelPage_ExpenseRequest.getData().COUNTRYTEXT = 'United States';
+        } else if (Model === 'Y') {
+            modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG = 'US';
+            modelPage_ExpenseItems.getData().ARR_COUNTRY_BEG_TEXT = 'United States';
+            modelPage_ExpenseItems.getData().ARR_COUNTRY_END = 'US';
+            modelPage_ExpenseItems.getData().ARR_COUNTRY_END_TEXT = 'United States';
+            modelPage_ExpenseItems.getData().COUNTRY_BEG = 'US';
+            modelPage_ExpenseItems.getData().COUNTRY_BEG_TEXT = 'United States';
+            modelPage_ExpenseItems.getData().COUNTRY_END = 'US';
+            modelPage_ExpenseItems.getData().COUNTRY_END_TEXT = 'United States';
+        }
+        modelPage_ExpenseRequest.getData().IS_COUNTRY_EDIT = false;
+        modelPage_ExpenseItems.getData().IS_COUNTRY_EDIT = false;
+    } else {
+        if (modelPage_ExpenseRequest.getData().STATUS === 'Open' || modelPage_ExpenseRequest.getData().STATUS === '') {
+            modelPage_ExpenseRequest.getData().IS_COUNTRY_EDIT = true;
+            modelPage_ExpenseItems.getData().IS_COUNTRY_EDIT = true;
+        } else {
+            modelPage_ExpenseRequest.getData().IS_COUNTRY_EDIT = false;
+            modelPage_ExpenseItems.getData().IS_COUNTRY_EDIT = false;
+        }
+    }
+    modelPage_ExpenseRequest.refresh();
+    modelPage_ExpenseItems.refresh();
+}
+function DelegateMode() {
+     if (modelPage_ExpenseRequest.getData().CHKEMP === false) {
+         Page_Header.addStyleClass('PageHeaderDelegate');
+
+     } else {
+         if (Page_Header.hasStyleClass('PageHeaderDelegate')) {
+             Page_Header.removeStyleClass('PageHeaderDelegate')
+         }
+     }
+ }
+function Recieptscalc(){      // Recalculating the Total Amounts, Start date and End Date
+    // var dates = []
+    // for (i = 0; i < modelTbl_ExpenseTypes.getData().length; i++) {
+    //     a = modelTbl_ExpenseTypes.getData()[i]['TRANSACTIONDATE'];
+    //     if (a !== '') {
+    //         dates.push(a);
+    //     }
+    // }
+    var hd_sum = 0;
+    for (i = 0; i < modelTbl_ExpenseTypes.getData().length; i++) {
+        // hd_sum += parseFloat(modelTbl_ExpenseTypes.getData()[i]['TOTALAMOUNT']);
+                hd_sum += parseFloat(modelTbl_ExpenseTypes.getData()[i]['TOTALAMOUNT']);
+    }
+    // dates.sort();
+    // modelPage_ExpenseRequest.getData()['TRANSACTIONDATE'] = dates[0]
+    // modelPage_ExpenseRequest.getData()['TODATE'] = dates[dates.length - 1]
+    modelPage_ExpenseRequest.getData()['AMOUNT'] = hd_sum;
+    modelPage_ExpenseRequest.refresh();
+}
+function getAttachmentData(pdf) {       //Preview Attachments
+    var ext = pdf.slice(0, 28);
+    if (ext.search('pdf') !== -1) {
+        content = pdf.slice(28, pdf.length);
+        var pdfurl = createDataURL(content);
+        oPDFViewer.setSource(pdfurl);
+        Frm_Image.setVisible(false);
+        Frm_PDF.setVisible(true);
+    } else if (ext.search('image') !== -1) {
+        Image_attachment.setSrc(pdf)
+        Frm_PDF.setVisible(false);
+        Frm_Image.setVisible(true);
+    } else {
+        jQuery.sap.require("sap.m.MessageToast");
+        sap.m.MessageToast.show("Content Cannot be Displayed");
+        return;
+    }
+    Dia_PdfViewer.open();
+}
+
+function createDataURL(pdf) {       // Create URL for the attachment
+    //Register BLOBs on the application.
+    jQuery.sap.addUrlWhitelist("blob");
+    //convert the base64 to binary and insert it in a byte array.
+    var decodedPdfContent = atob(pdf);
+    var byteArray = new Uint8Array(decodedPdfContent.length)
+    for (var i = 0; i < decodedPdfContent.length; i++) {
+        byteArray[i] = decodedPdfContent.charCodeAt(i);
+    }
+    //create a BLOB and a URL
+    var blob = new Blob([byteArray.buffer], {
+        type: 'application/pdf'
+    });
+    var pdfurl = URL.createObjectURL(blob);
+    return pdfurl;
+}
+function validateHeaderData(data) { // Validating the required fields at item item
+    jQuery.sap.require("sap.m.MessageToast");
+    var dateFormat = sap.ui.core.format.DateFormat.getInstance({
+        pattern: "EE MMM dd yyyy HH:MM:SS",
+        UTC: true
+    })
+    if (data.TRANSACTIONDATE === '') {
+        sap.m.MessageToast.show("Please Enter Start Date");
+        return 'e';
+    }
+    if (data.STARTTIME === '000000' || data.STARTTIME === '') {
+        sap.m.MessageToast.show("Please Enter Start Time");
+        return 'e';
+    }
+    if (data.TODATE === '') {
+        sap.m.MessageToast.show("Please Enter End Date");
+        return 'e';
+    }
+    if (data.ENDTIME === '0000000' || data.ENDTIME === '') {
+        sap.m.MessageToast.show("Please Enter End Time");
+        return 'e';
+    }
+    if (data.ACTIVITY === '') {
+        sap.m.MessageToast.show("Please Select Trip Type");
+        return 'e';
+    }
+    if (data.LOCATION === '') {
+        sap.m.MessageToast.show("Please Select City");
+        return 'e';
+    }
+    if (data.BUSINESSPURPOSE === '') {
+        sap.m.MessageToast.show("Please Select Business Purpose");
+        return 'e';
+    }
+    if (data.STATE === '' && data.STATETEXT === '') {
+        sap.m.MessageToast.show("Please Select State");
+        return 'e';
+    }
+
+    if (data.COUNTRY === '' && data.COUNTRYTEXT === '') {
+        sap.m.MessageToast.show("Please Select Country");
+        return 'e';
+    }
+}
+
+function ValidateExpenseTypes(data) {
+    if (Frm_Expense.getTitle() === null) {
+        var outbound = "";
+        var ReturnName = "";
+    } else {
+        var outbound = Frm_Expense.getTitle() + " ";
+        var ReturnName = Frm_Expense1.getTitle() + " ";
+    }
+
+
+    if (data.EXPENSETYPE === '') {
+        sap.m.MessageToast.show("Please Select an Expense Type");
+        return 'e';
+    }
+    if (data.DATE_BEG === '') {
+        sap.m.MessageToast.show("Please Enter " + outbound + data.START_DATE_LABEL);
+        return 'e';
+    }
+    if (data.TIME_BEG_IND) {
+        if (data.TIME_BEG === '000000' || data.TIME_BEG === '') {
+            sap.m.MessageToast.show("Please Enter " + outbound + (data.START_DATE_LABEL).split('Date')[0] + " Time");
+            return 'e';
+        }
+    }
+    if (data.AMOUNT_EDITABLE === true) {
+        if (data.AMOUNT_BEG === '0.00' || data.AMOUNT_BEG === '' || data.AMOUNT_BEG === 0 || data.AMOUNT_BEG === 'NaN') {
+            sap.m.MessageToast.show("Please Enter Amount");
+            return 'e';
+        }
+    }
+    if (data.CITY_BEG_IND) {
+        if (data.CITY_BEG === '') {
+            sap.m.MessageToast.show("Please Enter " + outbound + data.BEGIN_CITY_LABEL);
+            return 'e';
+        }
+    }
+    if (data.COUNTRY_BEG_IND) {
+        if (data.COUNTRY_BEG === "" && data.COUNTRY_BEG_TEXT === '') {
+            sap.m.MessageToast.show("Please Enter Country");
+            return 'e';
+        }
+    }
+    if (data.CITY_END_IND) {
+        if (data.CITY_END === '') {
+            sap.m.MessageToast.show("Please Enter " + outbound + data.END_CITY_LABEL);
+            return 'e';
+        }
+    }
+    if (data.DATE_END_IND) {
+        if (data.DATE_END === '') {
+            sap.m.MessageToast.show("Please Enter " + ReturnName + data.END_DATE_LABEL);
+            return 'e';
+        }
+    }
+    if (data.TIME_END_IND) {
+        if (data.TIME_END === '000000' || data.TIME_END === '') {
+            sap.m.MessageToast.show("Please Enter " + ReturnName + (data.END_DATE_LABEL).split('Date')[0] + " Time");
+            return 'e';
+        }
+    }
+    if (data.ARR_CITY_BEG_IND && data.ONEWAYROUNDTRIP === 1) {
+        if (data.ARR_CITY_BEG === '') {
+            sap.m.MessageToast.show("Please Enter " + ReturnName + data.BEGIN_CITY_LABEL);
+            return 'e';
+        }
+    }
+    if (data.ARR_COUNTRY_BEG_IND && data.ONEWAYROUNDTRIP === 1) {
+        if (data.ARR_COUNTRY_BEG === '') {
+            sap.m.MessageToast.show("Please Enter Country");
+            return 'e';
+        }
+
+    }
+    if (data.ARR_CITY_END_IND && data.ONEWAYROUNDTRIP === 1) {
+        if (data.ARR_CITY_END === '') {
+            sap.m.MessageToast.show("Please Enter " + ReturnName + data.END_CITY_LABEL);
+            return 'e';
+        }
+    }
+    if (data.ARR_COUNTRY_END_IND && data.ONEWAYROUNDTRIP === 1) {
+        if (data.ARR_COUNTRY_END === '') {
+            sap.m.MessageToast.show("Please Enter Country");
+            return 'e';
+        }
+    }
+
+}
+
+function savesubmitValidate(data) { //Validating the required fields at header level
+    if (validateHeaderData(data) === 'e') {
+        return 'e';
+    }
+    if (modelTbl_ExpenseTypes.getData().length === 0) {
+        sap.m.MessageToast.show("Please Enter  Enter Atleast One Expense Type");
+        return 'e';
+    }
+}
+function editMode(status) { //changing the mode according to status
+    if (status === 'Open') {
+        Tbl_ExpenseTypes.setMode('MultiSelect')
+        Btn_AddExpenseReceipt.setEnabled(true);
+        Btn_DeleteExpenseReceipt.setEnabled(true);
+        Btn_AddCostDistribution.setEnabled(true)
+        Tbl_Cost_Distribution.setMode('Delete')
+        // tbl_Attachments.setMode('Delete');
+        // FileUploader.setEnabled(true)
+    } else {
+        Tbl_ExpenseTypes.setMode()
+        Btn_AddExpenseReceipt.setEnabled(false);
+        Btn_DeleteExpenseReceipt.setEnabled(false);
+        Btn_AddCostDistribution.setEnabled(false)
+        Tbl_Cost_Distribution.setMode()
+        // tbl_Attachments.setMode();
+        // FileUploader.setEnabled(false)
+    }
+}
+sap.ui.getCore().attachInit(function(data) { //Get initial Details
+    // if (window.location.href.split("?EmployeeNumber=")[1]) {
+    //     EmployeeNumber = window.location.href.split("?EmployeeNumber=")[1].split("/TripNumber=")[0];
+    //     TripNumber = window.location.href.split("?EmployeeNumber=")[1].split("/TripNumber=")[1];
+    //     Page_ExpenseReceipt.setBusy(true);
+    //     App_Details.to(Page_ExpenseReceipt);
+    //     Btn_Back.setVisible(false);
+    //     getOnlineinitonLoad(EmployeeNumber);
+    // } else {
+        ReportNoDisplay();
+        App_ExpenseRequest.setBusy(true);
+        getOnlineinitonLoad();
+        getOnlineGetLocation();
+    // }
+});
+
+function ReportNoDisplay() {
+    var PageName = App_Details.getCurrentPage().sId;
+    if (PageName.search("Page_ExpenseReport") !== -1) {
+        ObjectAttributeReportNumber.setVisible(false);
+    } else {
+        var ReportNumber = modelPage_ExpenseRequest.getData().TRIPNUMBER;
+        if (ReportNumber === "0000000000") {
+            ReportNumber = "";
+        }
+        ObjectAttributeReportNumber.setText(ReportNumber);
+        ObjectAttributeReportNumber.setVisible(true);
+    }
+}
+
+oObjectHeader.bindProperty("title",{parts:["/EMPLOYEEID"],formatter: function(EMPLOYEEID){
+if (typeof(EMPLOYEEID) === "undefined" || EMPLOYEEID === null || EMPLOYEEID === "") {
+    return;
+}
+var stringText = EMPLOYEEID.toString();
+var formattedText = stringText.replace(/^0+/, '')
+formattedText = "Employee ID: " + formattedText;
+return formattedText;
+}});
+ObjectAttributeEmployeeName.bindProperty("text",{parts:["/NAME"],formatter: function(NAME){
+if (typeof( NAME ) === "undefined" || NAME === null || NAME === "") { return; }
+var formattedText =  NAME;
+return formattedText;
+}});
+TReportDate.bindProperty("text",{parts:["TRANSACTIONDATE"],formatter: function(TRANSACTIONDATE){
+if (typeof( TRANSACTIONDATE ) === "undefined" || TRANSACTIONDATE === null) { return; } if ( TRANSACTIONDATE === "" ) { return; }
+jQuery.sap.require("sap.ui.core.format.DateFormat");
+var oSAPFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "yyyyMMdd"});
+var oOutFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "MM/dd/yyyy"});
+var oDate = oSAPFormat.parse(TRANSACTIONDATE);
+if (TRANSACTIONDATE=='00000000'){var formattedText = ''} else {var formattedText = oOutFormat.format(oDate);}
+return formattedText;
+}});
+Ip_HdAmount.bindProperty("value",{parts:["/AMOUNT"],formatter: function(AMOUNT){
+if (typeof(AMOUNT) === "undefined" || AMOUNT === null || AMOUNT === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(AMOUNT);
+
+return formattedText;
+}});
+DD_ExternalEntity.bindProperty("value",{parts:["/IS_EXTFUNDING"],formatter: function(IS_EXTFUNDING){
+if (typeof(IS_EXTFUNDING) === "undefined" || IS_EXTFUNDING === null || IS_EXTFUNDING === "") {
+    return;
+}
+var formattedText;
+if (IS_EXTFUNDING === true) {
+    formattedText = "Yes";
+} else if (IS_EXTFUNDING === false) {
+    formattedText = "No";
+}
+return formattedText;
+}});
+DD_PersonnelTravel.bindProperty("value",{parts:["/IS_PERSTRAVEL"],formatter: function(IS_PERSTRAVEL){
+if (typeof(IS_PERSTRAVEL) === "undefined" || IS_PERSTRAVEL === null || IS_PERSTRAVEL === "") {
+    return;
+}
+var formattedText;
+if (IS_PERSTRAVEL === true) {
+    formattedText = "Yes";
+} else if (IS_PERSTRAVEL === false) {
+    formattedText = "No";
+}
+return formattedText;
+}});
+Txt_TransactionDate.bindProperty("text",{parts:["DATE_BEG"],formatter: function(DATE_BEG){
+if (typeof( DATE_BEG ) === "undefined" || DATE_BEG === null) { return; } if ( DATE_BEG === "" ) { return; }
+jQuery.sap.require("sap.ui.core.format.DateFormat");
+var oSAPFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "yyyyMMdd"});
+var oOutFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({pattern: "MM/dd/yyyy"});
+var oDate = oSAPFormat.parse(DATE_BEG);
+if (DATE_BEG=='00000000'){var formattedText = ''} else {var formattedText = oOutFormat.format(oDate);}
+return formattedText;
+}});
+Txt_Amount.bindProperty("text",{parts:["AMOUNT_BEG"],formatter: function(AMOUNT_BEG){
+// if (typeof( TOTALAMOUNT ) === "undefined" || TOTALAMOUNT === null || TOTALAMOUNT === "") { return; }
+// jQuery.sap.require("sap.ui.core.format.NumberFormat");
+// var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+//     maxFractionDigits: 2,
+//     minFractionDigits: 2,
+//     groupingEnabled: true,
+//     groupingSeparator: ",",
+//     decimalSeparator: "."
+// });
+// var amt = oNumberFormat.format(TOTALAMOUNT);
+// var formattedText = amt + ' ' + 'USD';
+// return formattedText;
+
+if (typeof( AMOUNT_BEG ) === "undefined" || AMOUNT_BEG === null || AMOUNT_BEG === "") { return; }
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var amt = oNumberFormat.format(AMOUNT_BEG);
+var formattedText = amt + ' ' + 'USD';
+return formattedText;
+}});
+Ip_AirFareAmount.bindProperty("value",{parts:["/AMOUNT_BEG"],formatter: function(AMOUNT_BEG){
+if (typeof(AMOUNT_BEG) === "undefined" || AMOUNT_BEG === null || AMOUNT_BEG === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(AMOUNT_BEG);
+
+return formattedText;
+}});
+Ip_AirFareRetAmount.bindProperty("value",{parts:["/ARR_AMOUNT_END"],formatter: function(ARR_AMOUNT_END){
+if (typeof(ARR_AMOUNT_END) === "undefined" || ARR_AMOUNT_END === null || ARR_AMOUNT_END === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(ARR_AMOUNT_END);
+
+return formattedText;
+}});
+Ip_NonAirFareAmount.bindProperty("value",{parts:["/AMOUNT_BEG"],formatter: function(AMOUNT_BEG){
+if (typeof(AMOUNT_BEG) === "undefined" || AMOUNT_BEG === null || AMOUNT_BEG === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(AMOUNT_BEG);
+
+return formattedText;
+}});
+Ip_CarRentalAmount.bindProperty("value",{parts:["/AMOUNT_BEG"],formatter: function(AMOUNT_BEG){
+if (typeof(AMOUNT_BEG) === "undefined" || AMOUNT_BEG === null || AMOUNT_BEG === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(AMOUNT_BEG);
+
+return formattedText;
+}});
+Ip_ExpenseAmount.bindProperty("value",{parts:["/AMOUNT_BEG"],formatter: function(AMOUNT_BEG){
+if (typeof(AMOUNT_BEG) === "undefined" || AMOUNT_BEG === null || AMOUNT_BEG === "") {
+    return;
+}
+// var formattedText = AMOUNT;
+jQuery.sap.require("sap.ui.core.format.NumberFormat");
+var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
+    maxFractionDigits: 2,
+    minFractionDigits: 2,
+    groupingEnabled: true,
+    groupingSeparator: ",",
+    decimalSeparator: "."
+});
+var formattedText = oNumberFormat.format(AMOUNT_BEG);
+
+return formattedText;
+}});
+
+//FUNCTIONS
+function getOnlineDD_TripType(value) {
+if (value) value = encodeURIComponent(value);
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_ACTIVITY&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00666&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON()),
+success: function (data) {
+
+
+var dataDD_TripType = data.modelDD_TripTypeData;
+DD_TripType.destroyItems();
+$.each(dataDD_TripType, function (i, elem) {
+DD_TripType.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+modelTbl_ExpenseActivityType.setData(JSONH.unpack(data.modelTbl_ExpenseActivityTypeData));
+DD_TripType.setBusy(false);}
+});
+}
+function getOnlineF4tabResult(value) {
+F4Dialog.setBusy(true);
+$.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss//neptune/nativeznd_emp_travel_request?ajax_id=F4_DO_SEARCH&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00674&ajax_value=" + value + "",
+dataType: "json",
+data:encodeURIComponent(modelF4Dialog.getJSON()),
+success: function (data) {
+F4tabResult.removeSelections();
+modelF4tabResult.setData(data.modelF4tabResultData);
+modelF4Dialog.setData(data.modelF4DialogData);
+F4toolResultLabel.setText("Items (" + modelF4tabResult.oData.length + ")");
+F4Dialog.setBusy(false);
+F4ApplySelected();
+},error: function (result, status) {F4Dialog.setBusy(false);}});
+}
+
+function getOnlineF4tabFields(value) {
+F4Dialog.setBusy(true);
+$.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss//neptune/nativeznd_emp_travel_request?ajax_id=F4_GET_FIELDS&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00674&ajax_value=" + value + "",
+dataType: "json",
+data:encodeURIComponent(modelF4Dialog.getJSON()),
+success: function (data) {
+modelF4tabResult.setData();
+modelF4Dialog.setData(data.modelF4DialogData);
+modelF4tabFields.setData(data.modelF4tabFieldsData);
+F4updateDropbox(data);
+F4buildDialog();
+F4Dialog.setBusy(false);
+modelF4tabResult.setData(data.modelF4tabResultData);
+},error: function (result, status) {F4Dialog.setBusy(false);}
+});
+}
+
+function getOnlineF4SearchHelps(value) {
+F4Dialog.setBusy(true);
+$.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss//neptune/nativeznd_emp_travel_request?ajax_id=F4_GET_DATA&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00674&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+modelF4ListSH.setData(data.modelF4SearchHelpsData);
+modelF4Dialog.setData(data.modelF4DialogData);
+modelF4tabFields.setData(data.modelF4tabFieldsData);
+F4updateDropbox(data);
+F4buildDialog();
+F4Dialog.setBusy(false);
+modelF4tabResult.setData(data.modelF4tabResultData);
+},error: function (result, status) {F4Dialog.setBusy(false);}
+});
+}
+
+function getOnlineF4Favorites(value) {
+F4Dialog.setBusy(true);
+$.ajax({
+type: "POST",
+data: encodeURIComponent(modelF4Dialog.getJSON() + "||" + modelF4tabResult.getJSON()),
+contentType: "application/json",
+url: "/ss//neptune/nativeznd_emp_travel_request?ajax_id=F4_FAVORITES&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00674&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+F4Dialog.setBusy(false);
+if (value) {sap.m.MessageToast.show(txtF4ToastDelFav);}else{sap.m.MessageToast.show(txtF4ToastAddFav);}
+},error: function (result, status) {F4Dialog.setBusy(false);}
+});
+}
+
+function getOnlineDD_BusinessPurpose1(value) {
+if (value) value = encodeURIComponent(value);
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_BUSINESSPURPOSE&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00665&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+
+
+var dataDD_BusinessPurpose1 = data.modelDD_BusinessPurpose1Data;
+DD_BusinessPurpose1.destroyItems();
+$.each(dataDD_BusinessPurpose1, function (i, elem) {
+DD_BusinessPurpose1.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});}
+});
+}
+function getOnlineDD_ColmnCostObjectType(value) {
+if (value) value = encodeURIComponent(value);
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&sap-client=&uxp=400&field_id=00839&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+
+
+var dataDD_ColmnCostObjectType = data.modelDD_ColmnCostObjectTypeData;
+DD_ColmnCostObjectType.destroyItems();
+$.each(dataDD_ColmnCostObjectType, function (i, elem) {
+DD_ColmnCostObjectType.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});}
+});
+}
+function getCacheVP_pernr() { _AppCache_GetCache("VP_pernr_SS",modelVP_pernr,"","","");if (typeof modelVP_pernr.oData.length !== "undefined" && modelVP_pernr.oData.length !== 0) {var stringText = modelVP_pernr.oData[0].LOW.toString();VP_pernr.setValue(stringText.replace(/^0+/, ""));}}
+function setCacheVP_pernr() { _AppCache_SetCache("VP_pernr_SS",modelVP_pernr,"");}
+function getOnlineCalculateMealsAmount(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=CALCULATEMEALSAMOUNT&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=01324&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON() + "||" +modelPage_ExpenseItems.getJSON()),
+success: function (data) {
+modelPage_ExpenseItems.setData(data.modelPage_ExpenseItemsData);
+Btn_CalculateAmount.setBusy(false);
+Ip_ExpenseAmount.setBusy(false);
+}
+,error: function(result,status) {
+
+// Use MessageToast
+jQuery.sap.require("sap.m.MessageToast");
+sap.m.MessageToast.show("Error Occured Please Try Again");
+Btn_CalculateAmount.setBusy(false);
+Ip_ExpenseAmount.setBusy(false);
+}
+});
+}
+function getOnlineRecall(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=ONRECALL&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=01282&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON() + "||" +modelTbl_ExpenseTypes.getJSON() + "||" +modelTbl_Cost_Distribution.getJSON()),
+success: function (data) {
+modelDialog_Return.setData(data.modelDialog_ReturnData);
+Page_ExpenseReceipt.setBusy(false);
+Dialog_Return.open()
+}
+,error: function(result,status) {
+Page_ExpenseReceipt.setBusy(false);
+}
+});
+}
+function getOnlineGet_ExpenseTypeFields(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_EXPENSETYPEFIELDS&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=01281&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseItems.getJSON()),
+success: function (data) {
+modelPage_ExpenseItems.setData(data.modelPage_ExpenseItemsData);
+Page_ExpenseItems.setBusy(false);
+if (modelPage_ExpenseItems.getData().ONEWAYROUNDTRIP_IND) {
+    Frm_Expense.setTitle('Outbound');
+    Frm_Expense1.setTitle('Return');
+
+} else {
+    Frm_Expense.setTitle('');
+    Frm_Expense1.setTitle('');
+}
+Panel_ExpenseItem.setVisible(true);
+}
+,error: function(result,status) {
+Page_ExpenseItems.setBusy(false);
+}
+});
+}
+function getOnlineDeleteTrips(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=DELETETRIPS&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=01160&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelTbl_TripDelete.getJSON()),
+success: function (data) {
+modelTbl_TripDelete.setData(JSONH.unpack(data.modelTbl_TripDeleteData));
+modelDia_TripDeleteRet.setData(data.modelDia_TripDeleteRetData);
+Dia_TripDeleteRet.open();}
+,error: function(result,status) {
+App_ExpenseRequest.setBusy(false);
+}
+});
+}
+function getOnlineGet_ExpenseTypes(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_EXPENSETYPES&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=01052&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON()),
+success: function (data) {
+var dataDD_ExpenseType = data.modelDD_ExpenseTypeData;
+DD_ExpenseType.destroyItems();
+$.each(dataDD_ExpenseType, function (i, elem) {
+DD_ExpenseType.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+DD_ExpenseType.setBusy(false);}
+});
+}
+function getOnlineGetLocation(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_LOCATION&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00990&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+var dataDD_AirFareArrFromCity = data.modelDD_AirFareArrFromCityData;
+DD_AirFareArrFromCity.destroyItems();
+$.each(dataDD_AirFareArrFromCity, function (i, elem) {
+DD_AirFareArrFromCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AirFareArrDestCity = data.modelDD_AirFareArrDestCityData;
+DD_AirFareArrDestCity.destroyItems();
+$.each(dataDD_AirFareArrDestCity, function (i, elem) {
+DD_AirFareArrDestCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AirFareDeptCity = data.modelDD_AirFareDeptCityData;
+DD_AirFareDeptCity.destroyItems();
+$.each(dataDD_AirFareDeptCity, function (i, elem) {
+DD_AirFareDeptCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AirFareDeptDestination = data.modelDD_AirFareDeptDestinationData;
+DD_AirFareDeptDestination.destroyItems();
+$.each(dataDD_AirFareDeptDestination, function (i, elem) {
+DD_AirFareDeptDestination.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_City = data.modelDD_CityData;
+DD_City.destroyItems();
+$.each(dataDD_City, function (i, elem) {
+DD_City.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_NonAirFareCity = data.modelDD_NonAirFareCityData;
+DD_NonAirFareCity.destroyItems();
+$.each(dataDD_NonAirFareCity, function (i, elem) {
+DD_NonAirFareCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_CarRentalDropoffCity = data.modelDD_CarRentalDropoffCityData;
+DD_CarRentalDropoffCity.destroyItems();
+$.each(dataDD_CarRentalDropoffCity, function (i, elem) {
+DD_CarRentalDropoffCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_CarRentalPickupCity = data.modelDD_CarRentalPickupCityData;
+DD_CarRentalPickupCity.destroyItems();
+$.each(dataDD_CarRentalPickupCity, function (i, elem) {
+DD_CarRentalPickupCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseDeptCity = data.modelDD_ExpenseDeptCityData;
+DD_ExpenseDeptCity.destroyItems();
+$.each(dataDD_ExpenseDeptCity, function (i, elem) {
+DD_ExpenseDeptCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseDeptDestination = data.modelDD_ExpenseDeptDestinationData;
+DD_ExpenseDeptDestination.destroyItems();
+$.each(dataDD_ExpenseDeptDestination, function (i, elem) {
+DD_ExpenseDeptDestination.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseArrFromCity = data.modelDD_ExpenseArrFromCityData;
+DD_ExpenseArrFromCity.destroyItems();
+$.each(dataDD_ExpenseArrFromCity, function (i, elem) {
+DD_ExpenseArrFromCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseArrDestCity = data.modelDD_ExpenseArrDestCityData;
+DD_ExpenseArrDestCity.destroyItems();
+$.each(dataDD_ExpenseArrDestCity, function (i, elem) {
+DD_ExpenseArrDestCity.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});}
+});
+}
+function getOnlineGetCostObject(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=GET_COSTOBJECTSUGGS&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00807&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+modelTbl_suggestionItems.setData(JSONH.unpack(data.modelTbl_suggestionItemsData));
+
+var data = JSONH.unpack(data.modelTbl_suggestionItemsData)
+
+$.each(data, function(i,ele){
+
+    IP_CostObject1.addSuggestionItem(new sap.ui.core.ListItem({
+
+                        key: '',
+
+                        text: ele.COSTOBJECT
+
+                    }))
+
+})
+
+
+    $.each(data, function(i, ele) {
+
+
+                    IP_CostObject1.insertSuggestionItem(new sap.ui.core.ListItem({
+
+
+                        key: '',
+
+
+                        text: ele.COSTOBJECT
+
+
+                    }))
+
+
+                })
+
+return data;
+}
+});
+}
+function getOnlineCreateExpnHeader(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=CREATECOPYEXPN&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00734&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON()),
+success: function (data) {
+modelPage_ExpenseRequest.setData(data.modelPage_ExpenseRequestData);
+modelTbl_ExpenseTypes.setData(JSONH.unpack(data.modelTbl_ExpenseTypesData));
+modelTbl_Cost_Distribution.setData(JSONH.unpack(data.modelTbl_Cost_DistributionData));
+ReportNoDisplay();
+var array = {
+    "COSTCENTER": modelPage_ExpenseRequest.getData().COSTOBJECT,
+    "COSTOBJECTTYPE": modelPage_ExpenseRequest.getData().COSTOBJECTTYPE,
+    "COSTCENTERDESC": modelPage_ExpenseRequest.getData().COSTCENTERDESC,
+    "DISTPERCENTAGE": 100,
+    "IS_EDITABLE": true,
+    "RECPNO": "000",
+    "CHKSAVE": "X"
+
+};
+ModelData.Add(Tbl_Cost_Distribution, array);
+modelPage_ExpenseRequest.refresh();
+Page_ExpenseReceipt.setBusy(false);
+}
+,error: function(result,status) {
+Page_ExpenseReceipt.setBusy(false);
+}
+});
+}
+function getOnlineOnSave(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=ONSAVE&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00683&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelPage_ExpenseRequest.getJSON() + "||" +modelTbl_ExpenseTypes.getJSON() + "||" +modelTbl_Cost_Distribution.getJSON()),
+success: function (data) {
+modelDialog_Return.setData(data.modelDialog_ReturnData);
+Page_ExpenseReceipt.setBusy(false);
+
+
+// var TYPE = modelDialog_ReturnError.getData()['TYPE'];
+
+// if ( TYPE === 'S' ){
+// Dialog_ReturnSuccess.open()
+// }else{
+    Dialog_Return.open()
+// }
+}
+,error: function(result,status) {
+
+Page_ExpenseReceipt.setBusy(false);
+// // Use MessageToast
+// jQuery.sap.require("sap.m.MessageToast");
+// sap.m.MessageToast.show("Some Message");
+// Dialog_ReturnError.open()
+}
+});
+}
+function getOnlineGetDetail(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=ON_SELECT_ITEM&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00664&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelTbl_ExpenseReport.getJSON()),
+success: function (data) {
+modelPage_ExpenseRequest.setData(data.modelPage_ExpenseRequestData);
+modelTbl_ExpenseTypes.setData(JSONH.unpack(data.modelTbl_ExpenseTypesData));
+modelTbl_Cost_Distribution.setData(JSONH.unpack(data.modelTbl_Cost_DistributionData));
+// modelPage_ExpenseRequest.setProperty('/costcenter',modelPage_ExpenseRequest.getData()['COSTOBJECT'])
+ReportNoDisplay();
+var activiy = ModelData.Find(Tbl_ExpenseActivityType, 'EXPGRPTXT', modelPage_ExpenseRequest.getData().ACTIVITYTEXT, "EQ");
+if (activiy.length !== 0) {
+    getOnlineGet_ExpenseTypes(activiy[0].EXPGRP);
+}
+Chk_TripDomestic(modelPage_ExpenseRequest.getData().ACTIVITY, modelPage_ExpenseRequest.getData().ACTIVITYTEXT, '');
+Page_ExpenseReceipt.setBusy(false);
+}
+,error: function(result,status) {
+Page_ExpenseReceipt.setBusy(false);
+}
+});
+}
+function getOnlineinitonLoad(value,options) {
+if (value) value = encodeURIComponent(value);
+var rfcdest = "";if (options){if (options.rfcdest){rfcdest = options.rfcdest}}
+return $.ajax({
+type: "POST",
+contentType: "application/json",
+url: "/ss/znd_emp_travel_request?ajax_id=INIT_ONLOAD&sap-client=&ajax_applid=ZND_EMP_TRAVEL_REQUEST&uxp=400&field_id=00660&rfcdest=" + rfcdest + "&ajax_value=" + value + "",
+dataType: "json",
+success: function (data) {
+modelPage_ExpenseRequest.setData(data.modelPage_ExpenseRequestData);
+modelTbl_ExpenseReport.setData(JSONH.unpack(data.modelTbl_ExpenseReportData));
+modelDialog_Return.setData(data.modelDialog_ReturnData);
+var dataDD_AirFareArrFromCountry = data.modelDD_AirFareArrFromCountryData;
+DD_AirFareArrFromCountry.destroyItems();
+$.each(dataDD_AirFareArrFromCountry, function (i, elem) {
+DD_AirFareArrFromCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AirFareArrDesCountry = data.modelDD_AirFareArrDesCountryData;
+DD_AirFareArrDesCountry.destroyItems();
+$.each(dataDD_AirFareArrDesCountry, function (i, elem) {
+DD_AirFareArrDesCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AirFareDeptCountry = data.modelDD_AirFareDeptCountryData;
+DD_AirFareDeptCountry.destroyItems();
+$.each(dataDD_AirFareDeptCountry, function (i, elem) {
+DD_AirFareDeptCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_AFDepartDesCountry = data.modelDD_AFDepartDesCountryData;
+DD_AFDepartDesCountry.destroyItems();
+$.each(dataDD_AFDepartDesCountry, function (i, elem) {
+DD_AFDepartDesCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_State = data.modelDD_StateData;
+DD_State.destroyItems();
+$.each(dataDD_State, function (i, elem) {
+DD_State.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_NonAirFareBeginCountry = data.modelDD_NonAirFareBeginCountryData;
+DD_NonAirFareBeginCountry.destroyItems();
+$.each(dataDD_NonAirFareBeginCountry, function (i, elem) {
+DD_NonAirFareBeginCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_Country = data.modelDD_CountryData;
+DD_Country.destroyItems();
+$.each(dataDD_Country, function (i, elem) {
+DD_Country.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_CarRentalDropoffCountry = data.modelDD_CarRentalDropoffCountryData;
+DD_CarRentalDropoffCountry.destroyItems();
+$.each(dataDD_CarRentalDropoffCountry, function (i, elem) {
+DD_CarRentalDropoffCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_CarRentalPickupCountry = data.modelDD_CarRentalPickupCountryData;
+DD_CarRentalPickupCountry.destroyItems();
+$.each(dataDD_CarRentalPickupCountry, function (i, elem) {
+DD_CarRentalPickupCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseDeptCountry = data.modelDD_ExpenseDeptCountryData;
+DD_ExpenseDeptCountry.destroyItems();
+$.each(dataDD_ExpenseDeptCountry, function (i, elem) {
+DD_ExpenseDeptCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseAFDepartDesCountry = data.modelDD_ExpenseAFDepartDesCountryData;
+DD_ExpenseAFDepartDesCountry.destroyItems();
+$.each(dataDD_ExpenseAFDepartDesCountry, function (i, elem) {
+DD_ExpenseAFDepartDesCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpeseArrFromCountry = data.modelDD_ExpeseArrFromCountryData;
+DD_ExpeseArrFromCountry.destroyItems();
+$.each(dataDD_ExpeseArrFromCountry, function (i, elem) {
+DD_ExpeseArrFromCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+var dataDD_ExpenseArrDesCountry = data.modelDD_ExpenseArrDesCountryData;
+DD_ExpenseArrDesCountry.destroyItems();
+$.each(dataDD_ExpenseArrDesCountry, function (i, elem) {
+DD_ExpenseArrDesCountry.addItem(new sap.ui.core.Item({key: elem.Key, text: elem.Text}));
+});
+    if (window.location.href.split("?EmployeeNumber=")[1]) {
+        EmployeeNumber = window.location.href.split("?EmployeeNumber=")[1].split("/TripNumber=")[0];
+        TripNumber = window.location.href.split("?EmployeeNumber=")[1].split("/TripNumber=")[1];
+        Page_ExpenseReceipt.setBusy(true);
+        getOnlineGetDetail(TripNumber);
+    } else {
+        var TYPE = modelDialog_Return.getData()['TYPE'];
+        if (TYPE === 'E') {
+            Dialog_Return.open()
+        }
+
+        //getOnlineGet_ExpenseTypes("00");
+        DD_TripType.setBusy(true);
+        getOnlineDD_TripType();
+        DelegateMode();
+        ReportNoDisplay();
+        App_ExpenseRequest.setBusy(false);
+    }
+}
+,error: function(result,status) {
+  App_ExpenseRequest.setBusy(false);
+}
+});
+}
+var AppStorage={deviceID:"",Startup:function(){AppStorage.deviceID=localStorage.getItem("AppCacheID"),AppStorage.deviceID||(AppStorage.deviceID=ModelData.genID(),localStorage.setItem("AppCacheID",AppStorage.deviceID))}};AppStorage.Startup();var p8Database=window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB||window.shimIndexedDB;if(void 0===p8Views){var p8Views=p8Database.open("p8View",1);p8Views.isOpen=!1}if(void 0===p8Models){var p8Models=p8Database.open("p8Model",1);p8Models.isOpen=!1}function _AppCache_Cache_Fallback(){_AppCache_GetCache_IDB=_AppCache_GetCache_LS,_AppCache_SetCache_IDB=_AppCache_SetCache_LS,p8Database=null}function _AppCache_GetCache(e,o,t,a,n,r,p){if("DB"===t){if(window.openDatabase)return void _AppCache_GetCache_DB(e,o,a,n,r,p);if(p8Database)return void _AppCache_GetCache_IDB(e,o,a,n,r,p)}p8Database&&"IDB"===t?_AppCache_GetCache_IDB(e,o,a,n,r,p):_AppCache_GetCache_LS(e,o,a,n,r,p)}function _AppCache_SetCache(e,o,t,a,n,r){if("DB"===t){if(window.openDatabase)return void _AppCache_SetCache_DB(e,o,a,n,r);if(p8Database)return void _AppCache_SetCache_IDB(e,o,a,n,r)}p8Database&&"IDB"===t?_AppCache_SetCache_IDB(e,o,a,n,r):_AppCache_SetCache_LS(e,o,a,n,r)}function _AppCache_GetCache_LS(id,model,online,event,jsonh,encryption){$.sap.require("jquery.sap.storage");var lStorage=$.sap.storage(jQuery.sap.storage.Type.local),modelJSON=lStorage.get(id);if(online&&!modelJSON&&eval(online)(),modelJSON){if(encryption){if(0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{")){var decrypted=CryptoJS.AES.decrypt(modelJSON,AppStorage.deviceID);modelJSON=decrypted.toString(CryptoJS.enc.Utf8)}}else if("string"==typeof modelJSON&&0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{"))return;if(jsonh)if("string"==typeof modelJSON)var modelData=JSONH.unpack(JSON.parse(modelJSON));else var modelData=modelJSON;else if("string"==typeof modelJSON)var modelData=JSON.parse(modelJSON);else var modelData=modelJSON;model.setData(modelData),"function"==typeof eval(event)&&eval(event)()}else"function"==typeof eval(event)&&eval(event)()}function _AppCache_SetCache_LS(e,o,t,a,n){$.sap.require("jquery.sap.storage");var r=$.sap.storage(jQuery.sap.storage.Type.local);if(t)var p=JSON.stringify(t);else if(a)p=JSON.stringify(JSONH.pack(o.oData));else p=o.oData;n&&(p=CryptoJS.AES.encrypt(p,AppStorage.deviceID).toString());r.remove(e),r.put(e,p)}function _AppCache_GetCache_DB(id,model,online,event,jsonh,encryption){if("undefined"==typeof AppDB&&window.openDatabase)try{AppDB=window.openDatabase("AppCache","1.0","AppCache",5e7),AppDB.transaction(function(e){e.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)")})}catch(e){return void console.log("Error: Unable to open database "+e)}try{AppDB.transaction(function(tx){tx.executeSql("SELECT * FROM model WHERE KEY=?",[id],function(tx,results){for(var i=0;i<results.rows.length;i++){var modelJSON=results.rows.item(i).VALUE;if(encryption){if(0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{")){var decrypted=CryptoJS.AES.decrypt(modelJSON,AppStorage.deviceID);modelJSON=decrypted.toString(CryptoJS.enc.Utf8)}}else if("string"==typeof modelJSON&&0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{"))return;if(jsonh)if("string"==typeof modelJSON)var modelData=JSONH.unpack(JSON.parse(modelJSON));else var modelData=modelJSON;else var modelData=JSON.parse(modelJSON);model.setData(modelData),"function"==typeof eval(event)&&eval(event)()}0===results.rows.length&&"function"==typeof eval(event)&&eval(event)(),online&&!model.getData().length&&eval(online)()},null)})}catch(e){return void console.log("Error processing SQL: "+e.message)}}function _AppCache_SetCache_DB(o,e,t,a,n){if("undefined"==typeof AppDB&&window.openDatabase)try{AppDB=window.openDatabase("AppCache","1.0","AppCache",5e7),AppDB.transaction(function(e){e.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)")})}catch(e){return void console.log("Error: Unable to open database "+e)}if(t)var r=JSON.stringify(t);else if(a)r=JSON.stringify(JSONH.pack(e.oData));else r=e.getJSON();if(n){var p=CryptoJS.AES.encrypt(r,AppStorage.deviceID);r=p.toString()}try{AppDB.transaction(function(e){e.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)",[o,r])})}catch(e){return void console.log("Error processing SQL: "+e.message)}}function _AppCache_GetCache_IDB(id,model,online,event,jsonh,encryption){!function(){var tries=0;function check(){p8Models.isOpen?p8GetModel(id).then(function(value){var modelJSON=value;if(encryption){if(0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{")){var decrypted=CryptoJS.AES.decrypt(modelJSON,AppStorage.deviceID);modelJSON=decrypted.toString(CryptoJS.enc.Utf8)}}else if("string"==typeof modelJSON&&0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{"))return;if(jsonh)if("string"==typeof modelJSON)var modelData=JSONH.unpack(JSON.parse(modelJSON));else var modelData=modelJSON;else var modelData=JSON.parse(modelJSON);model.setData(modelData),"function"==typeof eval(event)&&eval(event)(),online&&!model.oData.length&&eval(online)()}):(tries++,tries<50?setTimeout(check,50):_AppCache_Cache_Fallback())}check()}()}function _AppCache_SetCache_IDB(o,e,t,a,n){if(t)var r=JSON.stringify(t);else if(a)r=JSON.stringify(JSONH.pack(e.oData));else r=e.getJSON();if(n){var p=CryptoJS.AES.encrypt(r,AppStorage.deviceID);r=p.toString()}var i;i=0,function e(){p8Models.isOpen?p8SaveModel(o,r):++i<50?setTimeout(e,50):_AppCache_Cache_Fallback()}()}function p8SaveModel(o,e){var t=p8Models.result.transaction("model","readwrite").objectStore("model").put({key:o,value:e});t.onerror=function(e){console.log("IndexedDB Error (p8SaveModel) Key "+o+t.error)}}function p8GetModel(a){return new Promise(function(o,e){var t=p8Models.result.transaction("model","readonly").objectStore("model").get(a);t.onsuccess=function(){t.result?o(t.result.value):o("[]")},t.onerror=function(e){console.log("IndexedDB Error (p8GetModel) Key "+a+t.error),o("[]")}})}function p8SaveView(o,e){var t=p8Views.result.transaction("view","readwrite").objectStore("view").put({key:o,value:e});t.onerror=function(e){console.log("IndexedDB Error (p8SaveView) Key "+o+t.error)}}function p8GetView(a){return new Promise(function(o,e){var t=p8Views.result.transaction("view","readonly").objectStore("view").get(a);t.onsuccess=function(e){t.result?o(t.result.value):o("[]")},t.onerror=function(e){console.log("IndexedDB Error (p8GetView) Key "+a+t.error),o("[]")}})}p8Views.onupgradeneeded=function(e){e.target.result.createObjectStore("view",{keyPath:"key"})},p8Models.onupgradeneeded=function(e){e.target.result.createObjectStore("model",{keyPath:"key"})},p8Views.onsuccess=function(e){p8Views.isOpen=!0},p8Models.onsuccess=function(e){p8Models.isOpen=!0},p8Views.onerror=function(e){console.log("Views IndexedDB could not be opened. Using localStorage as Fallback"),_AppCache_Cache_Fallback()},p8Models.onerror=function(e){console.log("Models IndexedDB could not be opened. Using localStorage as Fallback"),_AppCache_Cache_Fallback()};
+//INIT
+
+oObjectHeader.addStyleClass("sapUiSizeCompact");
+oVerticalLayoutDelegate.addStyleClass("Vertical_LayoutBtn");
+Btn_RevokeDelegate.addStyleClass("sapUiSizeCompact");
+Btn_Delegate.addStyleClass("sapUiSizeCompact");
+VerticalLayoutEmployeeName.addStyleClass("Vertical_Layout");
+ObjectAttributeEmployeeName.addStyleClass("ObjectAttributeweight");
+VerticalLayoutJobTitle.addStyleClass("Vertical_Layout");
+ObjectAttributePersonnelArea.addStyleClass("ObjectAttributeweight");
+VerticalLayoutReportNumber.addStyleClass("Vertical_Layout");
+ObjectAttributeReportNumber.addStyleClass("ObjectAttributeweight");
+oIconTabBar.addStyleClass("sapUiSizeCompact");
+oIconTabBar.addStyleClass("IcontabBarContent");
+Toolbar_ExpenseReport.addStyleClass("sapUiSizeCompact");
+oSearchField.addStyleClass("sapUiSizeCompact");
+oSearchField.addStyleClass("SearchClass");
+oSearchField.addStyleClass("sapUiTinyMarginTopBottom");
+Btn_WVPrint.addStyleClass("sapUiSizeCompact");
+Btn_Back.addStyleClass("sapUiSizeCompact");
+Btn_ApprovalFlow.addStyleClass("sapUiSizeCompact");
+Btn_Print.addStyleClass("sapUiSizeCompact");
+Btn_NotifyEmployee.addStyleClass("sapUiSizeCompact");
+Btn_save.addStyleClass("sapUiSizeCompact");
+Btn_Approval.addStyleClass("sapUiSizeCompact");
+Btn_Recall.addStyleClass("sapUiSizeCompact");
+Frm_ExpenseReceipt.addStyleClass("sapUiSizeCompact");
+Lbl_ExpenseStartDate.addStyleClass("labelFontweight");
+DP_ExpenseStartDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_StartTime.addStyleClass("labelFontweight");
+Lbl_StartTime.addStyleClass("sapUiTinyMarginTop");
+TP_StartTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_TripType.addStyleClass("labelFontweight");
+Lbl_City.addStyleClass("labelFontweight");
+Lbl_State.addStyleClass("labelFontweight");
+Lbl_Country.addStyleClass("labelFontweight");
+Lbl_ExpenseEndDate.addStyleClass("labelFontweight");
+DP_ExpenseEndDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_EndTime.addStyleClass("labelFontweight");
+Lbl_EndTime.addStyleClass("sapUiTinyMarginTop");
+TP_EndTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_wbsElement.addStyleClass("labelFontweight");
+Lbl_Approver.addStyleClass("labelFontweight");
+Ip_Approver.addStyleClass("26.6rem");
+Lbl_BusinessPurpose.addStyleClass("labelFontweight");
+Lbl_hdAmount.addStyleClass("labelFontweight");
+HBox_Amount1.addStyleClass("sapUiSizeCompact");
+Ip_HdAmount.addStyleClass("sapUiSmallMarginEnd");
+Frm_PersonnelTravel.addStyleClass("sapUiSizeCompact");
+oLabel.addStyleClass("labelFontweight");
+DD_ExternalEntity.addStyleClass("sapUiTinyMarginEnd");
+oLabel2.addStyleClass("labelFontweight");
+oLabel1.addStyleClass("labelFontweight");
+DD_PersonnelTravel.addStyleClass("sapUiTinyMarginEnd");
+Lbl_rsonnelravelDates.addStyleClass("labelFontweight");
+DP_PersonnelStartDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_EndDate.addStyleClass("labelFontweight");
+Lbl_EndDate.addStyleClass("sapUiTinyMarginTop");
+DP_PersonnelEnde.addStyleClass("sapUiTinyMarginBegin");
+Frm_CostDistribution.addStyleClass("sapUiSizeCompact");
+Tbl_Cost_Distribution.addStyleClass("sapUiSizeCompact");
+oVBox2.addStyleClass("sapUiSizeCompact");
+Tbl_ExpenseTypes.addStyleClass("sapUiSizeCompact");
+Panel_ExpenseType.addStyleClass("sapUiSizeCompact");
+Label_ExpenseType.addStyleClass("labelFontweight");
+Panel_AirFare.addStyleClass("sapUiSizeCompact");
+lbl_AirFareDeptDate.addStyleClass("labelFontweight");
+DP_AirfareDeptDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_AirfareDeptTime.addStyleClass("labelFontweight");
+Lbl_AirfareDeptTime.addStyleClass("sapUiTinyMarginTop");
+TP_AirfareDeptTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_AirFareDeptCity.addStyleClass("labelFontweight");
+Lbl_AirFareDeptCountry.addStyleClass("labelFontweight");
+Lbl_AirFareDeptDestination.addStyleClass("labelFontweight");
+Lbl_AFDepartDesCountry.addStyleClass("labelFontweight");
+Lbl_AirFareoneAmount.addStyleClass("labelFontweight");
+HBox_AirFareAmount.addStyleClass("sapUiSizeCompact");
+Ip_AirFareAmount.addStyleClass("sapUiSmallMarginEnd");
+Lbl_AirFareArrDate.addStyleClass("labelFontweight");
+Dp_AirFareArrDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_AirfareArrTime.addStyleClass("labelFontweight");
+Lbl_AirfareArrTime.addStyleClass("sapUiTinyMarginTop");
+TP_AirfareArrTie.addStyleClass("sapUiTinyMarginBegin");
+Lbl_AirFareArrFromCity.addStyleClass("labelFontweight");
+Lbl_AirFareArrFromCountry.addStyleClass("labelFontweight");
+Lbl_AirFareArrDestCity.addStyleClass("labelFontweight");
+Lbl_AirFareArrDesCountry.addStyleClass("labelFontweight");
+Lbl_AirFareAmount.addStyleClass("labelFontweight");
+HBox_AirFare2Amount1.addStyleClass("sapUiSizeCompact");
+Ip_AirFareRetAmount.addStyleClass("sapUiSmallMarginEnd");
+Label_AirFareComment.addStyleClass("labelFontweight");
+Panel_NonAirFare.addStyleClass("sapUiSizeCompact");
+Lbl_NonAirFareFromDate.addStyleClass("labelFontweight");
+DP_NonAirFareFromDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_NonAirfareStartTime.addStyleClass("labelFontweight");
+Lbl_NonAirfareStartTime.addStyleClass("sapUiTinyMarginTop");
+TP_NonAirfareStartTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_NonAirFareCity.addStyleClass("labelFontweight");
+Lbl_NonAirFareBeginCountry.addStyleClass("labelFontweight");
+Lbl_NonAirFareEndDate.addStyleClass("labelFontweight");
+DP_NonAirFareEndDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_NonAirFareEndTime.addStyleClass("labelFontweight");
+Lbl_NonAirFareEndTime.addStyleClass("sapUiTinyMarginTop");
+TP_NonAirFareEndTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_NonAirFareAmount.addStyleClass("labelFontweight");
+HBox_NonAirFareAmount.addStyleClass("sapUiSizeCompact");
+Ip_NonAirFareAmount.addStyleClass("sapUiSmallMarginEnd");
+Label_NonAirFareComment.addStyleClass("labelFontweight");
+Panel_CarRental.addStyleClass("sapUiSizeCompact");
+Lbl_CarRentalFromDate.addStyleClass("labelFontweight");
+DP_CarRentalFromDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_CarRentalStartTime.addStyleClass("sapUiTinyMarginTop");
+Lbl_CarRentalStartTime.addStyleClass("labelFontweight");
+TP_CarRentalStartTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_CarRentaPickuplCity.addStyleClass("labelFontweight");
+Lbl_CarRentalPickupCountry.addStyleClass("labelFontweight");
+Lbl_CarRentalAmount.addStyleClass("labelFontweight");
+HBox_CarRentalAmount.addStyleClass("sapUiSizeCompact");
+Ip_CarRentalAmount.addStyleClass("sapUiSmallMarginEnd");
+Lbl_CarRentalEndDate.addStyleClass("labelFontweight");
+DP_CarRentalEndDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_CarRentalEndTime.addStyleClass("labelFontweight");
+Lbl_CarRentalEndTime.addStyleClass("sapUiTinyMarginTop");
+TP_CarRentalEndTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_CarRentalDropoffCity.addStyleClass("labelFontweight");
+Lbl_CarRentalDropoffCountry.addStyleClass("labelFontweight");
+Label_CarRentalComment.addStyleClass("labelFontweight");
+Panel_ExpenseItem.addStyleClass("sapUiSizeCompact");
+lbl_ExpenseStartDate.addStyleClass("labelFontweight");
+DP_ExpenseDeptDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_ExpenseDeptTime.addStyleClass("labelFontweight");
+Lbl_ExpenseDeptTime.addStyleClass("sapUiTinyMarginTop");
+TP_ExpenseDeptTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_ExpenseDeptCity.addStyleClass("labelFontweight");
+Lbl_ExpenseDeptCountry.addStyleClass("labelFontweight");
+Lbl_ExpenseDeptDestination.addStyleClass("labelFontweight");
+Lbl_ExpenseAFDepartDesCountry.addStyleClass("labelFontweight");
+Lbl_ExpenseAirFareoneAmount.addStyleClass("labelFontweight");
+HBox_ExpenseAmount.addStyleClass("sapUiSizeCompact");
+Ip_ExpenseAmount.addStyleClass("sapUiSmallMarginEnd");
+DD_ExpenseCurrency.addStyleClass("sapUiTinyMarginEnd");
+Lbl_ExpenseEndDate1.addStyleClass("labelFontweight");
+Dp_ExpenseArrDate.addStyleClass("sapUiTinyMarginEnd");
+Lbl_ExpenseArrTime.addStyleClass("labelFontweight");
+Lbl_ExpenseArrTime.addStyleClass("sapUiTinyMarginTop");
+TP_ExpenseArrTime.addStyleClass("sapUiTinyMarginBegin");
+Lbl_ExpenseArrFromCity.addStyleClass("labelFontweight");
+Lbl_ExpenseArrFromCountry.addStyleClass("labelFontweight");
+Lbl_ExpenseArrDestCity.addStyleClass("labelFontweight");
+Lbl_ExpeseArrDesCountry.addStyleClass("labelFontweight");
+Label_ExpenseComment.addStyleClass("labelFontweight");
+Label_ExpenseComment1.addStyleClass("labelFontweight");
+Btn_Save.addStyleClass("sapUiSizeCompact");
+Btn_Cancel.addStyleClass("sapUiSizeCompact");
+Dia_TripDeleteRet.addStyleClass("sapUiSizeCompact");
+Dia_Delegate.addStyleClass("sapUiSizeCompact");
+Dia_PdfViewer.addStyleClass("sapUiSizeCompact");
+Dialog_Return.addStyleClass("sapUiSizeCompact");
+Dialog_Back_Confirm.addStyleClass("sapUiSizeCompact");
+DialogTblDist.addStyleClass("sapUiSizeCompact");
+VP_pernr.addStyleClass("sapUiSizeCompact");
+sap.ui.getCore().attachInit(function() {
+setTimeout(function(){
+App_ExpenseRequest.placeAt("MobileContent");
+getOnlineDD_BusinessPurpose1();
+getOnlineDD_ColmnCostObjectType();
+NavContainerEmpDetails.setLayoutData(oSplitterLayoutData);
+sap.ui.core.BusyIndicator.hide();
+},150);
+
+getCacheVP_pernr();
+
+});
+
+jQuery(function() { jQuery("form").submit(function(event) { event.preventDefault(); return false; }); })
+</script>
+<style>
+#F4Dialog .sapMITBContent {padding: 0 !important;}#F4Dialog .sapUiFormTitle {height: 0.5rem;}#F4Dialog .sapUiFormResGrid>div {padding-top:0;padding-bottom:10px}#F4Dialog .sapMListTblHeader th {padding-left:0 !important;}
+</style>
+<script>
+AppCache.StartApp = "";
+AppCache.PasscodeApp = "";
+AppCache.numPasscode = "";
+AppCache.Client = "";
+AppCache.Url = "";
+AppCache.CurrentConfig = "SS";
+AppCache.AppVersion = "";
+AppCache.isHCP = true;
+AppCache.hcpDestination = "ss";
+AppCache.enablePasscode = false;
+AppCache.enableTwoFactor = false;
+AppCache.enableMocana = false;
+AppCache.enableSMP = false;
+AppCache.useMenu = false;
+AppCache.enablePortal = false;
+AppCache.AppID = "";
+</script>
+</body>
+</html>
+</body>
+</html>
